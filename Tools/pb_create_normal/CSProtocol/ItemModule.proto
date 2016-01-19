@@ -1,0 +1,439 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.item";
+option java_outer_classname = "ItemProtos";
+
+message BuyItemRequest {
+  optional int32 itemId = 1;
+}
+
+message RoleItemResponse {
+  optional int32 state = 1;
+  optional string failMsg = 2;
+}
+
+message UpdateBagInfo {
+  repeated OfficerCardItemUpdateProto updateOfficerCardItemProto = 1;
+  repeated EquipmentCardItemUpdateProto updateEquipmentCardItemProto = 2;
+  repeated SoldierCardItemUpdateProto updateSoldierCardItemProto = 3;
+  repeated PropsCardItemUpdateProto updatePropsCardItemProto = 4;
+  repeated OfficerFragmentCardItemUpdateProto updateOfficerFragmentCardItemProto = 5;
+  repeated ConsumableCardItemUpdateProto updateConsumableCardItemProto = 6;
+  repeated MaterialItemUpdateProto updateMaterialItemProto = 7;
+}
+
+message OfficerCardItemUpdateProto {
+  optional int32 state = 1; //物品更新状态，0--删除、1--增加、2--更新
+  optional int32 ssid = 2; //物品ID
+  optional OfficerCardItemProto officerItem = 3;
+}
+
+message OfficerCardItemProto {
+  optional int32 ssid = 1;
+  optional int32 itemId = 2;
+  optional int32 atk = 3;
+  optional int32 def = 4;
+  optional int32 hp = 5;
+  optional int32 sp = 6;
+  optional int32 currLevel = 7;
+  optional int32 currExp = 8;
+  optional int32 isProtection = 9;
+  optional int32 generalsSkillId = 10;
+  optional int32 lordSkillId = 11;
+  optional int32 generalsSkillCurrExp = 12;
+  optional int32 lordSkillCurrExp = 13;
+  //lipengbin add 是否会碎裂成碎片，以下三个属性是当玩家获取一个武将卡的时候需要进行判断的。
+  optional bool isCrash=14;
+  //lipengbin add 碎裂成碎片的个数
+  optional int32 crashFragmentNum=15;
+  //lipengbin add 碎裂成碎片的id
+  optional int32 crashFragmentId=16;
+  //武将剩余潜力点
+  optional int32 leftDevPoint = 17;
+  optional bool savedDev = 18;
+}
+
+message EquipmentCardItemUpdateProto {
+  optional int32 state = 1; //物品更新状态，0--删除、1--增加、2--更新
+  optional int32 ssid = 2; //物品ID
+  optional int32 oldOfficerId = 3;//原武将id
+  optional EquipmentCardItemProto equipmentItem = 4;
+  optional int32 cost = 5;//强化的总消耗
+}
+
+message EquipmentCardItemProto {
+  optional int32 itemId = 1;
+  optional int32 currLevel = 2;
+  optional int32 ssid = 3;
+  optional int32 officerCardItemId = 4;
+  optional int32 isProtection = 5;
+  optional int32 cost = 6;
+}
+
+message SoldierCardItemUpdateProto {
+  optional int32 state = 1; //物品更新状态，0--删除、1--增加、2--更新
+  optional int32 ssid = 2; //物品ID
+  optional SoldierCardItemProto soldierItem = 3;
+}
+
+message SoldierCardItemProto {
+  optional int32 currLevel = 1;
+  optional int32 currExp = 2;
+  optional int32 ssid = 3;
+  optional int32 itemId = 4;
+}
+
+message PropsCardItemUpdateProto {
+  optional int32 state = 1; //物品更新状态，0--删除、1--增加、2--更新
+  optional int32 ssid = 2; //物品ID
+  optional PropsCardItemProto propsItem = 3;
+}
+
+message PropsCardItemProto {
+  optional int32 ssid = 1;
+  optional int32 itemId = 2;
+  optional int32 isProtection = 3;
+  optional int32 currItemNumber = 4;
+}
+message MaterialItemUpdateProto {
+  optional int32 state = 1; //物品更新状态，0--删除、1--增加、2--更新
+  optional int32 ssid = 2; //物品ID
+  optional MaterialItemProto materialItem = 3;
+}
+message MaterialItemProto {
+  optional int32 ssid = 1;
+  optional int32 itemId = 2;
+  optional int32 itemNum =3;
+}
+
+message OfficerFragmentCardItemUpdateProto {
+  optional int32 state = 1; //物品更新状态，0--删除、1--增加、2--更新
+  optional int32 ssid = 2; //物品ID
+  optional OfficerFragmentCardItemProto officerFragmentCardItem = 3;
+}
+
+message OfficerFragmentCardItemProto {
+  optional int32 ssid = 1;
+  optional int32 itemId = 2;
+  optional int32 currItemNumber = 3;
+}
+
+message ConsumableCardItemUpdateProto {
+  optional int32 state = 1; //物品更新状态，0--删除、1--增加、2--更新
+  optional int32 ssid = 2; //物品ID
+  optional ConsumableCardItemProto consumableCardItem = 3;
+}
+
+message ConsumableCardItemProto {
+  optional int32 ssid = 1;
+  optional int32 itemId = 2;
+  optional int32 currItemNumber = 3;
+}
+
+message OfficerCompositeRequest {
+  //401
+  optional int32 ssid = 1;
+  repeated int32 materialId = 2;
+  repeated int32 propsId = 3;
+}
+
+message OfficerCompositeResponse {
+  optional int32 state = 1;
+  optional OfficerCardItemProto officerCardItemProto = 2;
+  optional int32 allExp = 3;
+  //0:未成功 1:成功 2:大成功 3:超成功
+  optional int32 upgradeState = 4;
+}
+
+message OfficerProtectionRequest {
+  //402
+  optional int32 ssid = 1;
+}
+
+message OfficerProtectionResponse {
+  optional int32 state = 1;
+}
+
+message OfficerUnProtectionRequest {
+  //403
+  optional int32 ssid = 1;
+}
+
+message OfficerUnProtectionResponse {
+  optional int32 state = 1;
+}
+
+message OfficerUpgradeRequest {
+  //404	武将转生(升星)
+  optional int32 officerId = 1;	//转生的武将ID
+  //lipengbin delete 已经不需要这个属性了，服务器直接计算碎片数量就好了
+  //repeated int32 consumeId = 2;	//消耗的武将列表
+}
+
+message OfficerUpgradeResponse {
+  optional int32 state = 1;
+  optional OfficerCardItemProto officerCardItemProto = 2;
+}
+
+message EquipmentCompositeRequest {
+  //405		原来的装备强化消息		已废弃
+  optional int32 ssid = 1;
+  repeated int32 materialId = 2;
+  repeated int32 propsId = 3;
+}
+
+message EquipmentCompositeResponse {
+  optional int32 state = 1;
+  optional EquipmentCardItemProto equipmentCardItemProto = 2;
+  optional int32 allExp = 3;
+  //0:未成功 1:成功 2:大成功 3:超成功
+  optional int32 upgradeState = 4;
+}
+
+message EquipmentStrengthRequest {
+	//440		装备强化
+	required int32 ssid = 1;	//装备SSID
+}
+
+message EquipmentStrengthResponse {
+	//440		装备强化
+	required int32 state = 1;	//1--成功		0--失败
+	required int32 level = 2;	//强化后装备的等级
+	required int32 addLevel = 3; //强化了多少级
+}
+
+message EquipmentStrengthAutoRequest {
+	//441		装备自动强化
+	required int32 ssid = 1;	//装备SSID
+}
+
+message EquipmentStrengthAutoResponse {
+	//441		装备自动强化
+	required int32 state = 1;	//1--成功		0--失败
+	required int32 level = 2;	//强化后装备的等级
+	repeated int32 process = 3;	//升级过程
+}
+
+message EquipmentUpgradeRequest {
+  //406	装备转生(升星)
+  optional int32 ssId = 1;	//转生的装备ID
+}
+
+message EquipmentUpgradeResponse {
+  optional int32 state = 1;
+  optional EquipmentCardItemProto equipmentCardItemProto = 2;
+}
+
+message EquipmentProtectionRequest {
+  //407
+  optional int32 ssid = 1;
+}
+
+message EquipmentProtectionResponse {
+  optional int32 state = 1;
+}
+
+message EquipmentUnProtectionRequest {
+  //408
+  optional int32 ssid = 1;
+}
+
+message EquipmentUnProtectionResponse {
+  optional int32 state = 1;
+}
+
+message WearEquipmentRequest {
+  //409
+  optional int32 officerId = 1;
+  optional int32 equipmentId = 2;
+}
+
+message WearEquipmentResponse {
+  optional int32 state = 1;
+}
+
+message OffEquipmentRequest {
+  //410
+  optional int32 officerId = 1;
+  optional int32 equipmentId = 2;
+}
+
+message OffEquipmentResponse {
+  optional int32 state = 1;
+}
+
+message SellRoleItemRequest {
+  //411
+  optional int32 ssid = 1;
+  optional int32 itemId = 2;
+}
+
+message SellRoleItemResponse {
+  optional int32 state = 1;
+}
+
+message SellRoleItemAllAutoRequest{
+  //421
+  optional int32 type = 1;//用户要卖出的卡牌类型
+  repeated int32 stars = 2;//自动出售的星级列表
+}
+
+message SellRoleItemAllAutoResponse{
+  optional int32 state = 1;
+}
+
+message SellRoleItemAllRequest{
+  //422
+  optional int32 type = 1;//用户要卖出的卡牌类型
+  repeated int32 itemId = 2;//用户所勾选的卡牌
+  optional int32 num = 3;//出售的数量	消耗品出售时发送出售物品的数量
+}
+
+message SellRoleItemAllResponse{
+  optional int32 state = 1;
+}
+
+message SoldierCompositeRequest {
+  //412
+  optional int32 ssid = 1;
+  repeated int32 propsId = 2;
+}
+
+message SoldierCompositeResponse {
+  optional int32 state = 1;
+  optional SoldierCardItemProto soldierCardItemProto = 2;
+  optional int32 allExp = 3;
+  //0:未成功 1:成功 2:大成功 3:超成功
+  optional int32 upgradeState = 4;
+}
+
+message ExpansionRequest {
+  //413
+  optional int32 type = 1;//一共5种，用户选择哪种就传序号，从1开始。
+}
+
+message ExpansionResponse {
+  optional int32 state = 1;//0失败 1成功
+}
+
+message PropsProtectionRequest {
+  //414
+  optional int32 ssid = 1;
+}
+
+message PropsProtectionResponse {
+  optional int32 state = 1;
+}
+
+message PropsUnProtectionRequest {
+  //415
+  optional int32 ssid = 1;
+}
+
+message PropsUnProtectionResponse {
+  optional int32 state = 1;
+}
+
+message CardStatesRequest {
+  //416  
+}
+
+message CardStatesResponse {
+  repeated CardStateMessage cards = 1;
+}
+
+message CardStateMessage {
+  optional int32 itemId = 1;
+  optional int32 state = 2;//1==hascard 2==seen card
+}
+
+message SkillCompositeRequest {
+  //417
+  optional int32 ssid = 1;
+  repeated int32 propsId = 2;
+}
+
+message SkillCompositeResponse {
+  optional int32 state = 1;
+  optional int32 skillId = 2;
+  optional int32 skillExp = 3;
+}
+
+message SummonCardRequest {
+  //508
+  optional int32 ssid = 1;
+}
+
+message SummonCardResponse {
+  optional int32 state = 1;
+  optional int32 ssid = 2;
+}
+
+message LordSkillCompositeRequest {
+	//420
+	optional int32 ssid = 1;
+	repeated int32 propsId = 2;
+}
+
+message LordSkillCompositeResponse {
+	//420
+	optional int32 state = 1;
+	optional int32 skillId = 2;
+	optional int32 skillExp = 3;
+}
+
+message UseConsumableItemRequest {
+	//425	使用消耗品
+	required int32 ssid = 1;
+	required int32 num = 2;
+}
+
+message UseConsumableItemResponse {
+	//425	使用消耗品
+	optional int32 state = 1;
+	optional string msg = 2;
+	repeated int32 types = 3;
+	repeated int32 itemIds = 4;
+	repeated int32 nums = 5;
+}
+
+enum MergeType {
+	//兵魂卡
+	SOLDIER = 1;
+	//经验丹
+	OFFICER = 2;
+}
+
+message MergeItemRequest {
+	//442
+	required MergeType type = 1;
+}
+
+message MergeItemResponse {
+	//442
+	required MergeType type = 1;
+	required int32 state = 2;//0--失败 1--成功 2--没有可合成的物品
+}
+
+message ItemDataProto {
+	//物品信息
+	required int32 itemType = 1;
+	required int32 itemId = 2;
+	required int32 itemNum = 3;
+	optional int32 itemLv = 4 [default = 1];
+}
+
+message GoodsDataProto {
+//商品信息
+	required ItemDataProto item = 1;
+	//货币类型
+	required int32 priceType = 2;
+	//售价
+	required int32 priceValue = 3;
+    //状态。一般0=不可购买，1=可购买。
+    required int32 state = 4 [default = 1];
+	//角标
+	optional string  mark = 5;
+	//边框效果  
+	optional int32 effect = 6;
+}

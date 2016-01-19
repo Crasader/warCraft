@@ -1,0 +1,298 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.reward";
+option java_outer_classname = "RewardProtos";
+
+import "ItemModule.proto";
+
+//----------
+message RewardLevelUpEntryRequest {
+	//message id=712
+}
+
+message RewardLevelUpEntryResponse {
+	repeated int32 records = 1;// ex:2311  1=can't take  2==already take 3==can take
+}
+
+//----------
+message RewardLevelUpPurchRequest {
+	//message id=713
+	required int32 level = 1;
+}
+
+message RewardLevelUpPurchResponse {
+	optional int32 result = 1;// succ=1;
+}
+
+//----------
+message RewardSalaryEntryRequest {
+	//message id=714
+}
+
+message RewardSalaryEntryResponse {
+	optional int32 levelCoin = 1;
+	optional int32 levelRewardTime = 2;
+	optional int32 pvpLevel = 3;
+	optional int32 pvpLevelCoin = 4;
+	optional int32 pvpRewardTime = 5;
+	optional int32 pveMinLevel = 6;
+	optional int32 pvpMinLevel = 7;
+}
+
+//----------
+message RewardGetSalaryRequest {
+	//message id=715
+	required int32 type = 1;// 0=level 1=pvp
+}
+
+message RewardGetSalaryResponse {
+	optional int32 result = 1; //true==1 false==(other less than 0 numbers)
+}
+
+//----------
+message RewardRecoverPowerEntryRequest {
+	//message id=716	
+}
+
+message RewardRecoverPowerEntryResponse {
+	optional int32 power = 1;
+	optional int32 enable = 2;//yes=1 no=0
+}
+
+//----------
+message RewardRecoverPowerPurchRequest {
+	//message id=717	
+}
+
+message RewardRecoverPowerPurchResponse {	
+	optional int32 result = 1; //true=1,not ok time=2,3=already purched
+}
+
+//----------
+message RewardGodPrayEntryRequest {
+	//message id=718
+}
+
+message RewardGodPrayEntryResponse {	
+	optional int32 current = 1;
+	optional int32 max = 2;
+	optional int32 canDo = 3;//can=1  can't=0
+	repeated GodRewardInfo godRewardInfo = 4; //展示的物品
+	
+}
+
+message GodRewardInfo{
+	optional int32 type = 1; //物品类型
+	optional int32 itemId = 2 ;  //物品id
+	optional int32 count = 3;  //物品个数   一般情况只作用于铜币和元宝
+}
+
+//----------
+message RewardGodPrayAddRequest {
+	//message id=719
+}
+
+message RewardGodPrayAddResponse {	
+	optional int32 result = 1;//true=1 false=0
+	optional int32 max = 2;
+	repeated GodRewardInfo godRewardInfo = 3; //展示的物品
+}
+
+//----------
+message RewardRegLotteryEntryRequest {
+	//message id=720
+}
+
+message RewardRegLotteryEntryResponse {	
+	optional int32 leftChance = 1;
+	optional int32 leftTime = 2;
+	optional int32 costGold = 3;
+	repeated string getGolds = 4;
+}
+//----------
+message RewardRegLotteryGetRequest {
+	//message id=721
+}
+
+message RewardRegLotteryGetResponse {	
+	optional int32 returnGold = 1;
+	optional int32 nextCostGold = 2;
+}
+
+//--------puhs----------
+message RewardNoticeMessage {	
+	//push message id=730
+	repeated RewardTypeState update = 1; 
+}
+
+message RewardTypeState {
+	required int32 type = 1;
+	required int32 state = 2;
+}
+
+message RewardLianDanTimeRequest{
+//722
+optional int32 index=1;
+}
+
+message RewardLianDanTimeResponse{
+optional int32 time=1;
+}
+
+message RewardLianDanRequest{
+//723
+optional int32 index=1;
+optional int32 isHigh=2;
+}
+
+message RewardLianDanResponse{
+optional int32 state=1;
+optional int32 itemId=2;
+optional PropsCardItemProto propsCardItem=3;
+optional int32 lianDan=4;
+}
+
+message RewardRegLotteryPush{
+//message id:724
+optional string name=1;
+optional int32 gold=2;
+}
+
+message RewardBindAccountRequest{
+//725
+}
+
+message RewardBindAccountResponse{
+optional int32 state=1;
+optional RewardItemListProto itemList=2;
+}
+
+//������Ʒ
+message RewardItemListProto{
+optional int32 gold=1;
+optional int32 coin=2;
+optional int32 pvpScore=3;
+optional int32 lianDan=4;
+repeated PropsCardItemProto propsCardItem=5;
+repeated OfficerCardItemProto officerCardItem=6;
+repeated EquipmentCardItemProto equipmentCardItem=7;
+repeated SoldierCardItemProto SoldierCardItem=8;
+repeated OfficerFragmentCardItemProto officerFragmentCardItem = 9;
+}
+
+message RewardBindAccountInfoRequest{
+//726
+}
+
+message RewardBindAccountInfoResponse{
+//账号绑定状态 0 未绑定 1 已绑定可领奖 2 已领取
+optional int32 state = 1;
+//奖励内容
+repeated RewardInfoProto rewardInfo=2;
+//邮箱绑定状态 0 未绑定 1 已绑定可领奖 2 已领取
+optional int32 mailState = 3;
+//绑定的邮箱
+optional string mail = 4;
+//奖励内容
+repeated RewardInfoProto mailRewardInfo=5;
+}
+
+message BindMailRequest{
+//727
+optional int32 state = 1;
+optional string mail = 2;
+}
+message BindMailResponse{
+//727
+optional int32 state = 1;
+}
+message RewardBindMailRequest{
+//728
+}
+message RewardBindMailResponse{
+optional int32 state=1;
+optional RewardItemListProto itemList=2;
+}
+
+
+//兑换码入口
+message ExchangeCodeEntryRequest{
+//1102
+}
+message ExchangeCodeEntryResponse{
+repeated string info=1;
+}
+
+//兑换码信息
+message ExchangeCodeInfoRequest{
+optional string code=1;
+}
+
+message ExchangeCodeInfoResponse{
+required int32 state=1;
+optional int32 rewardId=2;
+repeated RewardInfoProto rewardInfo=3;
+}
+
+message RewardInfoProto{
+optional int32 type=1;
+optional int32 value=2;
+optional int32 number=3;
+}
+
+message FirstPayRewardResponse{
+   //首次充值成功推给客户端
+    repeated FirstPayRewardItemProto firstPayRewardItemProto = 1 ;
+}
+
+message FirstPayRewardItemProto{
+	optional int32 itemType = 1 ;
+  	optional int32 itemId = 2; 
+   	optional int32 itemCount = 3 ;
+   	optional int32 itemLevel = 4 ;
+}
+
+message SigninDetailRequest{
+	//messageId 1200	月签界面
+}
+
+message SigninDetailResponse{
+	//messageId 1200	月签界面
+	repeated SigninCell cells = 1;
+	required int32 month = 2;//几月份签到
+	required int32 day = 3;//已签到多少天
+}
+
+message SigninCell{
+	//月签每一格详情
+	required ItemDataProto itemData = 1; //奖励物品信息
+	required SignState state = 2; //领取状态
+	required string showString = 3; //标签
+	required int32 niubility = 4; //牛逼光效
+	required string itemDesc = 5; //物品描述
+	required string vipDesc = 6; //VIP描述
+}
+
+enum SignState{
+	//已领取。
+	NORMAL_HAS = 0;
+	//未领取。
+	NORMAL_NO = 1;
+    //可领取
+    NORMAL_CAN = 2;
+    //VIP领取一次
+    VIP_HALF = 3;
+}
+
+message SigninRewardRequest{
+	//messageId 1201	月签领奖
+}
+
+message SigninRewardResponse{
+	//messageId 1201	月签领奖
+	required int32 rewardState = 1;//领奖状态  1--成功  0--失败
+	required ItemDataProto itemData = 2;//领奖物品
+	required int32 day = 3; //第几天奖励
+	required SignState cellState = 4; //月签格状态
+	required int32 niubility = 5; //牛逼光效
+}

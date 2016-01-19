@@ -1,0 +1,96 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.army";
+option java_outer_classname = "ArmyProtos";
+
+message DispatchOfficerRequest {
+  //501
+  optional int32 ssid = 1;
+  optional int32 position = 2;
+  optional int32 teamId = 3;
+}
+
+message DispatchOfficerResponse {
+  required int32 state =1;
+  required int32 teamId = 2;
+}
+
+message RemoveOfficerRequest {
+  //502
+  optional int32 position = 1;
+  optional int32 teamId = 2;
+}
+
+message RemoveOfficerResponse {
+  required int32 state =1;
+  required int32 teamId = 2;
+}
+
+message SetLordRequest {
+  //503
+  optional int32 ssid = 1;
+  optional int32 teamId = 2;
+}
+
+message SetLordResponse {
+  required int32 state =1;
+  required int32 teamId = 2;
+}
+
+message DispatchSoldierRequest {
+  //504
+  //0:red 1:green 2:blue
+  optional int32 ssid = 1;
+  optional int32 color = 2;
+  optional int32 teamId = 3;
+}
+
+message DispatchSoldierResponse {
+  required int32 state =1;
+  required int32 teamId = 2;
+}
+
+message ChangePositionRequest {
+  //505
+  optional int32 from = 1;
+  optional int32 to = 2;
+  optional int32 teamId = 3;
+}
+
+message ChangePositionResponse {
+  required int32 state =1;
+  required int32 teamId = 2;
+}
+
+message ChangeOfficerRequest {
+  //506
+  optional int32 sourceId = 1;
+  optional int32 targetId = 2;
+  optional int32 teamId = 3;
+}
+
+message ChangeOfficerResponse {
+  required int32 state =1;
+  required int32 teamId = 2;
+}
+
+message ChangeCurrentTeamRequest {
+  //507
+  optional int32 teamId = 1;
+}
+
+message ChangeCurrentTeamResponse {
+  required int32 state = 1;
+  required int32 teamId = 2;
+}
+
+message BatchChangeOfficerRequest {
+  //509
+  required int32 teamId = 1;
+  repeated int32 officerIds = 2;
+}
+
+message BatchChangeOfficerResponse {
+  //509
+  optional int32 state = 1;
+}

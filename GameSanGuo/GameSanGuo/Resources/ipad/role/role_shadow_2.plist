@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>role_shadow_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{100,41}}</string>
+                <key>offset</key>
+                <string>{-1,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,1},{100,41}}</string>
+                <key>sourceSize</key>
+                <string>{104,45}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>role_shadow_2.pvr.ccz</string>
+            <key>size</key>
+            <string>{128,64}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:7444b093178cfe4d53bcf93e4b9c495a:1/1$</string>
+            <key>textureFileName</key>
+            <string>role_shadow_2.pvr.ccz</string>
+        </dict>
+    </dict>
+</plist>

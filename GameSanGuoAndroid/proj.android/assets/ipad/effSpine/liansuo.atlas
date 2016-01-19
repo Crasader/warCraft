@@ -1,0 +1,12 @@
+
+liansuo.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+liansuo
+  rotate: false
+  xy: 1, 1
+  size: 140, 70
+  orig: 142, 70
+  offset: 0, 0
+  index: -1

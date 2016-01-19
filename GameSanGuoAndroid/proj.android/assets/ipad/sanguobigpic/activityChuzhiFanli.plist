@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>activityChuzhiFanliBg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{586,738}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{586,738}}</string>
+                <key>sourceSize</key>
+                <string>{586,738}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>activityChuzhiFanli.png</string>
+            <key>size</key>
+            <string>{742,742}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:709756bd905fd32daee499922c523cfc:1/1$</string>
+            <key>textureFileName</key>
+            <string>activityChuzhiFanli.png</string>
+        </dict>
+    </dict>
+</plist>

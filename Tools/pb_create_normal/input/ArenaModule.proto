@@ -1,0 +1,110 @@
+package main;
+option optimize_for = LITE_RUNTIME;
+option java_package = "com.gamebean.sanguocard.message.arena";
+option java_outer_classname = "ArenaProtos";
+
+
+message ArenaMainInfoRequest{
+	//主页面空消息1600
+}
+
+message ArenaMainInfoResponse{
+	required ArenaBaseInfo baseInfo=1;
+	required ArenaRoleInfo selfInfo=2;
+	repeated ArenaRoleInfo matchList=3;	
+}
+
+message ArenaFightReportRequest{
+	//战报空消息头1601
+}
+message ArenaFightReportResponse{
+	required ArenaBaseInfo baseInfo=1;
+	repeated ArenaFightReport reportList=2;	
+}
+message ArenaRanksRequest{
+	//排行列表空消息头1602
+}
+message ArenaRanksResponse{
+	required ArenaBaseInfo baseInfo=1;
+	required ArenaRoleInfo selfInfo=2;
+	repeated ArenaRoleInfo ranks=3;		
+}
+
+message ArenaStartRequest{
+		//开始战斗1603
+	required int32 rank=1;	
+}
+message ArenaStartResponse{
+	required int32 state=1;
+	optional string msg=2;
+	optional int32 gold=3;
+	optional int32 surplusBuyCount=4;
+}
+message ArenaEndFightRequest{
+	//战斗结束1604
+	required bool quick=1;//是否跳过
+	optional bool isWin=2;//输赢 ,quick==false时有效
+}
+
+message ArenaEndFightResponse{
+	required bool isWin=1;
+	required int32 beforeRank=2;
+	required int32 afterRank=3;
+	required int32 coins=4;
+	required int32 count=5;//剩余挑战次数
+	required int32 maxCount=6;//最大次数
+}
+
+
+message ArenaGetRewardRequest{
+	//1605
+}
+message ArenaGetRewardResponse{
+    required int32 state = 1;
+	required int32 zhengfudian=2;//领取的征服点
+}
+
+
+message ArenaBuyFightCountRequest{
+	//1606
+}
+message ArenaBuyFightCountResponse{
+    required int32 state = 1;
+	optional string msg=2;
+}
+
+message ArenaFightReport{
+	required int32 roleId=1;
+	required string nickName=2;
+	required int32 nationId=3;	
+	required int32 officeItemId=4;
+	required int32 level=5;
+	required int32 beforeRank=6;
+	required int32 afterRank=7;
+	required bool isWin=8[default=false];
+	required bool isAttact=9[default=false];
+	required int64 time=10;
+	
+}
+message ArenaBaseInfo{
+	required int32 zhengfudian=1;//征服点
+	required int32 count=2;//剩余挑战次数
+	required int32 maxCount=3;//最大次数
+	required string info=4;//描述
+	required int64 surplusTime=5;//发奖剩余时间
+	required int64 canRewardCount=6;
+	required int32 cdTime=7;//cd时间
+}
+
+message ArenaRoleInfo{
+	required int32 roleId = 1;
+	required string nickName = 2;
+	required int32 nationId=3;
+	required int32 officeItemId=4;
+	required int32 level=5;
+	required int32 rank=6;
+	required int32 combatValue=7;
+	required int32 zhengfudian=8;
+}
+
+

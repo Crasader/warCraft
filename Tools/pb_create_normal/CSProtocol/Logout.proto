@@ -1,0 +1,11 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.login";
+option java_outer_classname = "LogoutProtos";
+message LogoutRequest {
+ 
+}
+
+message LogoutResponse {
+
+}

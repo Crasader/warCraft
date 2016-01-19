@@ -1,0 +1,616 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.fight";
+option java_outer_classname = "FightProtos";
+import "ItemModule.proto";
+
+message FightMatrixRequest {
+	//ationId=301
+}
+
+message FightMatrixResponse {
+	repeated FightSpirit spiritsYou = 1;
+	repeated FightSpirit spiritsHim = 2;
+}
+
+
+message StartStatePVPResponse {
+	//ationId=342
+	optional int32 state = 1;
+	optional string failMsg = 2;
+	optional string name=3;//自己名字
+	optional string tname=4;//对方的名字
+	optional int32 image=5;//自己名字头像
+	optional int32 tImage=6;//对方的头像
+	optional int32 majorPosition=7;//自己主将位置
+	optional int32 tmajorPosition=8;//对方主将位置
+	repeated StartStateItemModel itemId=9;//自己武将列表
+	repeated StartStateItemModel tItemId=10;//对方武将列表
+	optional int32 nation=11;//1蜀2魏3吴
+	optional int32 tNation=12;
+	optional int32 isAI=13;//是否是AI
+	optional int32 branchType = 14 [default = 201];	//战斗模式 天梯[201]
+}
+
+message StartStatePVERequest {
+	//ationId=343
+	optional int32 storyId=1;
+	optional int32 plotId = 2;
+	optional  int32 cooId =3;
+}
+
+message StartStatePVEResponse {
+	//ationId=343
+	optional int32 state = 1;
+	optional string fightId = 2;
+	optional string name=3;//自己名字
+	optional string tname=4;//对方的名字
+	optional int32 image=5;//自己名字头像
+	optional int32 tImage=6;//对方的头像
+	optional int32 majorPosition=7;//自己主将位置
+	optional int32 tmajorPosition=8;//对方主将位置
+	repeated StartStateItemModel item=9;//自己武将列表
+	repeated StartStateItemModel tItem=10;//对方武将列表
+	optional int32 nation=11;//1蜀2魏3吴
+	optional int32 tNation=12;
+	optional int32 branchType = 13  [default = 101];	//战斗模式 守荆州[102]/闯关[101]等
+	optional int32 survivalLevel=14 [default = -1];//守荆州关卡,-1代表不是噢.
+	optional bool needVerify = 15 [default = true];//战斗是否需要验证
+}
+
+message StartStateItemModel{
+	optional int32 itemId = 1;
+	optional int32 itemLevel= 2;
+}
+
+message StartRequest {
+  //ationId=302
+  optional int32 enemyRoleId = 1;
+}
+
+message StartResponse {
+	//ationId=302
+	optional int32 state = 1;
+	optional string failMsg = 2;
+	repeated FightSpirit spiritsYou = 3;
+	repeated FightSpirit spiritsHim = 4;
+	optional bool isFirstAttack = 5;
+	optional int32 youHp=6;
+	optional int32 himHp=7;
+	optional int32 youActionCount=8;
+	optional int32 himActionCount=9;
+	optional string fid=10;
+	optional int32 lordId = 11;
+	optional string lordName=12; //!!!!!!!!!!!!
+	optional int32 lordSkillBelongId=13;
+	optional int32 lordSkillId=14;
+	optional int32 tlordId = 15;
+	optional string tlordName=16; //!!!!!!!!!!!!
+	optional int32 tlordSkillBelongId=17;
+	optional int32 tlordSkillId=18;
+	optional int32 tlordSkillLevel=19;
+	optional int32 lordCdRound = 20;
+	optional int32 tlordCdRound = 21;
+	optional int32 clientType=22;//!!!!!!!!!!!!
+	optional int32 nation = 23;
+	optional int32 tnation = 24;
+	optional int32 lordAtkMode=25;//!!!!!!!!!!!!
+	optional int32 TlordAtkMode=26;//!!!!!!!!!!!!
+	optional int32 speed=27;
+	optional int32 tspeed=28;
+	optional int32 youActionCountByAdd=29;
+	optional int32 himActionCountByAdd=30;
+	optional int32 mapId=31;
+	optional int32 roleId=32;
+	optional int32 tRoleId=33;
+	optional int32 maxFillUnit=34;
+	optional int32 tMaxFillUnit=35;
+	optional int32 actionTIme=36;//操作时间
+	optional int32 tActionTIme=37;//操作时间
+	optional int32 youBaseHp=38;
+	optional int32 himBaseHp=39;
+}
+
+message PveContinuePlayRequest{
+	//317
+	required int32 request = 1;// 1==continue play 0==cancel	
+	//返回310的数据
+}
+
+
+message PveStarRequest{
+	//310
+}
+message PveStarResponse{
+	//310
+	optional int32 state = 1;
+	optional string failMsg = 2;
+	repeated FightSpirit spiritsYou = 3;
+	repeated FightSpirit spiritsHim = 4;
+	optional bool isFirstAttack = 5;
+	optional int32 youHp=6;
+	optional int32 himHp=7;
+	optional int32 youActionCount=8;
+	optional int32 himActionCount=9;
+	optional string fid=10;
+	optional int32 lordId = 11;
+	optional string lordName=12; 
+	optional int32 lordSkillBelongId=13;
+	optional int32 lordSkillId=14;
+	optional int32 tlordId = 15;
+	optional string tlordName=16; 
+	optional int32 tlordSkillBelongId=17;
+	optional int32 tlordSkillId=18;
+	optional int32 tlordSkillLevel=19;
+	optional int32 lordCdRoundBase = 20;
+	optional int32 tlordCdRoundBase = 21;
+	optional int32 clientType=22;
+	optional int32 nation = 23;
+	optional int32 tnation = 24;
+	optional int32 lordAtkMode=25;
+	optional int32 TlordAtkMode=26;
+	optional int32 youActionCountByAdd=27;
+	optional int32 himActionCountByAdd=28;
+	optional int32 mapId=29;
+	optional int32 friendOfficerCdRoundCurrent =30;
+	optional int32 friendOfficerCdRound =31;
+	optional int32 friendOfficerId =32;
+	optional int32 friendOfficerLevel =33;
+	optional int32 roleId=34;
+	optional int32 tRoleId=35;
+	optional int32 maxFillUnit=36;
+	optional int32 tMaxFillUnit=37;
+	optional int32 tClientType=38;
+	optional int32 speed=39;
+	optional int32 tspeed=40;
+	optional int32 dropItemCount=41;//掉落卡片个数
+	optional int32 youBaseHp = 42;
+	optional int32 himBaseHp = 43;
+	optional int32 lordCdRound = 44;
+	optional int32 plotId=45;
+	//战斗开始前将己方 ，对方以及友军的武将信息发给客户端备份。
+	repeated FightSpirit selfTempOfficer = 46;
+	repeated FightSpirit aiTempOfficer = 47;
+	optional FightSpirit cooTempOfficer = 48;
+}
+
+message FillUnitRequest {
+  //ationId=305
+  optional int32 enemyRoleId = 1;
+}
+
+message FillUnitResponse {
+  //ationId=305
+  optional int32 state = 1;
+  optional string failMsg = 2;
+  repeated FightSpirit spirits = 3;
+  optional int32 actionCount = 4;
+  optional int32 isSelf = 5;
+	optional int32 unLowerActionCount = 6;
+}
+
+message FillUnitReviveRequest {
+  //ationId=344
+
+}
+
+message FillUnitReviveResponse {
+  //ationId=344
+  optional int32 state = 1;
+  optional int32 roleId = 2;
+  repeated FightSpirit spirits = 3;  
+  //给客户端发送本方的武将信息。
+  repeated FightSpirit selfTempOfficer = 4;
+}
+
+message QiangZhiFillUnitRequest{
+//319
+}
+
+message QiangZhiFillUnitResponse{
+optional int32 state = 1;
+  optional string failMsg = 2;
+  repeated FightSpirit spirits = 3;
+  optional int32 actionCount = 4;
+  optional int32 isSelf = 5;
+	optional int32 unLowerActionCount = 6;  
+}
+
+message MoveRequest {
+  //ationId=303
+  //optional int32 enemyRoleId = 1;
+  optional int32 x = 1;
+  optional int32 tox = 2;
+ 
+}
+
+message MoveResponse {
+  //ationId=303
+  optional int32 state = 1;
+  optional string failMsg = 2;
+  optional int32 x = 3;
+  optional int32 tox = 4;
+   optional int32 actionCount = 5;
+
+}
+
+message GiveUpRequest {
+  //ationId=306
+ 
+}
+
+message GiveUpResponse {
+  //ationId=306
+  optional int32 state = 1;
+  optional int32 round = 2 [default = -1];
+  optional sint32 skillResidueRound = 3;  //技能剩余回合
+  optional sint32 actionCount = 4;	//行动力
+}
+
+message RemoveRequest {
+  //ationId=304
+  optional int32 enemyRoleId = 1;
+  optional int32 x = 2;
+  optional int32 y = 3;
+
+}
+
+message RemoveResponse {
+  //ationId=304
+  optional int32 state = 1;
+  optional string failMsg = 2;
+  optional int32 x = 3;
+  optional int32 y = 4;
+  optional int32 actionCount = 5;
+
+}
+
+message ActionCountResponse {
+  optional int32 yourCount = 1;
+  optional int32 himCount = 2;
+}
+
+message FightSpirit {
+  //
+  optional int32 sid = 1;
+  //0:single 1:double 2:TETRAD
+  optional int32 type = 2;
+  //color: RED(0), GREEN(1), BLUE(2);
+  optional int32 color = 3;
+  
+  optional int32 x = 4;
+  optional int32 y = 5;
+  optional int32 baseAttack = 6;
+  optional int32 attack = 7;
+  optional int32 baseDef = 8;
+  optional int32 def = 9;
+  optional int32 round = 10;
+  optional float defeatPlus = 11;//��ǽ��ʼѪ
+  optional float chainAndMergeAttackPlus = 12;//l���ںϹ���f�ӳ�
+  optional float wallgrow = 13;  //ǽÿ�غ��Զ��ɳ�ֵ
+  optional int32 skillId=14;
+  optional float value1=15;
+  optional float value2=16;
+  optional float walltype = 17;//ǿ��ϵ��
+  optional float wallCeiling =18;
+  optional int32 buffId =19;
+  optional float bvalue1 =20;
+  optional int32 effectRound =21;  
+  optional int32 randNum = 22;
+  optional int32 buffType = 23;
+  optional int32 effect = 24;  
+  optional int32 perRoundAddAtk=25;
+  optional int32 atkModeSkill=26;//武将级//!!!!!!!!!!!!
+  //
+  optional bool defeat=27;
+  optional int32 currentDef=28;
+}
+
+
+message VerifyRequest {
+  //message id=309
+ repeated int32 check=1;
+}
+
+message VerifyResponse {
+  //message id=309
+  //result 1=succ,2=fail 
+  optional int32 result=1;
+}
+
+message MajorSkillRequest {
+  //message id=308
+	optional float value1=1;
+	optional float value2=2;
+	optional int32 test=3;
+}
+
+message MajorSkillResponse {
+  optional MajorSkillProto majorSkillProto=1;
+}
+
+message MajorSkillProto {
+  optional int32 state=1;
+  optional int32 skillId=2;
+  optional float value1=3;
+  optional float value2=4;
+  optional int32 roleId=5;
+  repeated CoordinateProto coordinateProtoList=6;
+  optional int32 buffId = 7;
+  optional int32 round = 8;
+  optional float value3=9;
+  optional int32 lordAtkMode = 10;//主将级
+  repeated CoordinateEffectProto coordinateEffectProto=11;
+}
+
+message CoordinateProto {
+  optional int32 x=1;
+  optional int32 y=2;
+}
+
+message CoordinateEffectProto {//伤害效果
+  optional int32 x=1;
+  optional int32 y=2;
+  optional int32 hp=3;//剩余血量
+}
+
+message FightThtoughRewardRequest{
+	//900	900消息请求的相应的902的response
+	required int64 fighprossId = 1;
+	required sint32 isWin = 2;
+	optional sint32 currHp = 3;
+}
+
+message FightRewardRequest{
+	//902
+	optional string fighprossId=1;
+}
+
+message FightRewardResponse{
+	//902 |  900
+	optional int32 state=1;
+	optional int32 plotId=2;
+	optional int32 rating=3;//评分
+	optional int32 exp=4;
+	optional int32 gold=5;
+	repeated FightRewardDropItems dropItems=6;
+	optional int32 isWin=7;
+	optional float hpRate=8;
+	optional int32 coins=9;
+	optional int32 meritorious=10;
+	optional int32 lianDan=11 [default = -1];
+	optional int32 addExp=12;
+	optional int32 level=13;
+	optional int32 isMaxLevel=14[default = 0];
+	optional sint32 baseHp = 15;
+	optional sint32 currHp = 16;
+	optional int32 oldLevel=17;
+	optional int32 xiyu=18 [default = -1];
+}
+
+message FightRewardDropItems{
+	optional OfficerCardItemProto officerCards = 1;
+	optional EquipmentCardItemProto equipmentCards = 2;
+	optional PropsCardItemProto propsCards =3;
+	optional OfficerFragmentCardItemProto fragmentCards =4;
+	optional ConsumableCardItemProto consumableCards = 5;
+	optional MaterialItemProto materialItemProtos = 6;
+	repeated ItemDataProto itemData = 7;
+}
+
+message FightRunAwayRequest{
+//312
+}
+
+message FightRunAwayResponse{
+//312
+	optional int32 state=1;
+	optional int32 rating=2;//评分
+	optional int32 exp=3;
+	optional int32 gold=4;
+	optional float hpRate=5;
+	optional int32 addExp=6;
+	optional sint32 currHp = 7;
+	optional sint32 bashHp = 8;
+	optional int32 isRunAway=9;
+	optional int32 round=10;
+
+}
+
+message EnemyExitResponse{
+//313
+optional int32 state=1;
+}
+
+message EnemyResumeResponse{
+//318
+optional int32 state=1;
+}
+
+message FightLogRequest{
+	//315
+	optional string str=1;
+}
+
+message FightReviveRequest{
+	optional int32 isRevive=1;
+}
+
+message FightReviveResponse{
+	optional int32 state=1;
+}
+
+message FightFixMapRequest{
+	//316
+	optional int32 roleId=1;
+}
+
+message FightFixMapResponse{
+	optional int32 roleId=1;
+	optional int32 freeCount=2;
+	optional int32 actionCount=3;
+	optional int32 baseHp=4;
+	optional int32 hp=5;
+	optional int32 majorSkillCurrentRound=6;
+	repeated FightSpirit spirits = 7;
+	repeated FightFixAttackUnit attackList=8;
+	optional int32 cooRound=9;
+}
+
+message FightFixAttackUnit{
+	optional int32 x = 1;
+	optional int32 y = 2;
+	optional int32 currentRound=3;
+	optional int32 currentAttack=4;
+	optional int32 currentChainCount=5;
+	optional int32 currentMergeCount=6;
+	repeated FightFixBuff buffList=7;
+	optional int32 acceptAmage=8;//接受过的伤害
+	optional bool ishasFuhuo=9;//有没有复活buff
+	optional bool isFuhuo=10;//可不可以复活复活
+}
+
+message FightFixBuff{
+
+	optional int32 buffId=1;
+	optional int32 buffType=2;
+	optional int32 buffRound=3;
+	optional float buffRoundValue=4;//伤害
+	optional int32 buffEffect=5;//效果
+}
+
+message EnterBossRequest{
+//1127
+}
+
+message EnterBossResponse{
+//1127
+	optional int32 bossHp = 1;//boss当前的HP
+	optional int32 bossBaseHp = 2;//boss最大的HP
+	optional int32 bossDamageCount=3;//boss被伤害的次数
+	repeated BossBuffModel bossBuffModel=4;
+	repeated BossRankModel bossRankModel=5;
+	optional bool state=6;
+	optional string errMsg=7;
+	optional int32 time=8;//剩余秒数
+	optional int32 value1=9;
+	optional float value2=10;
+	optional int32 value3=11;
+	
+	optional sint32 damage = 12 ;
+}
+
+message BossBuffModel{//bossBuff对象
+	optional int32 buffId=1;
+	optional string buffName=3;
+	optional int32 buffGold=4;//buff的购买钱数
+	optional int32 buffBasValue=5;//buff所加的属性
+}
+
+message BossRankModel{//boss战排名
+	optional int32 roleId=1;
+	optional string roleName=2;
+	optional int32 level=3;
+	optional int32 damage=4;
+}
+
+message AtkBossRequest{//攻击boss
+//1128
+}
+
+message AtkBossResponse{//攻击boss
+//1128
+	optional int32 bossItemId=1;//bossid
+	optional int32 bossHp=2;//boss血量
+	optional int32 bossBaseHp=3;
+	optional int32 roleItemId=4;//玩家主将ID
+	optional sint32 lordType = 8; //主将是几格
+	optional int32 roledamage=5;//玩家伤害
+	optional bool state=6;//进入状态
+	optional string errMsg=7;//失败介绍
+	
+	optional bool isCrit = 9 ; //是否 暴击 
+	
+	optional sint32 coins = 10 ;  //铜钱
+	optional sint32 medal = 11 ;  //勋章 
+}
+
+message BossCurrStateRequest{//推送的boss的当前状态
+}
+
+message BossCurrStateResponse{//推送的boss的当前状态
+//1129
+	optional int32 bossHp=1;//boss血量
+	optional int32 bossBaseHp=2;
+	repeated BossRankModel bossRankModel=3;
+}
+
+message MainBossRequest{
+//1130		
+}
+
+message MainBossResponse{
+	
+	required sint32 state = 1 ; //状态值  1:可参战  2:不可参战
+	//不可参战时用的字段
+	optional sint32 bossLevel = 2 ; //boss等级
+	optional sint64 residueTime = 3 ; //剩余时间
+	optional string theFirstThree = 4 ; //前三名
+	optional string slayInfo = 5 ; //击杀信息	
+	//可参战时用的字段
+	optional sint32 startedTime = 6; //已开始时间
+}
+
+message BossDamageRankRequest{
+//1131
+}
+
+message BossDamageRankResponse{
+	repeated BossRankInfo bossRankInfo = 1 ; //玩家排名
+	optional sint32 minute = 2 ;
+	optional string playerName = 3 ;
+	optional sint64 damage = 4 ;
+	optional sint32 selfDamage = 5;
+}
+message BossRankInfo{
+	optional sint32 roleId = 1 ; 
+	optional string roleName  = 2 ;
+	optional sint32 level = 3 ;
+	optional sint32 icon = 4 ;
+	optional sint32 country = 5 ;
+	optional sint32 damage = 6 ;
+	optional sint32 rankIndex = 7;
+}
+
+message GetBossBuffRequest{
+	//1132
+	optional sint32 key=1;//什么buff
+}
+
+message GetBossBuffResponse{
+	//1132
+	optional sint32 state=1;//
+	optional sint32 value1=2;
+	optional float value2=3;
+	optional sint32 value3=4;
+}
+
+message BossEndRewardResponse{
+//1133
+	optional string rewardString = 1 ;
+}
+
+message FightPvpRewardRequest{
+	//1510
+	required sint64 fightId = 1;//战斗ID
+}
+
+message FightPvpRewardResponse{
+	//1510
+	required sint32 state = 1;
+	optional bool isWin = 2;
+	optional sint32 prestige = 3;//获得声望
+	optional sint32 score = 4;//获得天梯积分
+	optional sint32 rank = 5;//预期排名
+	optional sint32 count = 6;//已参加次数
+}

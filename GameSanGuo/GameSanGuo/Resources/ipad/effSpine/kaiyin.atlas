@@ -1,0 +1,47 @@
+
+kaiyin.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kaiyin_1
+  rotate: false
+  xy: 1, 238
+  size: 320, 235
+  orig: 320, 235
+  offset: 0, 0
+  index: -1
+kaiyin_2
+  rotate: false
+  xy: 1, 1
+  size: 320, 235
+  orig: 320, 235
+  offset: 0, 0
+  index: -1
+kaiyin_3
+  rotate: false
+  xy: 323, 238
+  size: 320, 235
+  orig: 320, 235
+  offset: 0, 0
+  index: -1
+kaiyin_4
+  rotate: false
+  xy: 323, 1
+  size: 320, 235
+  orig: 320, 235
+  offset: 0, 0
+  index: -1
+kaiyin_5
+  rotate: false
+  xy: 645, 238
+  size: 320, 235
+  orig: 320, 235
+  offset: 0, 0
+  index: -1
+kaiyin_6
+  rotate: false
+  xy: 645, 1
+  size: 320, 235
+  orig: 320, 235
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>boss_fight_bg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{640,738}}</string>
+                <key>offset</key>
+                <string>{-190,141}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,2},{640,738}}</string>
+                <key>sourceSize</key>
+                <string>{1024,1024}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>boss_fight_bg.png</string>
+            <key>size</key>
+            <string>{742,742}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:3c58fcedbe7eb9763c60c58ec8c8553f:1/1$</string>
+            <key>textureFileName</key>
+            <string>boss_fight_bg.png</string>
+        </dict>
+    </dict>
+</plist>

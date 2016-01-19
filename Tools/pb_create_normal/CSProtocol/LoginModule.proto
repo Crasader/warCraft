@@ -1,0 +1,52 @@
+package main;
+import "RoleModule.proto";  
+
+option java_package = "com.gamebean.sanguocard.message.login";
+option java_outer_classname = "LoginProtos";
+
+message LoginRequest {
+  //messageId=102
+  required string loginKey = 1;
+  required string userId = 2;
+  required int32 serverId = 3;
+  required int32 channelId = 4;
+  required int32 subChannelId = 5;
+  required string nickName = 6;
+  optional string token = 7;
+}
+
+message LoginResponse {
+  optional int32 state = 1 [default = 0];
+  optional string failMsg = 2;
+  optional int32 hasRole = 3  [default = 0];	
+  optional int32 CDKEY = 4	[default = 0];
+  optional RoleResponse roleResponse = 5;
+}
+
+message PvPLoginRequest {
+  //messageId=110	
+  required string accountId = 1;
+  required int32 serverId=2;
+  optional string fightId = 3;
+  optional int32 type=4;//pvp
+  optional int32 channelId=5;//pvp
+  optional int32 roleId=6;//角色ID
+}
+
+message HeartBeatRequest {
+  //messageId=108
+}
+
+message HeartBeatResponse {
+  optional int32 state = 1 [default = 0];
+}
+
+message CDKEYRequest {
+	//messageId=1020
+	optional string CDKEY = 1;
+}
+
+message CDKEYResponse {
+	//messageId=1020
+	optional int32 state = 1;
+}

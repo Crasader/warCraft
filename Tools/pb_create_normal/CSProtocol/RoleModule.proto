@@ -1,0 +1,274 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.role";
+option java_outer_classname = "RoleProtos";
+
+import "ItemModule.proto";
+import "FriendModule.proto";
+import "MailModule.proto";
+import "LotteryModule.proto";
+import "GMQAModule.proto";
+import "RewardModule.proto";
+
+message CreateRoleRequest {//101
+  required string nickName= 1;
+  required int32 country=2;
+}
+
+message CreateRoleResponse {
+  optional int32 state = 1;
+  optional string errorStr = 2; //  错误信息
+  optional RoleResponse roleResponse = 3;
+}
+
+message RoleResponse {
+  optional int32 roleId = 1;
+  optional string name = 2; 
+  optional string nickname = 3; 
+  optional string ssid = 4; 
+  optional int32 exp = 5; 
+  optional int32 level = 6; 
+  optional int32 coins = 7; 
+  optional int32 gold = 8; 
+  optional int32 country = 9; 
+  optional int32 image = 10; 
+  optional int32 power = 11; //tili pve
+  optional int32 bagSize = 12; 
+  optional int32 modifyNickNameCount = 13; 
+  optional BaseBagInfo baseBagInfo = 14;
+  repeated FriendProto friendList = 15; 
+  repeated FriendProto blockList = 16; 
+  repeated FriendProto applyList = 17; 
+  optional int32 friendSize = 18; 
+  optional int32 expandCount = 19; 
+  repeated MailProto mainMails = 20;
+  repeated SystemMailProto systemMails = 21;
+  repeated MailProto gmMails = 22;
+  optional int32 pvpPower = 23; //jun liang
+  optional int32 pveLeftTime = 24; //
+  optional int32 pveCircleTime = 25; //
+  optional int32 pveRecoverLeftCounter = 26; //new
+  optional int32 pvpLeftTime = 27; //
+  optional int32 pvpCircleTime = 28; //
+  optional int32 pvpRecoverLeftCounter = 29; //new
+  optional int32 hasLottery9 = 30;// yes==1 no==0
+  repeated Lottery9ViewItem lotteryItems =31;
+  optional int32 loginDay = 32;
+  optional int32 lottery9Chance =33; 
+  repeated RewardTypeState rewardNotice = 34;//ex:10110 0=false  1=true
+  optional int32 beginnersGuideId =35; 
+  optional int32 hasFreeLottery =36; // yes==1 no==0
+  optional int32 newHandPross=37;//新手引导里面的特殊处理
+  optional int32 vipLevel=38;
+  optional int32 pvpTopLevel=39;//等级
+  optional int32 pvpTopScore=40;//积分
+  optional bool hasPveFight=41;//
+  optional bool hasPvpFight=42;//
+  optional string lastPvpIp=43;
+  optional int32 lastPvpPort=44;
+  optional int32 pvpRank=45;//军衔等级,自己服务器排名
+  optional string rankName=46;//军衔名称
+  optional int32 pvpWinPvp=47;
+  optional int32 combatValue=48;//战斗力
+  optional TeamInfo teamInfo=49;//队伍信息
+  optional bool LoginAwardGold=50;//是否领取了 15天
+  optional bool canRewardDayTask=51;//每日奖励是否有可领取的
+  optional string inviteCode = 52;//邀请码
+  optional string searchFriendCode = 53;//好友查找码
+  optional int32 showVipState=54;//是否显示vip
+  optional int32 branchType = 55 [default = 0]; //上次遗留战斗的类型 0=和平 101=闯关 102=守荆州 201=天梯
+  optional bool needVerify = 56;//继续战斗是否需要验证
+  optional int64 fpId = 57;//战斗进程ID
+  optional int32 addGoverning = 58 [default = 0];//根据国家加统御力
+  optional int32 lianDanGold=59;
+  optional int32 enterNewPvpWin=60;//pvp新手限制
+  repeated TriggerInfo triggerInfo = 61;   
+  repeated QAProto qaList = 62;
+  optional int32 haveCharged = 63; //是否首冲过
+  optional bool bestEquip = 64; //布阵中最强装备
+  optional PowerGiftListResponse powerGift = 65;//好友赠送的体力
+  optional int32 powerGiftTimes = 66;//今天还能领的赠送体力次数
+  repeated int32 funcNoticeList = 67;//一些功能开启的通知，[功能ID,剩余开启时间,开启等级,功能ID,剩余开启时间,开启等级...]
+  optional int32 plotHarryCount=68;//剩余的扫荡次数,每日零点恢复
+  optional int32 junhun =69;//玩家军魂
+  optional int32 maxPlotId = 70;//已通关的最大普通关卡ID
+  optional int32 maxBossPlotId = 71;//已通关的最大精英关卡ID
+  optional bool activityNotice = 72;//主界面活动红点提示
+  repeated BossPlotCountProto bossPlotCount = 73;//可参加的精英闯关剩余次数
+  optional int32 gouyu=74;
+  optional bool xiyuState = 75;//西域商人红点提示
+  optional int32 xiyuTime=76;//西域商人倒计时
+  optional int32 arenaCoin = 77;//征服点(竞技场币)
+
+}
+
+//--------push-----------
+message updateRoleResponse {
+  //message id:107
+  optional int32 exp = 1; 
+  optional int32 level = 2; 
+  optional int32 coins = 3; 
+  optional int32 gold = 4; 
+  optional int32 power = 5; //tili pve
+  optional int32 pvpPower = 6; //jun liang
+  optional int32 pveLeftTime = 7; 
+  optional int32 pveCircleTime = 8; 
+  optional int32 pveRecoverLeftCounter = 9; 
+  optional int32 pvpLeftTime = 10; 
+  optional int32 pvpCircleTime = 11; 
+  optional int32 pvpRecoverLeftCounter = 12; 
+  optional int32 meritorious = 13; 
+  optional int32 combatValue = 14;// 更新玩家战斗力值
+  optional bool canRewardDayTask = 15;//任务完成情况
+  optional bool bestEquip = 16;//是否有更强的装备没有装备上
+  optional int32 junhun =17;//玩家军魂
+  optional int32 pvpTopScore = 18;//天梯积分
+  optional int32 plotHarryCount = 19;//副本扫荡次数
+  optional int32 gouyu = 20;//勾玉
+  optional int32 arenaCoin = 21;//征服点(竞技场币)
+}
+
+message TriggerInfo {
+	optional int32 triggerType = 1;
+	optional string triggerName = 2;
+	optional int32 triggerValue = 3;
+	optional int32 id = 4 ;
+}
+
+message updateRolePowerRequest{
+//109
+}
+
+message updateRolePowerResponse {//更新体力
+  //message id:109
+  optional int32 power = 1; //tili pve
+  optional int32 pvpPower = 2; //jun liang
+   optional int32 pveCircleTime = 3; 
+  optional int32 pveLeftTime = 4; 
+  optional int32 pvpCircleTime = 5; 
+  optional int32 pvpLeftTime = 6; 
+}
+
+message BaseBagInfo {
+  repeated OfficerCardItemProto baseOfficerCardInfoProto = 1;
+  repeated EquipmentCardItemProto baseEquipmentCardItemProto = 2;
+  repeated SoldierCardItemProto baseSoldierCardItemProto = 3;
+  repeated PropsCardItemProto basePropsCardItemProto = 4;
+  repeated OfficerFragmentCardItemProto baseOfficerFragmentCardItemProto = 5;
+  repeated ConsumableCardItemProto baseConsumableCardItemProto = 6;
+  repeated MaterialItemProto materialItemProto = 7;
+}
+
+message TeamInfo {
+  repeated TeamInfoItem teamInfoItem = 1;//每个队伍的信息
+  repeated int32 onTeamOfficerSsids = 2;//三个队伍中所有在场武将SSID
+}
+
+message TeamInfoItem {
+  //队伍信息数据
+  optional int32 teamId = 1; //队伍编号0~2
+  optional int32 lordOfficerCardId = 2; //主将ID
+  repeated int32 officerList = 3; //场上队伍武将
+  optional int32 redSoldier = 4; //红兵ID
+  optional int32 blueSoldier = 5; //蓝兵ID
+  optional int32 greenSoldier = 6; //绿兵ID
+  optional int32 current = 7; //是否是当前出战队伍
+}
+
+message BeginnersGuideRequest{
+//111
+optional int32 id = 1;
+}
+
+message BeginnersGuideResponse{
+//111
+optional int32 state = 1;
+}
+
+message LoginAwardListRequest{
+//942
+}
+
+message LoginAwardListResponse{
+//942
+	optional int32 longinDay = 1;
+	repeated LoginAwardModel model=2;
+}
+
+message LoginAwardModel{
+	optional int32 day=1;//需要的天数
+	repeated LoginAwardItemModel loginAwardItemModel =2;
+	optional int32 isFinish=3;//是否完成
+}
+
+message LoginAwardItemModel{
+	optional int32 itemId=1;//物品ID
+	optional int32 itemType=2;//1武将，2小兵，3道具，4装备
+	optional int32 count = 3; //该物品个数
+}
+
+message RewardLoginAwardRequest{
+//941
+	optional int32 day=1;
+}
+
+message RewardLoginAwardResponse{
+//941
+	optional bool state=1;
+	repeated LoginAwardItemInfo loginAwardItemInfo = 2 ;
+}
+
+message LoginAwardItemInfo{
+	optional int32 itemId=1;
+	optional int32 itemType=2;//1武将，2小兵，3道具，4装备
+	optional int32 count = 3; //个数
+	optional int32 coins = 4; //铜钱
+}
+
+message RewardLoginAwardGoldResponse{
+//943
+	optional bool state=1;
+	optional int32 coins=2;
+}
+
+message RewardLoginAwardGoldRequest{
+//943
+}
+
+message UpdateRoleQuest{
+  //213
+  repeated RoleQuestProto updateRoleQuestProto= 1;
+}
+
+message RoleQuestProto{
+   optional int32 roleId = 1;
+   optional int32 questId = 2;
+   optional int32 questState = 3;
+   optional int32 conditionType = 4;
+   optional string conditionName = 5;
+   optional int32 conditionValue = 6;
+   optional int32 currContionValue = 7;
+   optional int32 actionType = 8;
+   optional int32 tabId = 9;
+   optional int32 groupId = 10;
+   optional int32 arrivement = 11;
+   optional int32 questType = 12;
+}
+
+message ReceiveQuestRewardRequest{
+  optional int32 questId = 1;
+}
+
+message ReceiveQuestRewardResponse{
+  optional int32 state = 1;
+}
+//BOSS战开启状态
+message BossStartSateResponse{
+	optional bool state = 1 ;
+}
+
+message BossPlotCountProto {
+	required int32 bossPlotId = 1;
+	required int32 canJoinCount = 2;
+}
+

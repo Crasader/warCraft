@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="a4.1">
+    <folder id="0">
+        <file id="0" name="jzan_16.png" width="69" height="69"/>
+        <file id="1" name="jzan_17.png" width="91" height="60"/>
+        <file id="2" name="jzan_18.png" width="117" height="58"/>
+        <file id="3" name="jzan_19.png" width="96" height="58"/>
+        <file id="4" name="jzan_20.png" width="89" height="54"/>
+        <file id="5" name="jzan_21.png" width="95" height="43"/>
+        <file id="6" name="jzan_22.png" width="40" height="40"/>
+    </folder>
+    <entity id="0" name="">
+        <animation id="0" name="3" length="840" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="120">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                </key>
+                <key id="2" time="240">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                </key>
+                <key id="3" time="360">
+                    <object_ref id="0" timeline="3" key="0" z_index="0"/>
+                </key>
+                <key id="4" time="480">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                </key>
+                <key id="5" time="599">
+                    <object_ref id="0" timeline="5" key="0" z_index="0"/>
+                </key>
+                <key id="6" time="720">
+                    <object_ref id="0" timeline="6" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-34.217391" y="69.028986"/>
+                </key>
+                <key id="1" time="840">
+                    <object folder="0" file="0" x="-34.217391" y="69.028986"/>
+                </key>
+            </timeline>
+            <timeline id="1">
+                <key id="0" time="120" spin="0">
+                    <object folder="0" file="1" x="-29.344086" y="66.139785"/>
+                </key>
+                <key id="1" time="840">
+                    <object folder="0" file="1" x="-29.344086" y="66.139785"/>
+                </key>
+            </timeline>
+            <timeline id="2">
+                <key id="0" time="240" spin="0">
+                    <object folder="0" file="2" x="-29.150538" y="64.16129" a="0.9"/>
+                </key>
+                <key id="1" time="840">
+                    <object folder="0" file="2" x="-29.150538" y="64.16129" a="0.9"/>
+                </key>
+            </timeline>
+            <timeline id="3">
+                <key id="0" time="360" spin="0">
+                    <object folder="0" file="3" x="-29.129032" y="64.129032" a="0.8"/>
+                </key>
+                <key id="1" time="840">
+                    <object folder="0" file="3" x="-29.129032" y="64.129032" a="0.8"/>
+                </key>
+            </timeline>
+            <timeline id="4">
+                <key id="0" time="480" spin="0">
+                    <object folder="0" file="4" x="-27.064516" y="61.032258" a="0.8"/>
+                </key>
+                <key id="1" time="840">
+                    <object folder="0" file="4" x="-27.064516" y="61.032258" a="0.8"/>
+                </key>
+            </timeline>
+            <timeline id="5">
+                <key id="0" time="599" spin="0">
+                    <object folder="0" file="5" x="-34.752688" y="48"/>
+                </key>
+                <key id="1" time="840">
+                    <object folder="0" file="5" x="-34.752688" y="48"/>
+                </key>
+            </timeline>
+            <timeline id="6">
+                <key id="0" time="720" spin="0">
+                    <object folder="0" file="6" x="-18" y="28"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

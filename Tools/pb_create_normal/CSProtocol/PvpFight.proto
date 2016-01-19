@@ -1,0 +1,232 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.pvp";
+option java_outer_classname = "PvpProtos";
+
+
+import "ItemModule.proto";
+//----------
+message PvpEntryRequest {
+	//message id=330
+}
+
+message PvpEntryResponse {
+	optional float winRatio=1;
+	optional int32 prestige=2;
+	optional int32 continuousWin=3;
+	optional int32 maxContinuousWin=4;
+	optional int32 awardScore=5;
+	optional int32 prestigeRank=6;
+	optional string pvpRankName=7;
+	optional int32 pvpCount=8;
+	optional string pvpEndDate=9;
+	optional int32 pvpRank=10;
+	optional int32 pvpScore=11;
+	optional int32 pvpFightCount=12;
+	optional bool hasDayReward=13;//每日奖励是否有可领取的
+	optional bool hasSeasonReward=14;//赛季奖励是否有可领取的
+	optional string specStartTime = 15;//特殊奖励的开始时间
+	optional string specEndTime = 16;//特殊奖励的结束时间
+}
+
+//----------
+message PvpTopRequest {
+	//message id=331
+	required int32 type=1;//0=shu,1=wei,2=wu,3=kuafu,4=benfu
+	required int32 page=2;//start from 1...!!
+}
+
+message PvpTopResponse {
+	optional int32 allCount=1;//
+	optional int32 type=2;//
+	repeated TopPlayerMessage players=3;	
+}
+
+
+message PvpTopMyLocalRequest {
+	//message id=338
+	required int32 type=1;//0=shu,1=wei,2=wu,3=kuafu,4=benfu
+}
+
+message PvpTopMyLocalResponse {
+	repeated TopPlayerMessage players=2;	
+}
+
+message TopPlayerMessage {
+	optional int32 headId=1;
+	optional string name=2;
+	optional int32 topPos=3;
+	optional int32 topLevel=4;
+	optional int32 fightTimes=5;
+	optional float winRatio=6;	
+}
+
+//-----bao ming-----
+message PvpApplyRequest {
+	//message id=332
+optional int32 type=1;
+}
+
+message PvpApplyResponse {
+	optional int32 result=1;//	 0==succ
+}
+
+//-----ke yi zhun bei le-----
+message CheckReadyResponse {
+	//message id=333
+	optional int32 result=1;//	 1==ready,0==not ready
+}
+
+//-----tui chu bao ming-----
+message PvpExitApplyRequest {
+	//message id=334
+	//no response
+}
+
+message PvpExitApplyResponse {
+	//empty
+}
+
+//----------
+message PvpGetReadyRequest {
+	//message id=335
+	//no response
+}
+
+message PvpGetReadyResponse {
+	//empty
+}
+
+//----------
+message PvpMatchingResponse {
+	//message id=336
+	optional int32 result=1;//succ=1
+	optional string fightId=2;
+	optional string ip=3;
+	optional int32 port=4;
+	optional int32 icon=5;
+	optional string name=6;
+	optional int32 pos=7;
+	optional int32 level=8;
+	optional int32 fightCounter=9;
+	optional float winRatio=10;
+	optional int32 serverId=11;
+	optional string serverName=12;
+}
+
+//----------
+message PvpOfficerConfig {
+	//message id=337
+	optional int32 myLord=1;//
+	repeated int32 myCards=2;//	
+	optional int32 enemyLord=3;//
+	repeated int32 enemyCards=4;//	
+}
+
+//----------
+message PvpShopListRequest {
+	//message id=340
+	// HOT = 1;OFFICER = 2;EQUIP = 3;REIN = 4;SKILL = 5; OTHER = 6;
+	required int32 type  = 1; // 
+}
+
+message PvpShopListResponse {
+	optional int32 awardScore=1;//
+	repeated  PvpShopItem items = 2;
+}
+
+message PvpShopItem {
+		optional int32 uid=1;
+		optional int32 itemId=2;
+		optional sint32 itemType = 3;
+		optional sint32 itemCount = 4;
+		optional sint32 itemLevel = 5;
+		optional int32 costScore=6;
+		optional int32 pvpLevelMin=7;
+		optional int32 currentCount=8;
+		optional int32 maxCount=9;	
+		optional int32 discountCostScore=10;
+}
+
+
+//----------
+message PvpShopPurchRequest {
+	//message id=341
+	required int32 uid = 1;
+}
+
+message PvpShopPurchResponse {
+	optional int32 result = 1;// true=1
+}
+
+message PvPDayAwardGiftEntryRequest {
+	//message id=	1122
+}
+
+message PvPDayAwardGiftEntryResponse {
+	optional int32 fightCounter = 1;
+	repeated PvPDayAwardGiftBag list = 2;
+}
+
+message PvPDayAwardGiftBag {
+	optional int32 level = 1;
+	optional string name = 2;
+	optional string info = 3;
+	optional int32 count = 4;
+	optional int32 giftCoin=5;//tong qian
+	optional int32 giftAward=6;//jun gong
+	optional int32 speaker=7;//xiao la ba
+	optional int32 liandan=8;
+	optional int32 isBuy=9;//�Ƿ���ȡ�� 1����,2������,3������
+	repeated PvPDayAwardGiftItem list = 10;
+	optional int32 giftCostDiscount=11;//שʯ
+	optional string custom = 12;//自定义描述（领取条件）
+}
+
+message PvPDayAwardGiftItem {
+   optional int32 itemType = 1;
+   optional int32 itemId = 2;
+   optional int32 num = 3;
+   optional string name = 4;   
+   optional int32 star = 5;
+   optional int32 smillStars = 6;
+}
+
+message PvPSeasonAwardGiftEntryRequest{
+//1123
+}
+
+message PvPSeasonAwardGiftEntryResponse{
+	optional int32 seasonCount = 1;//�ڼ�����
+	repeated PvPDayAwardGiftBag list = 2;
+}
+
+message PvPDayAwardGiftGetRequest {
+	//message id=	1124
+	optional int32 key = 1;
+}
+
+message PvPDayAwardGiftGetResponse {
+	//message id=	1124
+	optional int32 state = 1;
+	optional int32 cout = 2;
+}
+
+message PvPSeasonAwardGiftGetRequest {
+	//message id=	1125
+	optional int32 key = 1;
+}
+
+message PvPSeasonAwardGiftGetResponse {
+	//message id=	1125
+	optional int32 state = 1;
+	optional int32 cout = 2;
+}
+
+message PvPEntryMapRequest {
+	//message id = 340
+}
+
+message PvPActionReadyResponse {
+	//message id = 341
+}

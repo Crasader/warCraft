@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="a4.1">
+    <folder id="0">
+        <file id="0" name="lights_gather6.png" width="79" height="76"/>
+        <file id="1" name="lights_gather7.png" width="90" height="88"/>
+    </folder>
+    <entity id="0" name="">
+        <animation id="0" name="lights gather_fly" length="300" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="150">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-39" y="38"/>
+                </key>
+                <key id="1" time="300">
+                    <object folder="0" file="0" x="-39" y="38"/>
+                </key>
+            </timeline>
+            <timeline id="1">
+                <key id="0" time="150" spin="0">
+                    <object folder="0" file="1" x="-45" y="44"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

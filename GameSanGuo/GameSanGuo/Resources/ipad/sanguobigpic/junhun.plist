@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>junhun.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{618,848}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{618,848}}</string>
+                <key>sourceSize</key>
+                <string>{620,850}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>junhun.pvr.ccz</string>
+            <key>size</key>
+            <string>{1024,1024}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:c51f8d1b4f3a0ad1540a82ce88e05bfc:1/1$</string>
+            <key>textureFileName</key>
+            <string>junhun.pvr.ccz</string>
+        </dict>
+    </dict>
+</plist>

@@ -1,0 +1,40 @@
+
+effect003.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect003_1
+  rotate: true
+  xy: 164, 9
+  size: 74, 82
+  orig: 82, 104
+  offset: 6, 19
+  index: -1
+effect003_2
+  rotate: false
+  xy: 1, 1
+  size: 76, 82
+  orig: 82, 104
+  offset: 2, 8
+  index: -1
+effect003_3
+  rotate: true
+  xy: 79, 8
+  size: 75, 83
+  orig: 82, 104
+  offset: 3, 3
+  index: -1
+effect003_4
+  rotate: false
+  xy: 248, 11
+  size: 73, 72
+  orig: 82, 104
+  offset: 5, 1
+  index: -1
+effect003_5
+  rotate: false
+  xy: 323, 30
+  size: 51, 53
+  orig: 82, 104
+  offset: 25, 3
+  index: -1

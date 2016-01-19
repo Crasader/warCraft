@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1</key>
+	<string>傳奇</string>
+	<key>10</key>
+	<string>鎧甲</string>
+	<key>11</key>
+	<string>戒指</string>
+	<key>12</key>
+	<string>坐騎</string>
+	<key>2</key>
+	<string>蓋世無雙</string>
+	<key>3</key>
+	<string>勇冠三軍</string>
+	<key>4</key>
+	<string>神鬼莫測</string>
+	<key>5</key>
+	<string>能攻善守</string>
+	<key>6</key>
+	<string>運籌帷幄</string>
+	<key>7</key>
+	<string>強化合成</string>
+	<key>8</key>
+	<string>轉生道具</string>
+	<key>9</key>
+	<string>武器</string>
+</dict>
+</plist>

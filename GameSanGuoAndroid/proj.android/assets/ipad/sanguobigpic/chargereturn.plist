@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>actTitle_10.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{614,335}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,2},{614,335}}</string>
+                <key>sourceSize</key>
+                <string>{618,339}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>chargereturn.png</string>
+            <key>size</key>
+            <string>{618,618}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:154a90789ea44227ad9893bf8ec91fc5:1/1$</string>
+            <key>textureFileName</key>
+            <string>chargereturn.png</string>
+        </dict>
+    </dict>
+</plist>

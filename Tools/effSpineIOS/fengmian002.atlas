@@ -1,0 +1,26 @@
+
+fengmian002.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fengmian002_1
+  rotate: true
+  xy: 174, 19
+  size: 168, 188
+  orig: 195, 195
+  offset: 13, 1
+  index: -1
+fengmian002_2
+  rotate: true
+  xy: 364, 19
+  size: 168, 187
+  orig: 195, 195
+  offset: 13, 1
+  index: -1
+fengmian002_3
+  rotate: false
+  xy: 1, 1
+  size: 171, 186
+  orig: 195, 195
+  offset: 13, 1
+  index: -1

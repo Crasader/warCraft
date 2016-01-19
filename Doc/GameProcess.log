@@ -1,0 +1,124 @@
+
+快组防御阵列
+按住士兵//新手引导
+
+层级关系
+SGBattleManager::sharedBattle()->getBattleLayer(), 获得SGBattleLayer*  mainBattleLayer
+
+
+
+
+SGMainManager::showFindHelpLayer()中SGFindHelpLayer::create()  
+SGFindHelpLayer继承自SGBaseTableLayer,重写tableViewItemForCell()函数，该函数调用
+SGFindHelpCell::create, viewDidLoad->SGFindHelpCell::buttonClickOK(点击事件）,
+buttonClickOK  delegate->itemselect(SGFindHelpLayer.cpp中), 
+itemSelect->gotoFightingLayer(SGFindHelpLayer.cpp)->   
+SGBattleManager::sharedBattle()->pveStart(. .)
+
+SGBattleManager.cpp中pveStart发消息，
+SGSocketClient::sharedSocketClient()->send(MSG_PVE_LOADING, sr);
+SGBattleManager.cpp中响应消息MSG_PVE_LOADING, pveListener
+pveListener->SGBattlePreNLayer::create(selfInfo, armyInfo); (SGBattlePreNLayer.cpp)
+->initView  this->showMainIcon();  ->SGBattlePreNLayer::showIcons (callFunc)
+showIcons->showHighLight(callFunc),   
+->SGBattlePreNLayer::dismissIcons(callFunc),
+dismissIcons2(callFunc), 
+-> SGBattlePreNLayer::gotoFightLayer (callFunc),
+->SGBattleManager::sharedBattle()->pveStarts();
+
+SGBattleManager.cpp,  pveStarts发消息SGSocketClient::sharedSocketClient()->send(MSG_BATTLE_PVESTART, sr);
+addObserver(MSG_BATTLE_PVESTART, this, callfuncO_selector(SGBattleManager::pveListener));
+pveListener开始战斗
+   1. 随机地图，SGBattleLayer::create(), SGBattleLayer::viewDidLoad()界面，加载武将阵列组成动画，脚底影子，地图的格子生成。
+   2. 通过网络数据和本地数据创建士兵和武将阵列, 包括自己的和敌人的。
+   3.addPveBackHero(),  待召唤的英雄阵列，officer 
+   4.SGMainManager::showBattleLayer，SGMainScene::addShowLayer，
+     SGStaticDataManager::getAllStoryDatas()， 
+     if (SGGuideManager::shareManager()->isGuide) SGGuideManager::shareManager()->getFightGuideLayer();
+     SGStaticDataManager::shareStatic()->getPKWordById(plotId);
+     this->initHisMap(); this->initMyMap();
+     SGHeroLayer::create(heroObj, sbs, ismy);
+     SGBattleLayer::setSpeedUi
+     SGHeroLayer::initBattleMap()  ->
+        1.this->schedule(schedule_selector(SGHeroLayer::sendSB2Scene), .6); 
+        2.SGHeroLayer::sendSB2Scene  ->     SGBattleMap::chubing()
+        3.if (!isround && !isme) SGHeroLayer::machineAction()，SGAIManager::startRound
+        4.if (isround &&  isme && isInitPve)  beginRoundTime();
+
+     SGBattleMap::chubing()->
+         shibing->moveToSceneCall(this, isAddBingIn ? callfuncN_selector(SGBattleMap::addBingEnd) : callfuncN_selector(SGBattleMap::chubingEnd));    出兵或补兵
+         shibing::, SGPrinceBase::, SGPrinceSuper::, moveToSceneCall -> moveToIndexCall 
+              moveTo, ShiBing::setLoopAction, callFunc(ChubingEnd, addBingEnd) 
+
+     ChubingEnd:
+     addBingEnd:
+
+
+     SGBattleMap::create(sbs,isme)
+     SGBattleMap::initMapSBs//初始化兵,通过传过来的数据,初始化到地图上
+            //隐藏友情提示  void SGBattleMap::hideFriendlyHelp(bool startCounting)	
+
+setLoopAction， 循环动画， 待机，准备， 上移， 下移
+
+SGBattleMap继承自CCLayer, 重写ccTouchMoved，并注册SGBattleMap::registerWithTouchDispatcher()
+
+SGBattleMap::ccTouchMoved ->
+ if( m_touchInitIndex.j != clickj ||  m_touchInitIndex.i != clicki) 
+    -> initTouchGrid(m_touchInitIndex.j);
+SGBattleMap::initTouchGrid  ->    
+  selectSB->moveToBottom(this, callfunc_selector(SGBattleMap::touchGridToList)) ->
+
+SGBattleMap::touchGridToList
+  //每次移动兵的替身,删除掉
+  void SGBattleMap::removeReplaceSoldier()
+
+  if(!SGGuideManager::shareManager()->isGuide)
+  {
+      SGAIManager::shareManager()->startMoveToScene(this);   //normal
+  }
+  else
+  {
+      SGAIManager::shareManager()->startGuideAI(this);      //guild
+  }
+
+//要移动过去的网格
+ startMoveToScene   ->  SGBattleMap::moveTouchGrid    
+  -> selectSB->moveToSceneCall(this, callfuncN_selector(SGBattleMap::moveEnd)); 
+	 ->  SGBattleMap::moveEnd  移动完成   
+ 
+ //每隔一秒调用updateRoundTime  //倒计时
+ this->schedule(schedule_selector(SGHeroLayer::updataRoundTime), 1.);  
+
+  战斗画面主要在Herolayer.cpp 
+//刷新地图上的网格
+void SGBattleMap::refreshMapGrid( bool isChack),       many content is here.
+        fangYuSwapGridObj(ar, false);
+        spgongJiSwapGridObj(gamespgj->refreshGameSPGJ);
+        gongJiSwapGridObj(gamegj->refreshGameGJ);
+//每次删除或者移动士兵后检测是否形成攻击阵列或者防御墙
+void SGBattleMap::deleteMoveEndDetection()   重点看看wqlg
+
+//战斗流程主要在AttackList.cpp,  参看战斗流程.doc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

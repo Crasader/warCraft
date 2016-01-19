@@ -1,0 +1,61 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.invite";
+option java_outer_classname = "InviteProtos";
+
+message InviteRequest {  // 611 通过邀请码邀请玩家
+	//611
+	optional string inviteCode = 1;
+}
+
+message InviteResponse {
+	//611
+    optional int32 state = 1;  //1:成功     2：被邀请人超过15级       3：填写自己的邀请码          4：无效邀请人              5：邀请码只能填写一次
+    optional int32 coins = 2;  //奖励铜钱
+    optional int32 gold = 3;
+}
+
+message InviteDetailRequest {  // 612 邀请好友详情消息
+	//612
+}
+
+message InviteDetailResponse {
+	//612
+	optional string inviteCode = 1; //发送邀请的邀请码
+	optional int32 inviteNum = 2;   //已邀请
+	optional int32 inviteMax = 3;   //最多邀请
+	repeated InviteRewardMessage rewards = 4;  //奖励列表
+}
+
+message InviteRewardMessage {
+    optional int32 num = 1;    //邀请玩家数量
+    optional int32 itemType = 2;   //物品类型
+    optional int32 itemId = 3;   //物品ID
+    optional int32 itemNum = 4;   //物品数量
+    optional int32 state = 5;  //奖励条目的状态	1--未满足条件	2--满足条件未领取	3--	已领取
+}
+
+message InviteRewardRequest {  // 613邀请好友奖励消息
+	 //613
+	 optional int32 num = 1;   //选择邀请玩家数量
+}
+
+message InviteRewardResponse {
+	 //613
+     optional int32 state = 1; 
+	 optional int32 itemType = 2;   //物品类型
+     optional int32 itemId = 3;   //物品ID
+     optional int32 itemNum = 4;   //物品数量
+}
+
+message ShareRewardRequest {
+	//1310	获取分享奖励
+	optional int32 platformId = 1;
+}
+
+message ShareRewardResponse {
+	//1310	获取分享奖励
+	optional int32 state = 1;
+	optional int32 gold = 2;
+	optional int32 coins = 3;
+}

@@ -1,0 +1,197 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.shop";
+option java_outer_classname = "ShopProtos";
+import "ItemModule.proto";
+
+//----------
+message ShopChargeEntryRequest {
+	//message id=701
+}
+
+message ShopChargeEntryResponse {
+	optional VIPInfo vipInfo=1; 
+	repeated ChargeItem chargeItems=2;
+}
+
+message VIPInfo {
+	optional int32 currentVipLevel=1;
+	optional int32 nextVipLevel=2;
+	optional int32 currentRmb=3;
+	optional int32 maxRmb=4;
+	optional int32 playerGold=5;
+}
+
+message ChargeItem {
+	optional ShowType showType=1; //商品推荐类型
+	optional ChargeType chargeType=2; //商品类型
+	optional int32 discount=3;	//折扣
+	optional int32 gold=4;	//获得元宝数
+	optional int32 rmb=5;	//消耗RMB数
+	optional string code=6;	//商品代号
+	optional int32 goldPerDay=7; //每天领取多少元宝
+	optional int32 rewardDay=8; //可领取天数
+	optional int32 leftDay=9; //下次可购买的剩余天数
+}
+
+//充值条目的类型
+enum ShowType
+{
+	//普通
+	NORMAL = 0;
+	//热卖
+	HOT = 1;
+    //超值
+    EXTRA = 2;
+	//推荐
+	RECOMMEND = 3;
+	//自定义
+	CUSTOM = 4;
+}
+
+enum ChargeType 
+{
+	//元宝充值
+	GOLD = 0;
+	//月卡
+	MONTHLY = 1;
+	//季卡
+	QUARTER = 2;
+	//半年卡
+	HALF = 3;
+	//永久卡
+	FOREVER = 4;
+}
+
+//----------
+message ShopChargeRequest {
+	//message id=702
+	optional int32 isApp = 1;
+	optional int32 channelId = 2;
+	optional int32 areaId = 3;
+	optional int32 roleId = 4;
+	optional int32 accountId = 5;
+	optional int32 gameId = 6;
+	optional string receipt = 7;
+}
+
+message ShopChargeResponse {
+	optional int32 state = 1 ;//success=1
+	optional int32 monthlyCardDay = 2 ; //月卡剩余天数
+}
+//----------
+message ShopExchangeCoinEntryRequest {
+	//message id=703	
+}
+
+message ShopExchangeCoinEntryResponse {
+   optional int32 vipLevel = 1;
+   optional int32 usedChance = 2;
+   optional int32 maxChance = 3;
+   optional int32 gold = 4;
+   optional int32 coin = 5;
+}
+
+//----------
+message ShopExchangeCoinRequest {
+	//message id=704
+	
+}
+
+message ShopExchangeCoinResponse {
+  optional int32 state = 1 ;//success=0
+  optional int32 nextTimeCostGold = 2 ;
+}
+
+//----------
+message ShopVipGiftBagEntryRequest {
+	//message id=705	
+}
+
+message GiftItem {
+   optional int32 itemType = 1;
+   optional int32 itemId = 2;
+   optional int32 num = 3;
+}
+
+message VipGiftBag {
+	optional int32 ssid = 1;
+	optional string name = 2;
+	optional string info = 3;
+	optional int32 cost = 4;
+	optional int32 discount = 5;
+	optional int32 vipLevel = 6;
+	optional int32 isBuy=7;//是否购买过
+	repeated GiftItem list = 8;
+}
+
+message ShopVipGiftBagEntryResponse {
+	optional int32 vipLevel = 1;
+	optional int32 currentRmb = 2; //当前玩家充值的RMB
+	optional int32 maxRmb = 3; //下个vip等级一共需要充值的RMB
+	repeated VipGiftBag list = 4;
+}
+
+//----------SHOP_VIP_GIFTBAG_PURCH
+message ShopVipGiftBagPurchRequest {
+	//message id=707
+	required int32 ssid = 1;
+}
+
+message ShopVipGiftBagPurchResponse {
+	optional int32 state = 1 ;//success=0
+  	repeated OfficerCardItemProto officerCards =2;
+	repeated EquipmentCardItemProto equipmentCards = 3;
+	repeated PropsCardItemProto propsCards = 4;
+}
+
+//----------role purch pve power
+message ShopPurchPvEPowerEntryRequest {
+	//message id=708
+}
+
+message ShopPurchPvEPowerEntryResponse {
+  optional int32 leftCounter = 1 ;
+  optional int32 counterMax = 2 ;  
+  optional int32 cost = 3 ;
+  optional int32 dayCounter = 4 ;
+  optional int32 power = 5;//增加体力数量
+}
+
+message ShopPurchPvEPowerRequest {
+	//message id=710
+}
+
+message ShopPurchPvEPowerResponse {
+  optional int32 succ = 1 ;//success=1
+}
+
+//----------role purch pvp power
+
+message ShopPurchPvPPowerEntryRequest {
+	//message id=709
+}
+
+message ShopPurchPvPPowerEntryResponse {
+  optional int32 leftCounter = 1 ;
+  optional int32 counterMax = 2 ;
+  optional int32 cost = 3 ;
+  optional int32 power = 4;//增加军粮数量
+}
+
+message ShopPurchPvPPowerRequest {
+	//message id=711
+}
+
+message ShopPurchPvPPowerResponse {
+  optional int32 succ = 1 ;//success=1
+}
+
+message ShopGrowPlanRequest {
+	//messge id = 731
+}
+message ShopGrowPlanResponse {
+	//返回状态 是否成功
+	optional int32 succ = 1;
+}
+

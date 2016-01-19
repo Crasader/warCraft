@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>battle_loadbg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{768,568}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,2},{768,568}}</string>
+                <key>sourceSize</key>
+                <string>{772,572}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>battle_loadbg.png</string>
+            <key>size</key>
+            <string>{772,772}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:f6562b64c6783e4cb5df7c74e047d312:1/1$</string>
+            <key>textureFileName</key>
+            <string>battle_loadbg.png</string>
+        </dict>
+    </dict>
+</plist>

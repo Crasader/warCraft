@@ -1,0 +1,70 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.yuanbaoshop";
+option java_outer_classname = "YuanBaoShopProtos";
+
+
+message ShopEntryRequest {
+	//1150
+	optional int32 currentShopType = 1;  // 玩家选择的商城类型， 默认为今日特价。
+}
+
+message ShopEntryResponse {
+	
+	optional int32 currentGold = 1 ;//角色当前元宝数
+	optional int32 currentShopType = 2 ; //商城类型
+	repeated GoodsInfo goodsInfo = 3 ; //根据玩家发的类型，返回该类型中所有商品的信息。
+	
+}
+
+message GoodsInfo {
+
+	optional sint32 goodsId = 1 ; //商品id 
+	optional string goodsName = 2 ; //商品名称  
+	optional string goodsDescription = 3 ; //商品描述
+	optional sint32 beforePrice = 4 ;  // 原价
+	optional sint32 currPrice = 5 ;  // 现价
+	optional sint32 residueCount = 6 ; // 该角色剩余购买数量
+	optional sint32 allResidueCount = 7 ; //商品剩余数量
+	optional sint64	residueTime = 8 ;   //剩余时间
+	optional sint32 canBuy = 9 ;   //是否可购买
+	optional sint32 needLevel = 10 ; //购买需要等级
+	optional sint32 needVipLevel = 11 ; //购买需要vip等级
+	repeated GoodsItemInfo	goodsItemInfo = 12 ;  //该商品中的物品
+	
+	optional string currGrowthRate = 13 ;  //现价增长字符串
+	optional string beforeGrowthRate = 14;  //原价增长字符串
+	
+	optional bool  isGold = 15 ;  //是否用元宝
+	
+}
+
+message GoodsItemInfo {
+	
+	optional sint32 itemType = 1 ;  //物品类型  
+	optional sint32 itemId = 2 ; //物品id
+	optional sint32 itemCount = 3 ; // 物品数量
+	
+}
+
+message GoodsBuyRequest{
+	//1151
+	optional sint32 goodsId = 1 ; // 商品id
+	optional sint32 goodsCount = 2 ; //商品数量
+	optional sint32 shopType = 3 ; //商城类型
+}
+
+message GoodsBuyResponse{
+
+	optional sint32 state = 1 ;  //状态
+	optional sint32 currShopType = 2 ; //回到页面的时候小飞要用。
+	repeated GoodsItemInfo goodsItemInfo = 3 ;  //展示要用
+	
+	optional sint32 goodsId = 4;
+	optional sint32 currPrice = 5;
+	optional sint32 beforePrice =6;
+	optional sint32 residueCount = 7;
+	optional sint32 allResidueCount = 8;
+}
+
+

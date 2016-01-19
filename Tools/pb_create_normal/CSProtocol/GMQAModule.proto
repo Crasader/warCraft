@@ -1,0 +1,69 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.gmqa";
+option java_outer_classname = "GMQAProtos";
+
+
+
+message QAProto {
+	 optional int32 id =1;
+	 optional string title =2;
+	 optional int32 type =3;
+	 optional string createDate =4;
+	 optional int32 state =5;
+}
+
+message UpdateQAResponse {
+	//1040 
+	optional int32 id =1;
+}
+
+message CheckQARequest {
+	//1041 查看
+	optional int32 id =1;
+}
+
+message CheckQAResponse {
+	repeated AnswerProto answer =1;
+}
+
+message AnswerProto {
+	optional int32 gmId =1;
+	optional string time =2;
+	optional string content =3;
+}
+
+message SubQARequest {
+	//1042
+	optional string title =1;
+	optional int32 type =2;
+	optional string question =3;
+}
+message SubQAResponse {
+	optional int32 state =1;//提交状态
+	optional int32 id =2;
+	optional string title =3;
+	optional int32 type =4;
+	optional string createDate =5;
+	optional int32 questionstate =6; //回复状态
+}
+
+message DelQARequest {
+	//1043
+	optional int32 id =1;
+}
+
+message DelQAResponse {
+	optional int32 state =1;
+}
+
+
+message AppendQuestionRequest { 
+	//1044 客户追加提问
+	optional int32 id =1;
+	optional string content =2;
+}
+message AppendQuestionResponse {
+	optional int32 state =1;
+}
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>officer_1756.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{474,378}}</string>
+                <key>offset</key>
+                <string>{-10,-14}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{73,86},{474,378}}</string>
+                <key>sourceSize</key>
+                <string>{640,522}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>officerIcon1756-1760.png</string>
+            <key>size</key>
+            <string>{478,478}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:b55252b6c12303173fb0c36e497d8ea3:1/1$</string>
+            <key>textureFileName</key>
+            <string>officerIcon1756-1760.png</string>
+        </dict>
+    </dict>
+</plist>

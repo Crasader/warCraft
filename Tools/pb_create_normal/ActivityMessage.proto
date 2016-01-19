@@ -1,0 +1,25 @@
+package main;
+option optimize_for = LITE_RUNTIME;option optimize_for = LITE_RUNTIME;option optimize_for = LITE_RUNTIME;option optimize_for = LITE_RUNTIME;option optimize_for = LITE_RUNTIME;option optimize_for = LITE_RUNTIME;option optimize_for = LITE_RUNTIME;option optimize_for = LITE_RUNTIME;
+option java_package = "com.gamebean.sanguocard.message.activityMessage";
+option java_outer_classname = "activityMessageProtos";
+
+message ContentProto {
+    optional string content = 1;//内容
+	optional string Style = 2;//样式名称
+}
+
+message StyleInfoProto {
+    optional string styleKsy = 1;//样式名称
+    optional string styleValue = 2;//样式模式
+}
+
+message ActivityMessageInfosResponse {
+    repeated ActivityMessageInfoProto activityMessageInfoList = 1;//全部活动消息
+}
+
+message ActivityMessageInfoProto {
+    optional string title = 1;//标题
+    repeated StyleInfoProto styleInfoList = 2;//样式集合
+    repeated ContentProto contentList = 3;//内容集合
+    optional int32 typeStatus = 4;//消息类型，0：活动 1：公告
+}

@@ -1,0 +1,26 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.autoEquip";
+option java_outer_classname = "AutoEquipProtos";
+
+import "ItemModule.proto";
+
+message AutoAllEquipRequest{
+// 418
+}
+
+message AutoAllEquipResponse{
+//
+	optional int32 state = 1;
+}
+
+message AutoEquipRequest {
+   //419
+	optional int32 officerId = 1;
+}
+
+message AutoEquipResponse {
+	optional int32 state = 1;
+	optional UpdateBagInfo updateBagInfo = 2;
+}
+

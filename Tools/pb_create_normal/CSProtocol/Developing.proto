@@ -1,0 +1,110 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.developing";
+option java_outer_classname = "DevelopingProtos";
+
+message DevelopOfficerDetailRequest{
+	// 1210		培养武将详情
+	required int32 ssId = 1;	//武将SSID
+}
+
+message DevelopOfficerDetailResponse{
+	// 1210		培养武将详情
+	required int32 ssId = 1;	//武将SSID
+	required bool saved = 2;	//是否保存过
+	required DevPointDetail pointDetail = 3;	//培养点详情
+	optional DevOfficerDetail officerDetail = 4;	//培养武将详情
+	optional NoSavedDetail noSavedDetail = 5;	//未保存的武将详情
+	required int32 norCoins = 6;	//普通培养消耗铜钱
+	required int32 norItemNum = 7;		//普通培养消耗道具的数量
+	required int32 speGold = 8;		//精心培养消耗元宝
+	required int32 speItemNum = 9;		//精心培养消耗道具的数量
+}
+
+message DevPointDetail{
+	required int32 devPoint = 1;	//当前潜力点
+	required int32 addDevPoint = 2;	//已增加潜力点
+	required int32 maxDevPoint = 3;	//最大可增加潜力点
+}
+
+message DevOfficerDetail{
+	optional int32 extAtk = 1;	//附加的攻击力
+	optional int32 maxAtk = 2;	//最大可附加的攻击力
+	optional int32 extDef = 3;	//附加的防御力
+	optional int32 maxDef = 4;	//最大可附加的防御力
+	optional int32 extHp = 5;	//附加的血
+	optional int32 maxHp = 6;	//最大可附加的血
+	optional int32 extSp = 7;	//附加的速度
+	optional int32 maxSp = 8;	//最大可附加的速度
+}
+
+message NoSavedDetail{
+	required int32 atk = 1;	//攻击力
+	required int32 def = 2;	//防御力
+	required int32 hp = 3;	//血
+	required int32 sp = 4;	//速度
+}
+
+message DevelopOfficerRequest{
+	// 1211		培养武将
+	required int32 ssId = 1;	//武将SSID
+	required DevelopingType type = 2;	//培养方式
+	required DevelopingCount count = 3;	//培养次数
+}
+
+//培养方式
+enum DevelopingType
+{
+	//武将——普通培养
+	DEV_OFF_NOR = 0;
+	//武将——精心培养。
+	DEV_OFF_SPE = 1;
+}
+
+//培养次数
+enum DevelopingCount
+{
+	//培养1次
+	DEV_ONE = 0;
+	//培养10次
+	DEV_TEN = 1;
+}
+
+message DevelopOfficerResponse{
+	// 1211		培养武将
+	required int32 state = 1;	//1--成功。0--失败
+	required int32 ssId = 2;	//武将SSID
+	optional NoSavedDetail noSavedDetail = 3;	//未保存的武将详情
+}
+
+message SaveOfficerRequest{
+	// 1212		保存武将
+	required int32 ssId = 1;	//武将SSID
+}
+
+message SaveOfficerResponse{
+	// 1212		保存武将
+	required int32 state = 1;	//1--成功。0--失败
+	required int32 ssId = 2;	//武将SSID
+	optional DevOfficerDetail officerDetail = 3;	//培养武将详情
+	optional DevPointDetail pointDetail = 4;	//培养点详情
+}
+
+message GiveUpOfficerRequest{
+	// 1213		放弃保存武将
+	required int32 ssId = 1;	//武将SSID
+}
+
+message UseDevelopItemRequest{
+	// 1214		使用潜力酒
+	required int32 ssId = 1;		//武将SSID
+	required int32 itemNum = 2;		//使用潜力就数量
+}
+
+message UseDevelopItemResponse{
+	// 1214		使用潜力酒
+	required int32 state = 1;	//1--成功。0--失败
+	required int32 ssId = 2;	//武将SSID
+	optional DevPointDetail pointDetail = 3;	//培养点详情
+	optional DevOfficerDetail officerDetail = 4;	//培养武将详情
+}

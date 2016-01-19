@@ -1,0 +1,57 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.serverMoving";
+option java_outer_classname = "ServerMovingProtos";
+
+
+message ServerMovingResponse {
+//930
+  repeated ServerMovingModel model =1;
+}
+
+message ServerMovingModel {
+   optional int32 id = 1;//条件
+  optional int32 level=2;//优先级
+  repeated ServerMovingModel2 model =3;
+}
+
+
+message ServerMovingModel2 {
+  optional string msg=1;//参数
+}
+
+message AnnouncementRequest{//公告
+//931
+	
+}
+
+message AnnouncementResponse{//公告
+	repeated AnnouncementModel announcementModel=1;
+}
+
+message AnnouncementModel{
+	optional string title=1;//标题
+	optional string content=2;// 内容
+	optional string url=3;//URL
+	optional int32 viewId=4;//跳转界面的ID
+}
+
+//服务器通知谈框提示消息
+message ServerNoticeResponse {
+	//932
+	optional int32 type = 1;//谈框类型
+	optional string content = 2;//通知内容
+}
+
+//敲醒客户端，当服务器报错的时候，此消息用于取消客户端的LOADING等待。
+message AlanWake {
+    //2014
+    optional int32 arg1 = 1 [default = 0]; //预留int
+    optional string arg2 = 2 [default = ""]; //预留string
+}
+
+//服务器推送showmessage
+message ShowCommonMessage {
+	//2015
+	required string msg = 1;//展示信息
+}

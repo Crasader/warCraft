@@ -1,0 +1,30 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.monthlycard";
+option java_outer_classname = "MonthlyCardProtos";
+
+message MonthlyCardShowRequest{
+//1120
+}
+
+message MonthlyCardShowResponse{
+	repeated MonthlyCardShowInfo info=1 ;  //月卡列表
+}
+
+message MonthlyCardShowInfo{
+	optional int32 type = 1; //月卡类型
+	optional int32 gold = 2; //该类型可获得元宝
+	optional int32 state = 3; //是否可以领取 0可领取 1已领取 2不能领取
+	optional int32 invalid = 4; //剩余天数
+}
+
+message MonthlyCardRewardRequest{
+	//1121
+	optional int32 type = 1 ; //月卡类型
+	
+}
+
+message MonthlyCardRewardResponse{
+	optional int32 state = 1 ;//是否成功
+	optional int32 type = 2 ; //月卡类型
+}

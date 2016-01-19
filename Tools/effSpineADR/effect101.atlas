@@ -1,0 +1,54 @@
+
+effect101.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect101_1
+  rotate: false
+  xy: 539, 188
+  size: 229, 129
+  orig: 315, 200
+  offset: 49, 24
+  index: -1
+effect101_2
+  rotate: false
+  xy: 1, 309
+  size: 295, 199
+  orig: 315, 200
+  offset: 0, 0
+  index: -1
+effect101_3
+  rotate: false
+  xy: 611, 319
+  size: 300, 189
+  orig: 315, 200
+  offset: 9, 7
+  index: -1
+effect101_4
+  rotate: true
+  xy: 1, 1
+  size: 306, 186
+  orig: 315, 200
+  offset: 6, 7
+  index: -1
+effect101_5
+  rotate: false
+  xy: 298, 327
+  size: 311, 181
+  orig: 315, 200
+  offset: 0, 9
+  index: -1
+effect101_6
+  rotate: true
+  xy: 189, 17
+  size: 290, 179
+  orig: 315, 200
+  offset: 7, 10
+  index: -1
+effect101_7
+  rotate: true
+  xy: 370, 51
+  size: 274, 167
+  orig: 315, 200
+  offset: 20, 16
+  index: -1

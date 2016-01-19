@@ -1,0 +1,160 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.lottery";
+option java_outer_classname = "LotteryProtos";
+
+import "LuaActivityModule.proto";
+import "ItemModule.proto";
+
+//----------
+message LotteryEntryRequest {
+	//message id=210
+}
+
+message LotteryEntryResponse {
+	optional int32 legendOfficerTime=1;
+	optional int32 legendEquipTime=2;
+	optional int32 advanceOfficerTime=3;
+	optional int32 advanceEquipTime=4;
+	
+	optional int64 startTime=5;
+	optional int64 endTime=6;
+	repeated ScoutActivityInfoModel scoutActivityInfoModel=7;
+	
+	optional string lotteryName = 8;	//探访标签页名称
+	optional string activityLotteryName = 9;	//活动探访标签页名称
+	optional int32 activityLotteryVipLv = 10;	//活动探访的VIP等级
+	optional int32 isActivityOpen = 11; //十赠一活动是否开启	
+}
+message ScoutActivityInfoModel{
+	optional int32 subType=1;
+	optional int64 startTime=2;
+	optional int64 endTime=3;
+	optional string description=4;
+}
+//-----------
+message LotteryPurchRequest {
+	//message id=211
+	required int32 type = 1;//LEGEND_OFFICER(0),LEGEND_EQUIP(1),ADV_OFFICER(2),ADV_EQUIP(3);
+	required int32 isCombo = 2;//0==single,1==combo,2==free
+}
+
+message LotteryPurchResponse {
+	required int32 balance = 1;//抽奖完后的代币余额
+	repeated OfficerCardItemProto officerCards = 2;
+	repeated EquipmentCardItemProto equipmentCards = 3;
+	repeated PropsCardItemProto propsCards = 4;
+	repeated OfficerFragmentCardItemProto fragmentCards = 5;
+	optional int32 updateTime=6;//免费抽倒计时
+	required PropsCardItemProto buyPropsCard = 7;//购买的物品
+	repeated ConsumableCardItemProto consumableCards = 8;
+	repeated MaterialItemProto materialItems = 9;
+	optional int32 state = 10;//返回状态 1 成功 0 失败
+}
+//-----------
+message Lottery9ViewItem {	
+	optional int32 itemType=1;
+	optional int32 itemId=2;
+	optional int32 itemNum=3;
+}
+
+message Lottery9PurchRequest {
+	//message id=212
+}
+
+message Lottery9PurchResponse {
+	optional int32 itemType=1;
+	optional int32 itemId=2;
+	optional int32 itemNum=3;
+}
+
+message ActivityLotteryRequest {
+	//message id=215
+	required int32 isCombo = 1;//0==single,1==combo
+}
+
+message ActivityLotteryResponse {
+	//message id=215
+	repeated OfficerCardItemProto officerCards = 1;
+	repeated EquipmentCardItemProto equipmentCards = 2;
+	repeated PropsCardItemProto propsCards = 3;
+	repeated OfficerFragmentCardItemProto fragmentCards = 4;
+	repeated ConsumableCardItemProto consumableCards = 5;
+	repeated MaterialItemProto materialItems = 6;
+	repeated ActivityLotteryItem officerFragment = 7;//武将碎片，第一个为获得的
+	required PropsCardItemProto buyPropsCard = 8;//购买的物品
+}
+
+message ActivityLotteryItem {
+	optional int32 type = 1;//物品类型
+	optional int32 itemId = 2;//物品ID
+	optional int32 num = 3;//物品数量
+	optional int32 lordSkillId = 4;//武将的主将计ID
+}
+
+message ActivityLotteryEntryRequest {
+	//message id=216
+}
+
+message ActivityLotteryEntryResponse {
+	//message id=216
+	optional int32 single = 1;
+	optional int32 combo = 2;
+	optional int32 plistId = 3;
+}
+
+message TongQueLotteryDropRequest{
+   
+}
+
+message TongQueLotteryDropResponse{
+   //217进入铜雀台界面
+   repeated ItemInfo itemList = 1;
+   optional int32 spendMedal = 2;//当前翻牌所需要的勋章数目
+   optional int32 spendGold = 3;//消耗元宝数
+   optional int32 medal = 4;//当前勋章数
+   optional int32 spendCoins = 5;//刷新消耗铜钱数
+   optional int32 refreshTime = 6;//倒计时时间
+   optional int32 blessValue = 7;//祝福值
+   optional ItemInfo rewardInfo = 8;//养心殿大奖
+   
+   required sint32 isHide =  9 ; //hexie
+}
+
+
+message LotteryRequest{
+	
+}
+
+message LotteryResponse{
+   //218抽奖按钮
+   optional int32 state = 1;//元宝不够，勋章不够
+   optional int32 id = 2;
+   optional int32 medal = 3;//玩家的勋章数目
+   optional int32 blessValue = 4;//祝福值
+   optional int32 spendMedal = 5;//夺取每个宝物需要消耗的勋章数
+   optional int32 spendGold = 6;//消耗元宝数
+}
+
+message TongQueRefreshRequest{
+  	//区分是自动刷新还是手动刷新
+  	optional int32 signal = 1;
+}
+
+message TongQueRefreshResponse{
+	//219自动刷新和手动刷新
+  	repeated ItemInfo itemList = 1;
+  	optional int32 spendCoins = 2;//刷新消耗铜钱数
+  	optional int32 spendMedal = 3;
+  	optional int32 spendGold = 4;
+}
+
+message TongQueYangXinRequest{
+	//220
+}
+
+message TongQueYangXinResponse{
+	//220
+	optional int32 state = 1;
+	optional ItemInfo rewardInfo = 2;//养心殿大奖
+}

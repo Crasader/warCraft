@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>1</key>
+		<dict>
+			<key>randomId</key>
+			<string>1</string>
+			<key>fileId</key>
+			<string>104</string>
+			<key>bigIcon</key>
+			<string>1756</string>
+			<key>name</key>
+			<string>前田庆次</string>
+			<key>description</key>
+			<string>「女孩嘛，还是笑起来比较好看」
+天下闻名的倾奇者。前田利家的兄长-利久的养子。精通百般武艺外，还擅长和歌、能乐、茶道、古典等。骑着巨马松风在战场上纵横无尽。</string>
+		</dict>
+		<key>2</key>
+		<dict>
+			<key>randomId</key>
+			<string>2</string>
+			<key>fileId</key>
+			<string>112</string>
+			<key>bigIcon</key>
+			<string>1026</string>
+			<key>name</key>
+			<string>龙王</string>
+			<key>description</key>
+			<string>「这种小角色，怎么可能会是龙的对手？」
+海盗集团-黑龙的首领。有着中日两国的血统，表面上是运输商，实际上是以倭寇为猎物的海盗，剑术高超。平时性格内敛，但是战斗时会表现出极其自信的一面。</string>
+		</dict>
+		<key>3</key>
+		<dict>
+			<key>randomId</key>
+			<string>3</string>
+			<key>fileId</key>
+			<string>103</string>
+			<key>bigIcon</key>
+			<string>1009</string>
+			<key>name</key>
+			<string>上杉谦信</string>
+			<key>description</key>
+			<string>「心中有义吗？」
+越后的战国大名。长尾为景的次子。威震四方，人称越后之龙。自认为是比沙门天的化身，一生出战皆为忠义而战。被尊称为军神。</string>
+		</dict>
+	</dict>
+</plist>

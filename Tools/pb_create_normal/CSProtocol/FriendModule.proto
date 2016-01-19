@@ -1,0 +1,245 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.friend";
+option java_outer_classname = "FriendProtos";
+
+import "ItemModule.proto";
+
+message AddFriendRequest {
+    //601
+	optional int32 friendRoleId = 1;//好友的ROLEID
+}
+
+message AddFriendResponse {
+    //0; 异常失败
+    //1; 自己的好友列表满了
+    //2; 对方的好友满了
+    //3; 已经在你的好友列表中
+    //4; 已经在你的黑名单中,解除黑名单并申请
+    //5; 已经在他的黑名单中
+    //6; 已经申请过了,在他的申请列表中
+    //7; 正常添加
+    optional int32 state = 1;
+    optional FriendProto friendProto = 2;
+}
+
+message SearchFriendByNameRequest {
+    //602
+    optional string nickName = 1;
+	optional int32 pageNum = 2;//搜索页码
+}
+
+message SearchFriendByNameResponse {
+    repeated FriendProto FriendList = 1;
+}
+
+message SearchFriendByInviteCodeRequest {
+    //603
+	optional string inviteCode = 1;//搜索的ID
+}
+
+message SearchFriendByInviteCodeResponse {
+    optional FriendProto friend = 1;
+}
+
+message FriendInfoRequest {
+    //604
+	optional int32 friendId = 1;//好友ID
+	optional int32 type = 2;//本服-0,跨服-1
+       optional int32 origin=3;//来源  1为竞技场
+}
+
+message FriendInfoResponse {
+    optional RoleInfo role = 1;
+}
+
+message AgreeFriendRequest {
+    //605
+	optional int32 friendRoleId = 1;//好友的ROLEID
+}
+
+message AgreeFriendResponse {
+    //0; 异常失败
+    //1; 不在自己的申请列表里
+    //2; 自己的好友列表满了
+    //3; 对方的好友满了
+    //4; 已经在对方申请列表中，清除对方申请并添加好友
+    //5; 正常添加
+    optional int32 state = 1;
+    optional FriendProto friendProto = 2;
+}
+
+message AddBlockRequest {
+    //606
+	optional int32 friendRoleId = 1;//好友的ROLEID
+}
+
+message AddBlockResponse {
+    //0; 异常失败
+    //1; 已经在你或者他的好友列表中，解除双方好友关系。添加黑名单
+    //2; 在我的申请列表中，删除他的申请请求，添加进我的黑名单
+    //3; 在他的申请列表中，删除我的申请请求，添加进我的黑名单
+    //4; 正常添加
+    optional int32 state = 1;
+    optional FriendProto friendProto = 2;
+}
+
+message UnagreeFriendRequest {
+    //607
+	optional int32 friendRoleId = 1;//好友的ROLEID
+}
+
+message UnagreeFriendResponse {
+    //0; 异常失败
+    //1; 成功
+    optional int32 state = 1;
+}
+
+message DeleteBlockRequest {
+    //608
+	optional int32 friendRoleId = 1;//好友的ROLEID
+}
+
+message DeleteBlockResponse {
+    //0; 异常失败
+    //1; 成功
+    optional int32 state = 1;
+}
+
+message DeleteFriendRequest {
+    //609
+	optional int32 friendRoleId = 1;//好友的ROLEID
+}
+
+message DeleteFriendResponse {
+    //0; 异常失败
+    //1; 成功
+    optional int32 state = 1;
+    optional FriendProto friendProto = 2;
+}
+
+message expandFriendRequest {
+    //610
+}
+
+message expandFriendResponse {
+    //0; 如果大于最大扩展上限
+    //1; 金子不够
+    //2; 成功
+    optional int32 state = 1;
+}
+
+message FriendProto {
+	optional int32 roleId = 1;//自己ID
+	optional int32 friendId = 2;//好友ID
+	optional string friendName = 3;//好友昵称
+	optional int32 typeId = 4;// 0是好友，1黑名单，2申请列表
+	optional bool isOnline = 5;//是否在线
+	optional int32 level = 6;//好友等级
+	optional int64 time = 7;// 上次离线距离现在的时间
+	optional int32 image = 8;//好友头像
+	optional int32 isGiftPower = 9;//今天是否赠送过体力
+}
+
+message RoleInfo {
+  optional int32 roleId = 1;
+  optional string name = 2; 
+  optional string nickname = 3; 
+  optional string ssid = 4; 
+  optional int32 exp = 5; 
+  optional int32 level = 6; 
+  optional int32 vipLevel =7;
+  optional int32 coins = 8; 
+  optional int32 gold = 9; 
+  optional int32 country = 10; 
+  optional int32 image = 11; 
+  optional int32 power = 12; 
+  optional int32 combatValue = 13;
+  optional int32 bagSize = 14;
+  optional string pvpRankName = 15;
+  optional int32 modifyNickNameCount = 16; 
+  optional int32 prestige =17;//天梯声望
+  optional int32 enterPVPCount =18;
+  optional int32 pvpWinCount =19;
+  optional int32 pvpTop =20;//天梯排名
+  optional int32 governing = 21;
+  optional int32 GoverningLimit=22;
+  optional int32 speed= 23;
+  optional int32 hp= 24;
+  optional RoleTeamInfo roleTeamInfo= 25;
+}
+
+message RoleTeamInfo{
+	optional int32 redSoldierId = 1; 
+	optional int32 greenSoldierId = 2; 
+	optional int32 blueSoldierId = 3;
+	optional int32 lordOfficerId = 4;
+	repeated SoldierCardItemProto soldierCardItemProto=5;
+	repeated TeamOfficerCardItemInfo teamOfficerCardItemInfo=6;//本服武将信息
+	repeated PvpOfficerCardItemInfo pvpOfficerCardItemInfo =7;//跨服武将信息
+}
+
+message TeamOfficerCardItemInfo{
+	optional OfficerCardItemProto baseOfficerCardInfoProto=1;
+	repeated EquipmentCardItemProto baseEquipmentCardItemProto = 2;
+	repeated ReasonInfo reasonInfo=3;
+}
+
+message PvpOfficerCardItemInfo {
+	optional int32 itmeId = 1;
+	optional int32 level = 2;
+}
+
+message ReasonInfo{
+	optional int32 reasonId=1;
+	optional int32 isActivate=2;
+}
+//赠送体力消息体
+message PowerGiftRequest{
+//614
+	//要赠送给的好友id
+	optional int32 friendId = 1;
+}
+message PowerGiftResponse{
+	//返回状态
+	optional int32 state = 1;
+}
+//收到别人赠送的体力消息
+message AcceptPowerGiftResponse{
+//616
+	optional PowerGiftProto powerGift = 1;
+}
+//领取赠送体力消息体
+message GetPowerGiftRequest{
+//615
+	//赠送者id
+	optional int32 giftId = 1;
+	//赠送时间
+	optional int64 giftTime = 2;
+}
+message GetPowerGiftResponse{
+	//返回状态
+	optional int32 state = 1;
+}
+//一键领取所有可领体力
+message GetAllPowerGiftRequest{
+//617
+}
+message GetAllPowerGiftResponse{
+	//返回状态
+	optional int32  state =1;
+	//更新赠送体力列表
+	repeated PowerGiftProto powerGift = 2;
+}
+//接受好友赠送体力列表
+message PowerGiftListResponse{
+	repeated PowerGiftProto powerGift = 1;
+}
+message PowerGiftProto{
+	optional int32 roleId = 1;
+	optional int32 giftId = 2;
+	optional int64 giftTime = 3;
+	optional string giftName = 4;//好友昵称
+	optional int32 giftLevel = 5;//好友等级
+	optional int32 giftImage = 6;//好友头像
+}

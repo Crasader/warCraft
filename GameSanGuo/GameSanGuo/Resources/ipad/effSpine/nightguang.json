@@ -1,0 +1,1 @@
+{"bones":[{"name":"root"}],"slots":[{"name":"nightguang","bone":"root","attachment":"nightguang"}],"skins":{"default":{"nightguang":{"nightguang":{"width":640,"height":1136}}}},"animations":{"animation":{"slots":{"nightguang":{"color":[{"time":0,"color":"ffffffff"},{"time":1.6666,"color":"ffffff77"},{"time":3.3333,"color":"ffffffff"}]}}}}}

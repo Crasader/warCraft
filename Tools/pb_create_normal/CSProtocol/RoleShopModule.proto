@@ -1,0 +1,64 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.roleshop";
+option java_outer_classname = "RoleShopProtos";
+
+
+message ShopCargoListRequest {
+	//1500
+	optional int32 shopId = 1;
+}
+
+message ShopCargoListResponse {
+
+	optional int32 shopId = 1 ; //商城类型
+	optional string nextFreshTime = 2;
+	optional int32 freshNeedGold = 3;
+	repeated CargoInfo cargoInfo = 4 ; //根据玩家发的类型，返回该类型中所有商品的信息。
+	optional string shopName = 5 ; //商城类型
+	optional int32 freshGoldType = 6;//刷新货币类型
+
+}
+
+message CargoInfo {
+
+	optional sint32 cargoId = 1 ; //商品id
+	optional sint32 priceType = 2 ;//货币类型
+	optional sint32 price = 3 ;  // 原价
+	optional sint32 curPrice = 4 ;  // 现价
+	optional sint32 itemType = 5 ;  //物品类型
+	optional sint32 itemId = 6 ; //物品id
+	optional sint32 itemCount = 7 ; // 物品数量
+	optional sint32 cargoTag = 8; //页签归属
+	optional sint32 cargoState = 9; //状态0正常 1售出 2限制购买中
+
+}
+//1501
+message CargoBuyRequest{
+	optional sint32 cargoId = 1 ; // 商品id
+	optional int32 shopId = 2 ; //商城类型
+}
+
+message CargoBuyResponse{
+	required ShopResonseState state  =1;
+	optional int32 shopId = 2 ; //商城类型
+	optional sint32 cargoId = 3;
+}
+
+//1502
+message ShopCargoFreshRequest{
+	optional int32 shopId = 1 ; //商城类型
+}
+
+message ShopCargoFreshResponse{
+	required ShopResonseState state  =1;
+	optional ShopCargoListResponse newInfo=2;//刷新后的商店信息
+}
+
+enum ShopResonseState{
+	state_failed = 0;
+	state_success = 1;
+	state_money_not_enough = 2;
+	state_no_left_cargo = 3;
+	state_cant_buy =4;
+}

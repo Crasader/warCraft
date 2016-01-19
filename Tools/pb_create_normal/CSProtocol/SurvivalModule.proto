@@ -1,0 +1,150 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.survival";
+option java_outer_classname = "SurvivalProtos";
+
+message SurvivalMainInfoRequest { //守荆州主界面信息，裸消息
+    //1001
+}
+
+message SurvivalMainInfoResponse {
+	required int32 state=1 [default=0]; //是否开启受荆州，1=开启   
+    required int32 levels=2 [default=0]; //当前关卡数
+    required int32 fightCount=3 [default = 1]; //可参战次数
+    required int32 maxFightCount=4 [default = 1]; //最大可参战次数
+    required int32 rank=5 [default = 0]; //排名
+	required uint64 maxDamage = 6; //最大得分(最大伤害)
+	
+	optional int32 maxCanBuyCount = 7 ;  //最大可买次数
+	optional int32 buyCount = 8 ;  //已买次数
+	optional int32 price = 9 [default=0];  //若可买，价格多少
+
+}
+
+message SurvivalChallengeRequest { //试图进行守荆州活动,裸消息
+	//1002 
+}
+
+message SurvivalChallengeResponse {
+	optional int32 state = 1 ; //  0,88  1,可参加    2,可购买    3,继续(一般不会出现,除非有问题)
+//	optional int32 passBossCount = 2 [default = 0]; //显示可以跳过关卡的个数 .  +1
+	repeated SurvivalBossDumpInfo survivalBossDumpInfo = 2 ;
+	optional sint32 needRmb = 3 ;  //下一级需要的rmb
+	optional sint32 willAddCount = 4;   // 可以增加的次数
+}
+message SurvivalBossDumpInfo{
+	optional int32 index = 1;
+	optional int32 damage = 2 ; 
+	optional int32 coins = 3 ;
+}
+
+message SurvivalStartRequest{ //告诉服务器我是否跳过本关,直接开始战斗
+	//1003
+	required int32 isJump = 1 [default = 0]; // 1,是跳到本关卡   0,非跳过
+	optional int32 levels = 2 ; //将要打哪关。 
+}
+
+message SurvivalStartResponse{
+	required int32 state = 1; //状态   1 为成功  非1为失败
+	optional string errMsg = 2 [default = ""]; //错误原因
+}
+
+message SurvivalRankListRequest{ //请求排行榜列表
+	//1004
+	required int32 page =1 [default = 1]; //页码,从1开始
+}
+
+message SurvivalRankListResponse{
+	required int32 totalItemsNum = 1; //总数量（曾经是总页码）
+	required int32 nowRank = 2; // 当前排名
+	required int32 rewardCoins = 3 ; //第二天可以领取的铜钱
+	repeated SurvivalRankPlayerMessage rankPlayers= 4;//
+	optional int32 pageItemsNum = 5; //每页显示多少个条目
+	optional sint32 rewardNum = 6; //可奖励个数
+	optional sint64 residueTime = 7;
+}
+
+message SurvivalRankPlayerMessage{
+	required int32 playerId = 1;//玩家id
+	required int32 iconId = 2;
+	required string nickName = 3;//
+	required int32 rankCount = 4;
+	required int32 survivalLevel = 5;//最大关卡
+	required uint64 maxDamage = 6 ; //最大伤害
+	optional sint32 acquireGold = 7; //可获取元宝
+}
+
+message SurvivalFinalStatRequest { //守荆州战斗完结之后的战绩统计，上行。
+	//1005
+}
+
+message SurvivalFinalStatResponse { //守荆州战斗完结之后的战绩统计，下行。
+	required int32 moraleNum = 1; //消耗敌军士气值数值
+	required int32 soulNum = 2; //获得奖励军魂值数值
+}
+
+message SurvivalDailyRewardResponse{
+	//1006
+	required int32 rank = 1;//排名
+	required int32 rewardGold = 2;//奖励
+}
+
+message SurvivalStopRequest{
+	//1007
+	//无消息体
+}
+
+message JunhunInfoRequest{
+	//1010
+}
+
+message JunhunInfoResponse{
+//1010
+optional int32 junhun=1;
+optional int32 index1=2;//传奇
+optional int32 index2=3;
+optional int32 index3=4;
+optional int32 index1Max=5;//传奇
+optional int32 index2Max=6;
+optional int32 index3Max=7;
+}
+
+//注入
+message JunhunInjectRequest{
+//1011
+optional int32 index=1;//位置
+optional int32 count=2;//注入的数量
+}
+
+message JunhunInjectResponse{
+//1011
+optional bool state=1;//成功失败
+}
+
+//军魂抽奖
+message JunhunRewardRequest{
+//1012
+optional int32 index=1;//位置
+}
+
+message JunhunRewardResponse{
+//1012
+optional bool state=1;//成功失败
+repeated JunhunRewardModel itemList=2;//位置
+}
+
+message JunhunRewardModel{
+optional int32 itemid=1;
+optional int32 itemType=2;
+}
+
+
+//军魂取回
+message JunhunWithdrawRequest {
+//1013
+}
+
+message JunhunWithdrawResponse {
+//1013
+required bool state=1; //允许OR禁止
+}

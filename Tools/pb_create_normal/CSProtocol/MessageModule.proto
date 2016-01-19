@@ -1,0 +1,84 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.message";
+option java_outer_classname = "MessageProtos";
+
+import "FriendModule.proto";
+
+message SendMessageRequest {
+    //801
+    optional int32 chId = 1;//频道ID 1：公共频道 2：家族频道
+	optional string content = 2;//聊天内容
+}
+
+message SendMessageResponse {
+	optional sint32 sendChatState = 1; //发送聊天状态
+    optional ChatProto chat = 2;//聊天内容
+}
+
+message ShowMessageRequest {
+    //802
+    optional int32 chId = 1;//频道ID 1：公共频道 2：家族频道
+}
+
+message ShowMessageResponse {
+    repeated ChatProto chat = 1;//聊天内容
+}
+
+message ChatProto {
+    optional int32 chId = 1;
+    optional string content = 2;
+    optional int32 roleId = 3;
+    optional int32 image = 4;
+    optional string roleNickName = 5;
+    optional string timeStr = 6;
+    optional int32 lordItemId = 7;
+    optional string pvpRankName = 8;
+    optional int32 vipLevel = 9;
+    optional int32 combatValue = 10;
+   
+}
+
+message NewComerRecordRequest{
+	optional int32 recordTypeId = 1 ; //操作点id
+	optional string mac = 2 ;  //设备标识
+} 
+
+message NewComerRecordResponse{
+//1300
+}
+
+//2014-02-12 18:30
+message ViewSpectacularItemRequest{
+	//799
+	optional int32 ssid = 1; //要展示物品的ssid
+	optional int32 roleId = 2 ; 
+	optional int32 type = 3 ;
+}
+
+message ViewSpectacularItemResponse{
+	// type 约定  1,武将   2,装备  3,士兵   4,杂物     5,碎片  6,消耗品 
+	optional int32 type = 1 ;
+	
+	optional int32 itemId = 2;          //1,2,3,4,5,6
+	optional int32 currStar = 3;        //1,2,3,4,5
+	optional int32 smileStar = 4;		//1,2,3,4,5
+	
+	optional int32 currLevel = 5;       //1,2,3
+	optional int32 currExp = 6;         //1,2,3
+	optional int32 effective = 7;       //1,2,3
+	optional int32 atk = 8;             //1,2,3
+	optional int32 def = 9;             //1,2,3
+	optional int32 speed = 10 ;          //1,2
+	optional int32 hp = 11 ;            //1,2,3
+	
+	optional int32 lordSkillId = 12 ;  //1
+	optional int32 lordSkillExp = 13 ; //1
+	optional int32 geneSkillId = 14 ;  //1
+	optional int32 geneSkillExp = 15 ; //1
+	
+	repeated int32 equipId = 16 ;  //1 
+	repeated ReasonInfo reasonInfo = 17 ;  //1	
+
+	optional int32 governing = 18; //1
+}

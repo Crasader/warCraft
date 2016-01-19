@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>serviceopenbuttom.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{612,274}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,2},{612,274}}</string>
+                <key>sourceSize</key>
+                <string>{616,280}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>serviceopenbuttom.png</string>
+            <key>size</key>
+            <string>{616,616}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:4d4b113b14d3e24e4bbfdc8421140c89:1/1$</string>
+            <key>textureFileName</key>
+            <string>serviceopenbuttom.png</string>
+        </dict>
+    </dict>
+</plist>

@@ -1,0 +1,40 @@
+
+daoguang.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+daoguang_1
+  rotate: false
+  xy: 703, 642
+  size: 181, 287
+  orig: 640, 1136
+  offset: 459, 802
+  index: -1
+daoguang_2
+  rotate: false
+  xy: 1, 355
+  size: 428, 574
+  orig: 640, 1136
+  offset: 185, 427
+  index: -1
+daoguang_3
+  rotate: false
+  xy: 1, 1
+  size: 270, 352
+  orig: 640, 1136
+  offset: 115, 328
+  index: -1
+daoguang_4
+  rotate: false
+  xy: 431, 577
+  size: 270, 352
+  orig: 640, 1136
+  offset: 33, 224
+  index: -1
+daoguang_5
+  rotate: false
+  xy: 273, 214
+  size: 127, 139
+  orig: 640, 1136
+  offset: 0, 189
+  index: -1

@@ -1,0 +1,39 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.rank";
+option java_outer_classname = "RankProtos";
+
+message RankRequest {  //
+	//1014
+	optional int32 type = 1;//排行类型
+	optional int32 nationId = 2;//国家编号
+	optional int32 page = 3;//请求页
+}
+
+message RankResponse {
+	//1014
+    optional RankProto RankInfo = 1;  //自己
+    repeated RankProto RankInfos = 2;  //排行表
+}
+
+message RankProto {
+	optional int32 roleId = 1;
+	optional string nickname = 2;
+	optional int32 nation = 3;
+	optional int32 headId =4;//头像ID
+	optional int64 value =5;//排行数值
+	optional int32 areaId =6;//区ID
+	optional string areaName =7;//区名称
+	optional int32 ranking = 8; //大于0-整出, 等于0-未进榜, -1-当天注册号不进行排行
+}
+
+message PvpOldRankRequest{
+	//1126
+}
+
+
+message PvpOldRankResponse{
+	//1126
+	optional int32 seasonCount=1;
+    repeated RankProto RankInfos = 2;  //排行表
+}

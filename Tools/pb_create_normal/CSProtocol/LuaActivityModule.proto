@@ -1,0 +1,162 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.luaActivity";
+option java_outer_classname = "LuaActivityProtos";
+
+//@NOTICE: 本消息里的所有childTag指代的是单个活动页面本身的Tag，各种xxxId则指代的是活动页面内部元素（文本/按钮/图片/ITEM）的Tag。
+
+//活动列表的req。
+message LuaActivityDetailRequest {
+	//message id=1400
+}
+
+//活动列表的resp，附带第一个活动的数据（即ActivityDetailResponse）。
+message LuaActivityDetailResponse {
+	//message id=1400
+	repeated ActivityBrief activityBrief =1; 
+	required ActivityDetailResponse activityDetail = 2;
+}
+
+//单个活动的ICON信息。
+message ActivityBrief {
+	required int32 luaId = 1;
+	required int32 luaState = 2; //活动状态  0--无状态  1--进行中  2--已结束
+	required string luaName = 3; //需要加载的的.plist名称和.lua名称。
+	required string btnName = 4;  //活动ICON的按钮图片名称，活动名字就在这个按钮上。
+	required bool notice = 5; //活动ICON上红点提示
+}
+
+//单个活动页面的req。
+message ActivityDetailRequest {
+	//message id=1404
+	required int32 luaId = 1;
+}
+
+//单个活动页面的resp。
+message ActivityDetailResponse{
+    //message id=1404
+	required ActivityBrief activityBrief = 1;
+	repeated LabelInfo labelInfo = 2; //对应ET_NUMERIC_LABEL
+	repeated LabelStringInfo labelStringInfo = 3; //对应ET_TEXT_LABEL
+	repeated BtnInfo btnInfo = 4; //对应ET_BUTTON
+	repeated ItemInfo itemInfo = 5; //对应ET_ITEM
+	repeated ImageInfo imageInfo = 6; //对应ET_IMAGE
+}
+
+//元素的颜色结构。
+message ElementColor {
+       optional int32 red = 1;
+       optional int32 green = 2;
+       optional int32 blue = 3;
+       optional int32 alpha = 4 [default = 255];
+}
+
+//倒计时类文字。
+message LabelInfo {
+	optional int32 labelId = 1;
+	optional int32 labelValue = 2;
+    optional ElementColor fontColor = 3;
+}
+//文本类文字。
+message LabelStringInfo {
+	optional int32 labelId = 1;
+	optional string labelValue = 2;
+    optional ElementColor fontColor = 3;
+}
+    
+//按钮。
+message BtnInfo {
+	optional int32 btnId = 1;
+	optional string  fontStr = 2; //按钮文字的文本。
+    optional ElementColor fontColor = 3; //按钮文字的颜色。
+    optional string bgStr = 4; //按钮后景图片名称。
+	optional string fgStr = 5; //按钮前景图片名称。
+    optional ElementColor imageColor = 6; //按钮前后景图片颜色。
+    optional int32 btnState = 7;
+}
+
+//图片。
+message ImageInfo {
+	optional int32 imageId = 1;
+	optional string  imagestr = 2;
+    optional ElementColor imageColor = 3;
+}
+
+message ItemInfo {
+	optional sint32 itemType =1 ;  //物品类型
+	optional sint32 itemId =2 ;  //物品id
+	optional sint32 itemCount =3 ;  //物品数量
+	optional sint32 itemLevel = 4 ; //物品等级
+	optional sint32 itemBtnId = 5; //物品按钮id
+}
+
+message ActivityGetRewardRequest{
+	//message id=1402
+  	optional int32 childTag = 1;
+	optional int32 btnId = 2;
+}
+
+message ActivityGetRewardResponse{
+	//message id=1402
+  	optional int32 state = 1;  
+  	optional int32 childTag = 2;
+	optional int32 btnId = 3;
+}
+
+//元素的类型
+enum ElementType
+{
+	//数字文字。
+	ET_NUMERIC_LABEL = 0;
+	//文本文字。
+	ET_TEXT_LABEL = 1;
+    //图片
+    ET_IMAGE = 2;
+	//按钮。
+	ET_BUTTON = 3;
+	//ITEM。
+	ET_ITEM = 4;
+}
+
+enum LuaStateType
+{
+	//无状态
+	LST_NO = 0;
+	//进行中
+	LST_START = 1;
+	//已结束
+	LST_END = 2;
+}
+
+message ActivityOpretionRequest{
+	//message id=1403
+  	optional int32 childTag = 1;
+    optional ElementType objectType = 2;
+	optional int32 objectId = 3;
+    
+    optional int32 opreation = 4; //保留。
+}
+
+message ActivityOpretionResponse{
+	//message id=1403
+  	repeated ActivityOpretion opreationList = 1;
+}
+
+//单次修改页面的操作。
+message ActivityOpretion
+{
+  	optional int32 childTag = 1;
+    optional ElementType objectType = 2;
+    optional int32 objectId = 3;	
+    
+    optional int32 opreation = 4; //保留。
+    
+    optional string fontStr = 5; //文字文本。
+    optional ElementColor fontColor = 6; //文字颜色。
+    optional string bgStr = 7; //按钮后景图片名称。
+    optional string fgStr = 8;  //按钮前景图片名称。
+    optional ElementColor imageColor = 9; //按钮前后景图片颜色。
+    
+    optional ItemInfo  itemInfo= 10; //保留。
+    optional int32 state = 11; //原用来指示按钮状态，现在不太需要。
+}

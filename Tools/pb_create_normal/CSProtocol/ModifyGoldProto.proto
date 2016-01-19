@@ -1,0 +1,10 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.modifyGold";
+option java_outer_classname = "ModifyGoldProtos";
+
+message ModifyGoldResponse {
+//940
+  optional int32 type=1;
+  optional int32 count = 2;
+}

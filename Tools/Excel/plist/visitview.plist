@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1</key>
+	<dict>
+		<key>visitDetail</key>
+		<array>
+			<string>  1.每次探訪都會獲得武將或稀有道具</string>
+			<string>  2.每次探訪額外贈送若干名將碎片</string>
+			<string>  3.贈送的碎片必定為關羽\張飛碎片</string>
+			<string>  【關羽】</string>
+			<string>  主將計：三聖華箭 lv1</string>
+			<string>    選擇三列，發射三支弩箭，每支弩箭可造</string>
+			<string>  成132點傷害。</string>
+			<string>  武將計：破陣斬將 lv1</string>
+			<string>    蓄力階段，每回合對陣列前方兩排敵人進</string>
+			<string>  行一次攻擊。總傷害為最大攻擊力的6%。</string>
+			<string>  【張飛】</string>
+			<string>  主將計：橫掃千軍 lv1</string>
+			<string>    對敵方全列進行刀波攻擊，每列造成72</string>
+			<string>  點傷害。</string>
+			<string>  武將計：吞食天地 lv1</string>
+			<string>    攻擊時，殺死敵方未形成陣列的士兵和武將後，</string>
+			<string>  吸收其29%防禦轉為自身攻擊力。</string>
+		</array>
+		<key>visitPic</key>
+		<string>visitHuoBg.png</string>
+	</dict>
+	<key>2</key>
+	<dict>
+		<key>visitDetail</key>
+		<array>
+			<string>  1.每次探訪都會獲得武將或稀有道具</string>
+			<string>  2.每次探訪額外贈送若干名將碎片</string>
+			<string>  3.贈送的碎片必定為呂布\貂蟬碎片</string>
+			<string>  【呂布】</string>
+			<string>  主將計：橫掃千軍 lv1</string>
+			<string>    對敵方全列進行刀波攻擊，每列造成75</string>
+			<string>點傷害。</string>
+			<string>  武將計：破軍咆哮 lv1</string>
+			<string>    蓄力階段，每回合降低敵方當前最高攻擊</string>
+			<string> 力陣列（可能是多個）5%當前攻擊力。</string>
+			<string>  【貂蟬】★★★★★☆</string>
+			<string>  主將計：凱歌高奏 lv1</string>
+			<string>    提升我方當前所有攻擊陣列106點攻擊力。</string>
+			<string>  武將計：巋然不動 lv1</string>
+			<string>    蓄力階段，無視自身當前攻擊力22%以下</string>
+			<string>  的傷害。</string>
+		</array>
+		<key>visitPic</key>
+		<string>visitHuoLvBuBg.png</string>
+	</dict>
+	<key>3</key>
+	<dict>
+		<key>visitDetail</key>
+		<array>
+			<string>  1.每次探訪都會獲得武將或稀有道具</string>
+			<string>  2.每次探訪額外贈送若干名將碎片</string>
+			<string>  3.贈送的碎片必定為周瑜碎片</string>
+			<string>  【周瑜】</string>
+			<string>  主將計：凱歌高奏 lv1</string>
+			<string>    提升當前蓄力狀態陣列106點攻擊力</string>
+			<string>  武將計：天降業火 lv1</string>
+			<string>    蓄力完成後，對敵方所有攻擊陣列造成49點</string>
+			<string> 火焰傷害，同時使這些陣列延長1個蓄力回合。</string>
+		</array>
+		<key>visitPic</key>
+		<string>visitZhouyu.png</string>
+	</dict>
+	<key>4</key>
+	<dict>
+		<key>visitDetail</key>
+		<array>
+			<string>  1.每次探訪都會獲得武將或稀有道具</string>
+			<string>  2.每次探訪額外贈送若干名將碎片</string>
+			<string>  3.贈送的碎片必定為許褚碎片</string>
+			<string>  【許褚】</string>
+			<string>  主將計：泰山壓頂 lv1</string>
+			<string>    對敵方陣營隨機3個位置進行隕石攻擊，對</string>
+			<string> 每個位置造成530點傷害。</string>
+			<string>  武將計：視死如歸 lv1</string>
+			<string>    攻擊時，遇到比自己攻擊力高的敵方攻擊陣</string>
+			<string> 列，則對這些陣列的攻擊力提升至1.14倍。</string>
+		</array>
+		<key>visitPic</key>
+		<string>visitXuchu.png</string>
+	</dict>
+	<key>5</key>
+	<dict>
+		<key>visitDetail</key>
+		<array>
+			<string>活動探訪將不定期開放</string>
+			<string>每次開放將推出1-3名指定武將</string>
+			<string>玩家每次探訪都可額外獲得對應武將碎片</string>
+			<string></string>
+		</array>
+		<key>visitPic</key>
+		<string>visitCommon.png</string>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,12 @@
+
+beiguang.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beiguang
+  rotate: false
+  xy: 1, 1
+  size: 242, 171
+  orig: 242, 171
+  offset: 0, 0
+  index: -1

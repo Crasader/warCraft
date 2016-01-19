@@ -1,0 +1,12 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.error";
+option java_outer_classname = "RoleErrorProtos";
+
+message RoleErrorInfoRequest{
+   optional string title =1; //接收客户端传来的错误信息
+}
+
+message RoleErrorInfoResponse{
+    optional int32 state=1;//返回给客户端的状态信息
+}

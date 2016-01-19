@@ -1,0 +1,40 @@
+d6a1a991a8978f6b136de6546b5bc3771294c677   caoguoping UDID
+d6a1a991a8978f6b136de6546b5bc3771294c677
+
+Liang Zhenjing (5RZ47662GG)过期
+
+
+
+    CCSkeletonAnimation*  skeletonNode = new CCSkeletonAnimation("hero01/hero01.json", "hero01/hero01_01.atlas");
+    skeletonNode->setAnimation("walk", true);
+    CCSize windowSize = CCDirector::sharedDirector()->getWinSize();
+    skeletonNode->setPosition(ccp(windowSize.width / 2, 20));
+    addChild(skeletonNode);
+    skeletonNode->release();
+
+http://malideveloper.arm.com/cn/develop-for-mali/tools/asset-creation/mali-gpu-texture-compression-tool/
+
+#define str_FirstLayer_str3  "任 務"
+#define str_FirstLayer_str4  "活 動"
+#define str_FirstLayer_str5 "領 獎"
+#define str_FirstLayer_str6_1 "商 城"
+#define str_FirstLayer_str7 "強 化"
+#define str_FirstLayer_str6 "排 行"
+
+
+/Users/cgp/Documents/Source/client/GameSanGuo/GameSanGuo/Resources/ipad
+/Users/cgp/Documents/Source/client/GameSanGuoAndroid/proj.android/assets/ipad
+
+阿里云    115.29.202.1 
+
+三 %号截取，删除右边字符，保留左边字符
+echo ${var%/*}
+%/* 表示从右边开始，删除第一个 / 号及右边的字符
+结果是：http://www.hao.com
+
+四 %% 号截取，删除右边字符，保留左边字符
+echo ${var%%/*}
+%%/* 表示从右边开始，删除最后（最左边）一个 / 号及右边的字符
+结果是：http:
+
+

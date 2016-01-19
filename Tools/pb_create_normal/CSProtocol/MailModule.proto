@@ -1,0 +1,145 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.mail";
+option java_outer_classname = "MailProtos";
+
+import "ItemModule.proto";
+
+message SendMailRequest {
+
+  //发送信息 811
+  optional int32 receiverId = 1;
+  optional int32 type = 2;
+  optional string content = 3;
+  
+}
+
+message SendMailResponse {
+
+  optional MailProto mailProto = 1;
+  
+}
+
+message DeleteMailRequest {
+
+  //删除消息 812
+  optional int32 mailId = 1;
+  
+}
+
+message DeleteMailResponse {
+
+  optional int32 state = 1;
+  
+}
+
+message ShowMailRequest {
+
+  //查看消息  813
+  optional int32 mailId = 1;
+  
+}
+
+message ShowMailResponse {
+
+  optional int32 state = 1;
+  
+}
+
+message ShowSystemMailRequest {
+
+  //查看系统邮件  814
+  optional int32 mailId = 1;
+  
+}
+
+message ShowSystemMailResponse {
+
+  optional int32 state = 1;
+  
+}
+
+message ReceiveAttachmentRequest {
+
+  //接收附件  815
+  optional int32 mailId = 1;
+  
+}
+
+message ReceiveAttachmentResponse {
+
+  optional int32 state = 1;
+
+  
+}
+
+message DeleteSystemMailRequest {
+
+  //接收附件  816
+  optional int32 mailId = 1;
+  
+}
+
+message DeleteSystemMailResponse {
+
+  optional int32 state = 1;
+  repeated AttachmentProto attachmentProto = 2;
+  
+}
+
+message MailProto {
+  //邮件主体
+  optional int32 ssid = 1;
+  optional int32 oneselfId = 2;
+  optional string oneselfNickname = 3;
+  optional int32 otherId = 4;
+  optional string otherNickname = 5;
+  optional int32 type = 6; //1:好友 2:GM 3:系统
+  optional bool isRead = 7;
+  repeated MailDetailsProto mailDetailsProto = 8;
+  optional int32 image = 9;
+}
+
+message MailDetailsProto {
+  //邮件内容主体
+  optional int32 mailId = 1;
+  optional int32 receiverId = 2;
+  optional string receiverNickName = 3;
+  optional int32 senderId = 4;
+  optional string senderNickName = 5;
+  optional string content = 6;
+  optional int64 sendDate = 7;
+}
+
+message SystemMailProto {
+  //系统邮件主体
+  optional int32 ssid = 1;
+  optional int32 roleId = 2;
+  optional string content = 3;
+  optional int32 isRead = 4;
+  optional int32 isReceive = 5;
+  optional int64 sendDate = 6;  
+  repeated AttachmentProto attachmentProto = 7;
+}
+
+message AttachmentProto {
+  //附件主体
+  optional int32 ssid = 1;
+  optional int32 systemMailId = 2;
+  optional int32 itemId = 3;
+  optional int32 count = 4;
+  optional int32 level = 5;
+  //1:将领卡牌 2:装备卡牌 3:士兵卡牌 4:道具卡牌 5:铜钱 6:金子 7:军功 8:炼丹秘方 9:小喇叭
+  optional int32 type = 6;
+  optional OfficerCardItemProto officerCardItemProto = 7;
+  optional EquipmentCardItemProto equipmentCardItemProto = 8;
+  optional SoldierCardItemProto soldierCardItemProto = 9;
+  optional PropsCardItemProto propsCardItemProto = 10;
+}
+
+message UpdateRoleMailResponse {
+	//817更新角色邮件
+	optional MailProto mainMails = 1;
+  	optional SystemMailProto systemMails = 2;
+ 	optional MailProto gmMails = 3;
+}

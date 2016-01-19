@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>huihenum.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{326,28}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{326,28}}</string>
+                <key>sourceSize</key>
+                <string>{330,30}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>huihenum.pvr.ccz</string>
+            <key>size</key>
+            <string>{512,32}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:ed7b332d92ef7e28b3ee7078ec1e95ba:1/1$</string>
+            <key>textureFileName</key>
+            <string>huihenum.pvr.ccz</string>
+        </dict>
+    </dict>
+</plist>

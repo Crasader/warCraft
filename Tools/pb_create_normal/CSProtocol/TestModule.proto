@@ -1,0 +1,20 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.login";
+option java_outer_classname = "TestProtos";
+
+message TestRequest {
+   //用户名
+  required string name = 1 [default = "zpcMan"];
+  //密码
+  required string password = 2;
+  //用户id
+  required int32 id = 3;        // Unique ID number for this person.
+  //用户邮件
+  optional string email = 4;
+}
+
+message TestResponse {
+  optional int32 state = 1 [default = 0];
+  optional string failMsg = 2;
+}

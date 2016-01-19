@@ -1,0 +1,180 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.plot";
+option java_outer_classname = "PlotProtos";
+
+import "ItemModule.proto";
+import "FightBaseModule.proto";
+
+message StoryListRequest{
+//904
+}
+
+message StoryListResponse{
+repeated StoryModel storyModel=1;
+}
+
+message StoryModel{
+	optional int32 storyId=1;//故事ID
+	optional int32 iswin=2;//是否通关
+	optional int32 star=3;//评分
+	optional float coinsRate=4;//金钱加成
+	optional float expRate=5;//经验加成
+	optional int32 time=6;//剩余时间分中
+	optional int32 reward=7;//是否可领取章节奖励
+}
+
+message PlotListRequest {
+	//ationId=901
+	optional int32 storyId=1;
+	optional int32 poltAskId=2;
+}
+
+message PlotListResponse {
+	//ationId=901
+	optional int32 state=1;
+	optional int32 plotAskId=2;
+	optional int32 storyId=3;
+	optional int32 star=4;//星级
+	optional int32 maxStar=5;//领取奖励的星级要求
+	optional int32 canReward=6;//是否可领取奖励
+	optional int32 rewardId=7;//奖励ID
+	repeated PlotModel plotModel=8;
+}
+
+
+message BossPlotListRequest {
+	//ationId=908
+	optional int32 storyId=1;
+}
+
+message BossPlotListResponse {
+	//ationId=908
+	repeated BossPlotModel bossPlotModel=1;
+}
+
+message BossPlotBuyCountRequest {
+	//916
+	optional int32 bossPlotId = 1 ; //副本id
+}
+
+message BossPlotBuyCountResponse{
+	optional int32 state = 1; // 是否 成功   1，成功  2，金钱不够   3，购买次数用尽
+}
+
+message BossPlotModel{
+	optional int32 plotId=1;//故事ID
+	optional int32 rank=2;//星级
+repeated int32 itemIds=3;//itemId;
+optional int32 power=4;//体力消耗
+optional int32 zhandou=5;//战斗力
+optional int32 exp=6;//经验 
+optional int32 gold=7;//金钱
+optional int32 info=8;//介绍
+optional int32 canJoinCount=9; //可参加次数
+optional int32 canBuyCount=10; //可购买次数
+optional int32 canJoin=11; //是否可参加
+optional int32 price = 12 [default=0];  //购买需要价格
+optional int32 buyCount = 13 ; //当日购买次数
+}
+
+message PlotModel{
+	optional int32 plotId=1;//故事ID
+	optional int32 rank=2;//星级
+	repeated int32 itemIds=3;//itemId;
+	optional int32 power=4;//体力消耗
+	optional int32 zhandou=5;//战斗力
+	optional int32 exp=6;//经验 
+	optional int32 gold=7;//金钱
+	optional int32 info=8;//介绍
+	optional int32 openState=9 [default=1];
+	optional int32 joinCount=10 [default=0];
+}
+
+message PlotEndRequest{
+//902
+}
+
+message PlotEndResponse{
+	optional int32 state=1;
+	optional int32 rating=2;//星级
+	optional int32 exp=3;
+	optional int32 gold=4;
+	repeated PlotDropItems plotDropItems=5;
+}
+
+message PlotDropItems{
+	optional OfficerCardItemProto officerCards = 1;
+	optional EquipmentCardItemProto equipmentCards = 2;
+	optional PropsCardItemProto propsCards =3;
+	optional ConsumableCardItemProto consumableCards = 4;
+	optional OfficerFragmentCardItemProto fragmentCards =5;
+	optional MaterialItemProto materialItemProtos = 6;
+}
+
+message PlotQuitEndRequest{
+//903
+	optional int32 storyId=1;//故事ID
+	optional int32 plotId = 2;
+	optional PlotQuitEndType type = 3;
+}
+message PlotQuitEndResponse{
+	optional int32 state=1;
+	optional int32 rating=2;//星级
+	optional int32 exp=3;
+	optional int32 gold=4;
+	repeated PlotDropItemMessage plotDropItems=5;
+	optional int32 meritorious=6;
+	optional int32 lianDan=7;
+	optional int32 addExp=8;
+	optional int32 type=9;//0是pve，1荆州
+	optional int32 oldLevel=10 [default=0];
+	optional int32 cooId=11 [default=0];//援军id,如果不能加好友则为默认0
+	optional int32 plotHarryCount=12;//剩余扫荡次数
+	optional int32 xiyu=13;
+}
+//快速结束类型
+enum PlotQuitEndType{
+	SINGLE = 1;
+	MULTI = 2;
+	DOUBLE = 3;
+}
+message PlotDropItemMessage{
+	repeated PlotDropItems item=1;//掉落的物品
+}
+
+message NewHandProssRequest{
+//907
+}
+message NewHandProssResponse{
+//907
+}
+message BossStoryListRequest{
+//909
+}
+message BossStoryListResponse{
+repeated BossStoryModel BossStoryModel=1;
+}
+
+message BossStoryModel{
+	optional int32 storyId=1;//故事ID
+}
+
+message StoryRewardRequest{
+//914
+	optional int32 storyId=1;//章节ID
+}
+
+message StoryRewardResponse{
+//914
+	optional int32 state=1;
+}
+
+message PlotPrologueStartRequest{
+	//430
+}
+
+message PlotPrologueStartResponse{
+	//430
+	optional PveStarResponse resp=1;
+}

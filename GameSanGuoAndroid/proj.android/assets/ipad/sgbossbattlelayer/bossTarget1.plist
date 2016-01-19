@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>boss target0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,822},{154,174}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{154,174}}</string>
+                <key>sourceSize</key>
+                <string>{154,174}</string>
+            </dict>
+            <key>boss target1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{376,424},{300,244}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{300,244}}</string>
+                <key>sourceSize</key>
+                <string>{300,244}</string>
+            </dict>
+            <key>boss target2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{720,2},{322,426}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{322,426}}</string>
+                <key>sourceSize</key>
+                <string>{322,426}</string>
+            </dict>
+            <key>boss target3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{376,2},{342,420}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{342,420}}</string>
+                <key>sourceSize</key>
+                <string>{342,420}</string>
+            </dict>
+            <key>boss target4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{372,414}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{372,414}}</string>
+                <key>sourceSize</key>
+                <string>{372,414}</string>
+            </dict>
+            <key>boss target5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,418},{372,402}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{372,402}}</string>
+                <key>sourceSize</key>
+                <string>{372,402}</string>
+            </dict>
+            <key>boss target6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{376,670},{372,342}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{372,342}}</string>
+                <key>sourceSize</key>
+                <string>{372,344}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>bossTarget1.png</string>
+            <key>size</key>
+            <string>{1044,1044}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:f80b05d306d82f7ccf36fca00231ac34:1/1$</string>
+            <key>textureFileName</key>
+            <string>bossTarget1.png</string>
+        </dict>
+    </dict>
+</plist>

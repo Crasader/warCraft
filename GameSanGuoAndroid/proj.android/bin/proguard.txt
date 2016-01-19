@@ -1,0 +1,42 @@
+# view AndroidManifest.xml #generated:79
+-keep class com.appsflyer.MultipleInstallBroadcastReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:61
+-keep class com.facebook.LoginActivity { <init>(...); }
+
+# view res/layout/com_facebook_usersettingsfragment.xml #generated:48
+-keep class com.facebook.widget.LoginButton { <init>(...); }
+
+# view AndroidManifest.xml #generated:96
+-keep class com.gmobi.trade.AppMonitor { <init>(...); }
+
+# view AndroidManifest.xml #generated:112
+-keep class com.gmobi.trade.BillingReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:110
+-keep class com.gmobi.trade.BillingService { <init>(...); }
+
+# view AndroidManifest.xml #generated:72
+-keep class com.gmobi.trade.TradeActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:139
+-keep class com.gocpa.android.sdk.GocpaPlayMarketTracker { <init>(...); }
+
+# view AndroidManifest.xml #generated:125
+-keep class com.mobileapptracker.Tracker { <init>(...); }
+
+# view AndroidManifest.xml #generated:88
+-keep class com.sponsorpay.sdk.android.advertiser.InstallReferrerReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:39
+-keep class com.xdyou.sanguo.BloodScreen { <init>(...); }
+
+# view AndroidManifest.xml #generated:53
+-keep class com.xdyou.sanguo.GameSanGuo { <init>(...); }
+
+# view AndroidManifest.xml #generated:16
+-keep class com.xdyou.sanguo.GameSanGuoApplication { <init>(...); }
+
+# view AndroidManifest.xml #generated:26
+-keep class com.xdyou.sanguo.SplashActivity { <init>(...); }
+

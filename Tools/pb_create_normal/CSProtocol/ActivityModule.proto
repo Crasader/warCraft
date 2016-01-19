@@ -1,0 +1,32 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.activity";
+option java_outer_classname = "ActivityProtos";
+
+import "PlotModule.proto";
+
+message ActivityStoryListResponse{
+//905
+repeated ActivityStoryModel storyModel=1;
+}
+
+message ActivityStoryModel {
+	optional int32 storyId=1;
+	optional int32 state = 2;
+	optional int64 startTime=3;
+	optional int64 endTime=4;
+	optional int32 joinCount =5;
+	optional int32 maxCount =6;
+}
+
+message ActivityStoryListRequest{
+}
+
+message ActivityListRequest {
+  //906
+  optional int32 storyId=1;
+}
+
+message ActivityListResponse {
+ repeated PlotModel plotModel=1;
+}

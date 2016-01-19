@@ -1,0 +1,30 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.xiyu";
+option java_outer_classname = "XiyuProtos";
+import "ItemModule.proto";
+
+//西域商人界面消息 1505
+message XiyuInfoRequest {
+}
+
+message XiyuInfoResponse {
+	//开启状态  1 ：开启   0：未开启
+	required int32 state = 1;
+	//倒计时
+	optional int32 time = 2;
+	//商品
+	repeated GoodsDataProto goods = 3;
+}
+
+//西域商人购买消息1506
+message XiyuBuyRequest {
+	required int32 index = 1;
+}
+
+message XiyuBuyResponse {
+	//返回状态
+	optional int32 state = 1;
+    //提示文本
+    optional string hint = 2;
+}

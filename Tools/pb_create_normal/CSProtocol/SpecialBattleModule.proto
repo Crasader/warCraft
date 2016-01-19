@@ -1,0 +1,101 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.specialbattle";
+option java_outer_classname = "SpecialBattleProtos";
+
+
+message SpecialBattleStoryListResponse{
+//917
+repeated SpecialBattleStoryModel storyModel=1;
+}
+
+message SpecialBattleStoryModel {
+
+	//位置
+	optional int32 position =1;
+	optional int32 storyId=2;
+	optional int32 state = 3;
+	//剩余可参加次数
+	optional int32 canJoinCount =4;
+	//每日可参加次数
+	optional int32 maxCount =5;
+	optional string name  = 6;
+	//描述
+	optional string description  = 7;
+	//开启状态的提示
+	optional string opendesc  = 8;
+	//关闭状态的提示
+	optional string closedesc  = 9;
+	//章icon
+	optional int32 iconType  = 10;
+	optional int32 iconId  = 11;
+	//章横幅图
+	optional int32 banaerId  = 12;
+	
+}
+
+message SpecialBattleStoryListRequest{
+}
+
+message SpecialBattlePlotListRequest {
+  //918
+  optional int32 storyId=1;
+}
+
+message SpecialBattlePlotListResponse {
+
+ repeated SpecialBattlePlotModel plotModel=1;
+ optional SpecialBattleStoryModel storyModel = 7;
+}
+
+message SpecialBattlePlotModel {
+  optional int32 plotId=1;
+  optional string name=2;
+  optional int32 state=3;
+  optional string closedesc=4;
+  //节 横幅图
+  optional int32 icon=5;
+  //秘境掉落预览
+  repeated SpecialBattleItemModel items = 6; 
+  //建议战斗力
+  optional int32 combatValue=7;
+}
+message SpecialBattleItemModel {
+	optional int32 itemId = 1;
+	optional int32 itemType = 2;
+}
+message SpecialBattleCheckFightRequest {
+	//秘境副本进入战斗校验 919
+	
+	//副本id
+	optional int32 plotId = 1;
+}
+message SpecialBattleCheckFightResponse {
+	//返回状态 0 :校验失败 条件不满足  1： 成功 可以进入
+	optional int32 state = 1;
+}
+message SpecialBattleBuyCountRequest {
+	 //幻境章id
+	 //899
+  optional int32 storyId = 1;
+}
+
+message SpecialBattleBuyCountResponse {
+	//返回状态 0 失败 1成功
+	optional int32 state = 1;
+}
+
+message SpecialBattleBuyCountEntryRequest {
+  //920
+  //幻境章id
+  optional int32 storyId = 1;
+}
+
+message SpecialBattleBuyCountEntryResponse {
+  //可购买次数
+  optional int32 canBuyCount = 1;
+  //最大可购买次数
+  optional int32 maxBuyCount = 2;
+  //本次花费
+  optional int32 cost = 3;
+}

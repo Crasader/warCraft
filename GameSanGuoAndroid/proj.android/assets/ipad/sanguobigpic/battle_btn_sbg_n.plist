@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>battle_btn_sbg_n.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{54,130}}</string>
+                <key>offset</key>
+                <string>{-3,61}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,2},{54,130}}</string>
+                <key>sourceSize</key>
+                <string>{64,256}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>battle_btn_sbg_n.png</string>
+            <key>size</key>
+            <string>{134,134}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:653c27333cdc7010685688f466f6e172:1/1$</string>
+            <key>textureFileName</key>
+            <string>battle_btn_sbg_n.png</string>
+        </dict>
+    </dict>
+</plist>

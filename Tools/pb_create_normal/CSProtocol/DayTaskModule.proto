@@ -1,0 +1,29 @@
+package main;
+
+option java_package = "com.gamebean.sanguocard.message.dayTask";
+option java_outer_classname = "dayTaskProtos";
+
+message DayTaskListRequest {
+   //921
+}
+
+message DayTaskListResponse {
+  repeated DayTaskModel dayTaskModel=1;
+}
+
+message DayTaskModel{
+  optional int32 taskId=1;
+  optional int32 count = 2;
+  optional int32 gold = 3;
+  optional int32 isAward = 4;//领奖状态
+}
+
+message DayTaskGetRewardRequest{
+//922
+	optional int32 taskId = 1;
+}
+
+message DayTaskGetRewardResponse{
+//922
+optional int32 state = 1 [default = 0];
+}
