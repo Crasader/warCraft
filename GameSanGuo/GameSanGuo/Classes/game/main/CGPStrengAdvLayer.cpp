@@ -28,23 +28,13 @@ CGPStrengAdvLayer::CGPStrengAdvLayer()
 
 CGPStrengAdvLayer::~CGPStrengAdvLayer()
 {
-    CC_SAFE_RELEASE_NULL(panelUpdate);
-    CC_SAFE_RELEASE_NULL(mBarSoul);
-    CC_SAFE_RELEASE_NULL(mBarFragments );
-    for (int i = 0 ; i < E_updateBtnMax; i ++)
-    {
-        CC_SAFE_RELEASE_NULL(mBtnUpdate[i]);
-    }
-    for (int i = 0; i < E_updateBtnMax; i ++)
-    {
-        CC_SAFE_RELEASE_NULL(mPanel_update[i]);
-    }
+
 }
 
 CGPStrengAdvLayer*  CGPStrengAdvLayer::create(SGBaseMilitaryCard *card, int type,int enter, bool isOnlyOfficer,ERI *info, int currentPage)
 {
     CGPStrengAdvLayer *Layer = new CGPStrengAdvLayer();
-    if (Layer && Layer->init(NULL , cgp_strengAdvLayer))
+    if (Layer && Layer->init(card  , type,  isOnlyOfficer))
     {
         Layer->initView();
         Layer->autorelease();
@@ -54,13 +44,32 @@ CGPStrengAdvLayer*  CGPStrengAdvLayer::create(SGBaseMilitaryCard *card, int type
     return NULL;
 }
 
+bool CGPStrengAdvLayer::init(SGBaseMilitaryCard *card, int type,bool isOnlyOfficer)
+{
+    if (!SGBaseLayer::init(NULL, cgp_strengAdvLayer))
+    {
+        return false;
+    }
+ //   SGNotificationCenter *notification = SGNotificationCenter::sharedNotificationCenter();
+    //notification->addObserver(MSG_BARRACKS_STRENG,   this, callfuncO_selector(SGStrengLayer::strengOfficerListener));
+
+    _card = card;
+    
+    //SGSkillDataModel *lordSkill = SGStaticDataManager::shareStatic()->getLordSkillById(_card->getLordSkill());
+    ResourceManager::sharedInstance()->bindTexture("sgstrenglayer/sgstrenglayer.plist", RES_TYPE_LAYER_UI, sg_strengLayer, LIM_PNG_AS_PNG);
+    
+    _card->retain();
+    return true;
+    
+}
+
+
 void CGPStrengAdvLayer::initView()
 {
     setIsCocostudio(true);
     panelUpdate  = static_cast<Layout*>(GUIReader::shareReader()->widgetFromJsonFile("cocosUi/update_1.ExportJson"));
-    panelUpdate->retain();
     SGMainManager::shareMain()->getMainScene()->mCocosLayers[cgp_strengAdvLayer - cocostudioLayerStart] = panelUpdate;
-    //GPCCLOG("create strengthLayer:  %p,   nowTag :%d,   cocostudioStart:%d", SGMainManager::shareMain()->getMainScene()->mCocosLayers[cgp_strengAdvLayer - cocostudioLayerStart],  cgp_strengAdvLayer,  cocostudioLayerStart);
+
     
     this->setTag(cgp_strengAdvLayer);
     SGMainManager::shareMain()->getTouchGroup()->addWidget(panelUpdate);
@@ -72,20 +81,18 @@ void CGPStrengAdvLayer::initView()
     //标签页通用
     UIGet_Layout("Panel_jinjie", panelUpdate, mPanel_update[E_jinjie])
     UIGet_Layout("Panel_qianghua", panelUpdate, mPanel_update[E_qianghua])
-    mPanel_update[E_jinjie]->retain();
-    mPanel_update[E_qianghua]->retain();
+
     Layout*  panelAtt;
     UIGet_Layout("Panel_att", panelUpdate, panelAtt)
     UIGet_Button("Button_qianghua", panelbg, mBtnUpdate[E_qianghua])
     UIGet_Button("Button_jinjie", panelbg, mBtnUpdate[E_jinjie])
-    mBtnUpdate[E_qianghua]->retain();
-    mBtnUpdate[E_jinjie]->retain();
+
     for (int i = E_qianghua; i < E_updateBtnMax; i ++)
     {
         UIClick(mBtnUpdate[i], CGPStrengAdvLayer::btnUpdate)
         mBtnUpdate[i]->setTag(i);
         mBtnUpdate[i]->setBrightStyle(BRIGHT_HIGHLIGHT);    //按下的状态
-        //mBtnUpdate[i]->retain();
+
         UIbtnImgOff(mBtnUpdate[i])
         mBtnUpdate[i]->setZOrder(1);
         mPanel_update[i]->setVisible(false);
@@ -112,34 +119,62 @@ void CGPStrengAdvLayer::initView()
     UIGet_ImageView("Image_fontBgHero", panelAtt, imgLevel)
     UIGet_ImageView("Image_nameBg", panelAtt, imgName)
     
-    for (int i = E_attack; i < E_attributeMax; i ++) {
-        mLabelAtt[i] = SGCCLabelTTF::create("34", FONT_PANGWA, 20, ccWHITE);
-        mLabelAtt[i]->setPosition(ccp(-40, -2));
-        imgAtt[i]->addNode(mLabelAtt[i]);
-        
-        mLabelAttNew[i] = SGCCLabelTTF::create("45", FONT_PANGWA, 20, ccGrassGreen);
-        mLabelAttNew[i]->setPosition(ccp(70, -2));
-        imgAtt[i]->addNode(mLabelAttNew[i]);
-    }
     
-    mLabelLevel = SGCCLabelTTF::create("lv10", FONT_PANGWA, 20, ccWHITE);
+    mLabelName = SGCCLabelTTF::create(_card->getOfficerName()->getCString(), FONT_PANGWA, 26, ccWHITE);
+    mLabelName->setPosition(ccp(0, 0));
+    imgName->addNode(mLabelName);
+    
+    currLvl = (int)_card->getCurrLevel();
+    mLabelLevel = SGCCLabelTTF::create(CCString::createWithFormat("%d", currLvl)->getCString() , FONT_PANGWA, 20, ccWHITE);
     mLabelLevel->setPosition(ccp(-40, -2));
     imgLevel->addNode(mLabelLevel);
+    mLabelAtt[E_attack] = SGCCLabelTTF::create(CCString::createWithFormat("%d", _card->getAtk())->getCString() , FONT_PANGWA, 20, ccWHITE);
+    mLabelAtt[E_attack]->setPosition(ccp(-40, -2));
+    imgAtt[E_attack]->addNode(mLabelAtt[E_attack]);
     
-    mLabelLevelNew = SGCCLabelTTF::create("lv11", FONT_PANGWA, 20, ccShitYellow);
+    mLabelAtt[E_defense] = SGCCLabelTTF::create(CCString::createWithFormat("%d", _card->getDef())->getCString() , FONT_PANGWA, 20, ccWHITE);
+    mLabelAtt[E_defense]->setPosition(ccp(-40, -2));
+    imgAtt[E_defense]->addNode(mLabelAtt[E_defense]);
+    
+    mLabelAtt[E_health] = SGCCLabelTTF::create(CCString::createWithFormat("%d", _card->getMorale())->getCString() , FONT_PANGWA, 20, ccWHITE);
+    mLabelAtt[E_health]->setPosition(ccp(-40, -2));
+    imgAtt[E_health]->addNode(mLabelAtt[E_health]);
+    
+    mLabelAtt[E_speed] = SGCCLabelTTF::create(CCString::createWithFormat("%d", (int)_card->getSpeed())->getCString(), FONT_PANGWA, 20, ccWHITE);
+    mLabelAtt[E_speed]->setPosition(ccp(-40, -2));
+    imgAtt[E_speed]->addNode(mLabelAtt[E_speed]);
+    
+    
+    //升级后
+    mLabelLevelNew = SGCCLabelTTF::create(CCString::createWithFormat("%d", currLvl + 1)->getCString(), FONT_PANGWA, 20, ccShitYellow);
     mLabelLevelNew->setPosition(ccp(70, -2));
     imgLevel->addNode(mLabelLevelNew);
     
-    mLabelName = SGCCLabelTTF::create("福岛正则", FONT_PANGWA, 26, ccWHITE);
-    mLabelName->setPosition(ccp(0, 0));
-    imgName->addNode(mLabelName);
+    CCDictionary *dicc = SGCardAttribute::getValue(currLvl + 1, _card->getItemId());
+
+    mLabelAttNew[E_attack] = SGCCLabelTTF::create(CCString::createWithFormat("%d", ((CCString *)dicc->objectForKey("atk"))->intValue())->getCString() , FONT_PANGWA, 20, ccWHITE);
+    mLabelAttNew[E_attack]->setPosition(ccp(70, -2));
+    imgAtt[E_attack]->addNode(mLabelAttNew[E_attack]);
+    
+    mLabelAttNew[E_defense] = SGCCLabelTTF::create(CCString::createWithFormat("%d", ((CCString *)dicc->objectForKey("def"))->intValue())->getCString() , FONT_PANGWA, 20, ccWHITE);
+    mLabelAttNew[E_defense]->setPosition(ccp(70, -2));
+    imgAtt[E_defense]->addNode(mLabelAttNew[E_defense]);
+    
+    mLabelAttNew[E_health] = SGCCLabelTTF::create(CCString::createWithFormat("%d",((CCString *)dicc->objectForKey("mor"))->intValue())->getCString() , FONT_PANGWA, 20, ccWHITE);
+    mLabelAttNew[E_health]->setPosition(ccp(70, -2));
+    imgAtt[E_health]->addNode(mLabelAttNew[E_health]);
+    
+    mLabelAttNew[E_speed] = SGCCLabelTTF::create(CCString::createWithFormat("%d", (int)((CCString *)dicc->objectForKey("speed"))->intValue())->getCString(), FONT_PANGWA, 20, ccWHITE);
+    mLabelAttNew[E_speed]->setPosition(ccp(70, -2));
+    imgAtt[E_speed]->addNode(mLabelAttNew[E_speed]);
+
+
     
     //强化界面
     ImageView*  soulBarBg;
     UIGet_ImageView("Image_loadingBg", mPanel_update[E_qianghua]  , soulBarBg)
     UIGet_LoadingBar("ProgressBar_qianghua", soulBarBg, mBarSoul)
     mBarSoul->setPercent(90);
-    mBarSoul->retain();
     
     ImageView*  soulFontBg;
     UIGet_ImageView("Image_soulFontBg", mPanel_update[E_qianghua], soulFontBg)
@@ -174,7 +209,6 @@ void CGPStrengAdvLayer::initView()
     UIGet_ImageView("Image_loadingBg", mPanel_update[E_jinjie], barJijieBg)
     UIGet_LoadingBar("ProgressBar_jinjie", barJijieBg, mBarFragments)
     mBarFragments->setPercent(60);
-    mBarFragments->retain();
     
     mLabelFragments = SGCCLabelTTF::create(CCString::createWithFormat("%d/%d", 6, 10)->getCString(), FONT_PANGWA, 20, ccWHITE);
     mBarFragments->addNode(mLabelFragments);
@@ -187,7 +221,6 @@ void CGPStrengAdvLayer::initView()
     SGCCLabelTTF* labelJinjie1 = SGCCLabelTTF::create("收集相应的武将碎片进阶武将", FONT_PANGWA, 26,  CCSize(260,0), ccWHITE);
     labelJinjie1->setPosition(ccpAdd(imgJinjieFontBg->getPosition(),  ccp(0, -5)));
     mPanel_update[E_jinjie]->addNode(labelJinjie1);
-    
 
 }
 

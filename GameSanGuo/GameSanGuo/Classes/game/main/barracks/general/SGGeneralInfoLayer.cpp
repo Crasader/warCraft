@@ -560,19 +560,7 @@ void SGGeneralInfoLayer::initView()
     item->setAnchorPoint(ccp(0.5,0));
     //在 是否开启武将滑动处addChild
     //this->addChild(item);
-    
-    //左火
-//    CCSpriterX *fermEffect = CCSpriterX::create("animationFile/qhhyA.scml", true, true);
-//    fermEffect->setanimaID(0);
-//    fermEffect->setisloop(true);
-//    addChild(fermEffect, 10, 0);
-    
-    //右火
-//    CCSpriterX *fermEffect1 = CCSpriterX::create("animationFile/qhhyB.scml", true, true);
-//    fermEffect1->setCCSpriterXFlipX(true);
-//    fermEffect1->setanimaID(0);
-//    fermEffect1->setisloop(true);
-//    addChild(fermEffect1, 10, 1);
+
     
     CCPoint fermPos1 =  ccpAdd(SGLayout::getPoint(kUpCenter), ccp(-264, -368 + 26));
     CCPoint fermPos2 =  ccpAdd(SGLayout::getPoint(kUpCenter), ccp(264, -368 + 26));
@@ -587,11 +575,7 @@ void SGGeneralInfoLayer::initView()
         float rate = (float)768/s.width;
         bigbg->setScale(s.width/768);
         bigbg->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter), ccp(0, - title_bg->getContentSize().height - frameSize.size.height/2/rate)));
-        
-//        fermEffect->setScale(s.width/768);
-//        fermEffect1->setScale(s.width/768);
-//        fermEffect->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter), ccp(-264, -232)));
-//        fermEffect1->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter), ccp(264, -232)));
+
         item->setPosition(ccpAdd(SGLayout::getPoint(kMiddleCenter), ccp(0,150)));
         
         showPosY = bigbg->getPositionY() - bigbg->getContentSize().height*0.5 + 80/466.0 * bigbg->getContentSize().height;
@@ -601,11 +585,7 @@ void SGGeneralInfoLayer::initView()
         bigbg = CCSprite::createWithSpriteFrameName("generalcardbg_ip5.png");
         this->addChild(bigbg,-100);
         bigbg->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter), ccp(0, - title_bg->getContentSize().height - bigbg->getContentSize().height/2 + 44)));
-        //bigbg->setVisible(false);   //cgpUI
-//        fermEffect->setScaleX(s.width/768);
-//        fermEffect1->setScaleY(s.width/768);
-//        fermEffect->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter), ccp(-264, -368 + 26)));
-//        fermEffect1->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter), ccp(264, -368 + 26)));
+
         item->setPosition(ccpAdd(SGLayout::getPoint(kMiddleCenter), ccp(0,0)));
         
         showPosY = bigbg->getPositionY() - bigbg->getContentSize().height*0.5 + 110/466.0 * bigbg->getContentSize().height;
@@ -616,16 +596,10 @@ void SGGeneralInfoLayer::initView()
         bigbg->setScaleY(1.1);
         this->addChild(bigbg,-100);
         bigbg->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter), ccp(0, - title_bg->getContentSize().height - bigbg->getContentSize().height*.45)));
-//        fermEffect->setPosition(ccpAdd(bigbg->getPosition(), ccp(-bigbg->getContentSize().width*.41, bigbg->getContentSize().height*.075)));
-//        fermEffect1->setPosition(ccpAdd(bigbg->getPosition(), ccp(bigbg->getContentSize().width*.41, bigbg->getContentSize().height*.075)));
         item->setPosition(ccpAdd(SGLayout::getPoint(kMiddleCenter), ccp(0,155)));
         
         showPosY = bigbg->getPositionY() - bigbg->getContentSize().height*0.5 + 80/466.0 * bigbg->getContentSize().height;
     }
-    
-    //播放2个火的动画
-//    fermEffect->play();
-//    fermEffect1->play();
     
     //展示按钮
     showButton = SGButton::create("show_objects.png", NULL, this, menu_selector(SGGeneralInfoLayer::showHandler), CCPointZero, false, true);
@@ -642,11 +616,7 @@ void SGGeneralInfoLayer::initView()
     {
         changeOfficerButton->setVisible(true);
     }
-    
-    //形象展示区   ***end.
-    
-    
-    
+
     //处理滑动，详见enterType注释
     cleanParams();
     if (enterType == NORMAL_ENTER || enterType == 3 || enterType == EMBATTLE_CHECK_ENTER || enterType==EMBATTLE_CHECK_ENTER_1) //三个支持滑动的入口
@@ -657,7 +627,7 @@ void SGGeneralInfoLayer::initView()
             m_isSupported = true; //开启滑动
             //初始化滑动支持控件！
             float width = 600;
-            float height = 240;
+            float height = 500;
             slideLayer = SGTouchLayer::create(width, height, 0 /* , ccc4(0, 255, 0, 255) */);
             slideLayer->ignoreAnchorPointForPosition(false);
             slideLayer->setAnchorPoint(ccp(0.5, 0)); //保持平齐
@@ -937,11 +907,6 @@ void SGGeneralInfoLayer::initView()
     bigFrm->addChild(frame3, frmZorder);
     frame3->setPosition(ccpAdd(frame2->getPosition(), ccp( frame2->getContentSize().width * 0.5 + 10 + frame3->getContentSize().width*0.5 + 3 , 0 )));
     
-  //  frameLev->setVisible(false);
-  //  frame2->setVisible(false);
-   // frame3->setVisible(false);
-   // framePiece->setVisible(false);
-    
     //碎片系列框
     
     //展示等级 、 经验 、强化按钮
@@ -949,8 +914,8 @@ void SGGeneralInfoLayer::initView()
     int maxLev = SGPlayerInfo::sharePlayerInfo()->getPlayerLevel();
     if(enterType == FRIEND_CHECK_ENTER || SHOW_OFFICER_ENTER==enterType)
         maxLev = nowLev;
-    int nowExp = _card->getCurrExp();
-    int maxExp = _card->getMaxExp();
+    //int nowExp = _card->getCurrExp();
+    //int maxExp = _card->getMaxExp();
     m_levText = SGCCLabelTTF::create(str_deji, FONT_BOXINFO, 28 ,COLOR_YELLOW);
     m_levText->setPosition(ccp(100 + m_levText->getContentSize().width * 0.5 , frameLev->getContentSize().height * 0.5));
     frameLev->addChild(m_levText);

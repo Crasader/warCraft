@@ -50,8 +50,10 @@ public:
     CGPStrengAdvLayer();
     ~CGPStrengAdvLayer();
     static CGPStrengAdvLayer*  create(SGBaseMilitaryCard *card, int type,int enter, bool isOnlyOfficer,ERI *info, int currentPage);
+    virtual bool init(SGBaseMilitaryCard *card,int type,bool isOnlyOfficer);
     void initView();
     void btnUpdate(CCObject* pSender, TouchEventType type);    //强化和进阶按钮
+    
     
 public:
     
@@ -68,6 +70,9 @@ public:
     SGCCLabelTTF  *mLabelSoulNum;
     SGCCLabelTTF  *mLabelSoulBar;   //强化进度条上的数字  5/10
     SGCCLabelTTF  *mLabelFragments;   //进阶进度条上的数字
+    
+    SGBaseMilitaryCard *_card;
+    int currLvl;
 
     
 };

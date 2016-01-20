@@ -156,20 +156,19 @@ bool SGStrengLayer::init(SGBaseMilitaryCard *card, int type,bool isOnlyOfficer)
         return false;
     }
     SGNotificationCenter *notification = SGNotificationCenter::sharedNotificationCenter();
-    notification->addObserver(MSG_BARRACKS_STRENG,
-                              this,
+    notification->addObserver(MSG_BARRACKS_STRENG,   this,
                               callfuncO_selector(SGStrengLayer::strengOfficerListener));
-    notification->addObserver(MSG_EQUIP_STRENG,
-                              this,
+    
+    notification->addObserver(MSG_EQUIP_STRENG,  this,
                               callfuncO_selector(SGStrengLayer::strengEquipListener));
-    notification->addObserver(MSG_SOLDIER_STRENG,
-                              this,
+    
+    notification->addObserver(MSG_SOLDIER_STRENG,   this,
                               callfuncO_selector(SGStrengLayer::strengSoldierListener));
-    notification->addObserver(MSG_STRENG_SKILL,
-                              this,
+    
+    notification->addObserver(MSG_STRENG_SKILL,     this,
                               callfuncO_selector(SGStrengLayer::strengSkillListener));
-    notification->addObserver(MSG_STRENG_LORD,
-                              this,
+    
+    notification->addObserver(MSG_STRENG_LORD,  this,
                               callfuncO_selector(SGStrengLayer::strengLordSkillListener));
 
     _card = card;
@@ -210,25 +209,7 @@ bool SGStrengLayer::init(SGBaseMilitaryCard *card, int type,bool isOnlyOfficer)
     }
     else if (cardType ==1)//武将
     {
-//2014-10-27  强化武将卡 取消使用武将。
-//        officer = (SGOfficerCard *)_card;
-//        CCArray *offices = SGPlayerInfo::sharePlayerInfo()->getOfficerCards();
-//        CCObject *obj_ = NULL;
 
-
-//            CCARRAY_FOREACH(offices, obj_)
-//            {
-//                
-//                SGOfficerCard *card = (SGOfficerCard *)obj_;
-//                int p0 = SGTeamgroup::shareTeamgroupInfo()->getPositionId(1,card);
-//                int p1 = SGTeamgroup::shareTeamgroupInfo()->getPositionId(2,card);
-//                int p2 = SGTeamgroup::shareTeamgroupInfo()->getPositionId(3,card);
-//                if (card->getSsid() != _card->getSsid() && card->getIsProt() == 0 &&p0 ==0 && p1==0 && p2==0)
-//                {
-//                    datas->addObject(card);
-//                    officerNum++;
-//                }
-//            }
             CCArray *array_pro = SGPlayerInfo::sharePlayerInfo()->getPropCards();
             CCObject *obj = NULL;
             CCARRAY_FOREACH(array_pro, obj)
@@ -1001,6 +982,8 @@ void SGStrengLayer::initView()
         bf_speed->setPosition(ccpAdd(bf_speedbg->getPosition(), ccp(-bf_speedbg->getContentSize().width/2,0)));
         
 
+        
+        //攻防血速
         SGCCLabelTTF *lab_ack = SGCCLabelTTF::create(CCString::createWithFormat("%d",_card->getAtk())->getCString(),FONT_BOXINFO, 28);
         lab_ack->setAnchorPoint(ccp(0, 0.5));
 		lab_ack->setTag(LABEL_ATK);

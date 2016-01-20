@@ -1390,7 +1390,8 @@ void SGMainManager::showSoulCardInfoLayer(SGPropsCard *card,int enterType,bool d
 }
 void SGMainManager::showStrengLayer(SGBaseMilitaryCard *card, int type,int enter, bool isOfficerOnly,int currentPage,ERI *info)
 {
-    if (type == 2) {
+    if (type == 2)  //装备强化
+    {
         SGEquipStrengLayer* equipstrengLayer = (SGEquipStrengLayer *)mainScene->getChildByTag(sg_equipstrengLayer);
         if (equipstrengLayer == NULL)
         {
@@ -1406,7 +1407,7 @@ void SGMainManager::showStrengLayer(SGBaseMilitaryCard *card, int type,int enter
         
         this->showLayer(equipstrengLayer);
     }
-    else
+    else   //武将强化
     {
         SGStrengLayer* strengLayer = (SGStrengLayer *)mainScene->getChildByTag(sg_strengLayer);
         if (strengLayer == NULL)

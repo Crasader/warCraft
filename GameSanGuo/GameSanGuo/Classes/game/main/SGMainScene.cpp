@@ -120,6 +120,7 @@ bool SGMainScene::init()
     //added by cgp
     m_pUIGroup = TouchGroup::create();
     this->addChild(m_pUIGroup, 1);
+    m_pUIGroup->scheduleUpdate();
     
 	//初始化各SDK平台
 	ExtClassOfSDK::sharedSDKInstance()->initSDK();
@@ -1474,63 +1475,56 @@ void SGMainScene::addShowLayer(SGBaseLayer *layer, bool isBeforeDel)
     {
         return;
     }
-
+    
+    if (this->getChildByTag(layer->getTag()))
+    {
+        layer->setIsCanTouch(true);
+        layer->setVisible(true);
+        layer->refreshView();
+    }
+    else
+    {
+        this->addChild(layer);  //modified by
+    }
+    
     if (layer->getIsCocostudio())   //当前要加入的层是cocostudio
     {
-        if (isBeforeDel)
+        
+        if (isBeforeDel)  //删除
         {
             if (this->nowIsCocostudio)
             {
                 m_pUIGroup->removeWidget(mCocosLayers[nowLayerTag - cocostudioLayerStart]);
                 mCocosLayers[nowLayerTag - cocostudioLayerStart] = NULL;
-                
-                //GPCCLOG("delete strengthLayer:  %p,  layer->getTag %d, total %d", SGMainManager::shareMain()->getMainScene()->mCocosLayers[cgp_strengAdvLayer - cocostudioLayerStart],  nowLayerTag, cocostudioLayerStart);
             }
-            else
+            if (this->getChildByTag(this->nowLayerTag))
             {
-                if (this->getChildByTag(this->nowLayerTag))
-                {
-                    this->removeChildByTag(this->nowLayerTag, true);
-                }
+                this->removeChildByTag(this->nowLayerTag, true);
             }
-
+            
         }
-        else
+        else    //隐藏
         {
             if (this->nowIsCocostudio)
             {
                 mCocosLayers[nowLayerTag - cocostudioLayerStart]->setVisible(false);
                 mCocosLayers[nowLayerTag - cocostudioLayerStart]->setEnabled(false);
             }
-            else
-            {
-                SGBaseLayer *baseLayer = (SGBaseLayer*)this->getChildByTag(this->nowLayerTag);
-                if (baseLayer)
-                {
-                    baseLayer->setIsCanTouch(false);
-                    baseLayer->setVisible(false);
-                }
-            }
 
+            SGBaseLayer *baseLayer = (SGBaseLayer*)this->getChildByTag(this->nowLayerTag);
+            if (baseLayer)
+            {
+                baseLayer->setIsCanTouch(false);
+                baseLayer->setVisible(false);
+            }
         }
         this->nowIsCocostudio = true;
-
+        
     }
+    
     
     else   //不是cocostudio
     {
-
-        if (this->getChildByTag(layer->getTag()))
-        {
-            layer->setIsCanTouch(true);
-            layer->setVisible(true);
-            layer->refreshView();
-        }
-        else
-        {
-            this->addChild(layer);  //modified by
-        }
-        
         //删除前层
         if (isBeforeDel)
         {
@@ -1539,17 +1533,12 @@ void SGMainScene::addShowLayer(SGBaseLayer *layer, bool isBeforeDel)
             {
                 m_pUIGroup->removeWidget(mCocosLayers[nowLayerTag - cocostudioLayerStart]);
                 mCocosLayers[nowLayerTag - cocostudioLayerStart] = NULL;
-                
-               // GPCCLOG("delete strengthLayer:  %p,  layer->getTag %d, total %d", SGMainManager::shareMain()->getMainScene()->mCocosLayers[cgp_strengAdvLayer - cocostudioLayerStart],  layer->getTag(), SG_LAYER_TAG_TOTAL_NUM);
-            }
-            else
-            {
-                if (this->getChildByTag(this->nowLayerTag))
-                {
-                    this->removeChildByTag(this->nowLayerTag, true);
-                }
             }
 
+            if (this->getChildByTag(this->nowLayerTag))
+            {
+                this->removeChildByTag(this->nowLayerTag, true);
+            }
         }
         else //不删除前层
         {
@@ -1559,17 +1548,14 @@ void SGMainScene::addShowLayer(SGBaseLayer *layer, bool isBeforeDel)
                 mCocosLayers[nowLayerTag - cocostudioLayerStart]->setVisible(false);
                 mCocosLayers[nowLayerTag - cocostudioLayerStart]->setEnabled(false);
             }
-            else
-            {
-                SGBaseLayer *baseLayer = (SGBaseLayer*)this->getChildByTag(this->nowLayerTag);
-                if (baseLayer)
-                {
-                    baseLayer->setIsCanTouch(false);
-                    baseLayer->setVisible(false);
-                }
-            }
 
-        }
+            SGBaseLayer *baseLayer = (SGBaseLayer*)this->getChildByTag(this->nowLayerTag);
+            if (baseLayer)
+            {
+                baseLayer->setIsCanTouch(false);
+                baseLayer->setVisible(false);
+            }
+         }
         this->nowIsCocostudio = false;
     }
     
@@ -1595,8 +1581,140 @@ void SGMainScene::addShowLayer(SGBaseLayer *layer, bool isBeforeDel)
     }
     
     this->nowLayerTag = (LayerTag)layer->getTag();
-
+    
 }
+
+
+
+//{
+//    if (layer->getTag() == this->nowLayerTag)
+//    {
+//        return;
+//    }
+//
+//    if (layer->getIsCocostudio())   //当前要加入的层是cocostudio
+//    {
+//        
+//        if (isBeforeDel)  //删除
+//        {
+//            if (this->nowIsCocostudio)
+//            {
+//                m_pUIGroup->removeWidget(mCocosLayers[nowLayerTag - cocostudioLayerStart]);
+//                mCocosLayers[nowLayerTag - cocostudioLayerStart] = NULL;
+//                
+//                //GPCCLOG("delete strengthLayer:  %p,  layer->getTag %d, total %d", SGMainManager::shareMain()->getMainScene()->mCocosLayers[cgp_strengAdvLayer - cocostudioLayerStart],  nowLayerTag, cocostudioLayerStart);
+//            }
+//            else
+//            {
+//                if (this->getChildByTag(this->nowLayerTag))
+//                {
+//                    this->removeChildByTag(this->nowLayerTag, true);
+//                }
+//            }
+//
+//        }
+//        else    //隐藏
+//        {
+//            if (this->nowIsCocostudio)
+//            {
+//                mCocosLayers[nowLayerTag - cocostudioLayerStart]->setVisible(false);
+//                mCocosLayers[nowLayerTag - cocostudioLayerStart]->setEnabled(false);
+//            }
+//            else
+//            {
+//                SGBaseLayer *baseLayer = (SGBaseLayer*)this->getChildByTag(this->nowLayerTag);
+//                if (baseLayer)
+//                {
+//                    baseLayer->setIsCanTouch(false);
+//                    baseLayer->setVisible(false);
+//                }
+//            }
+//
+//        }
+//        this->nowIsCocostudio = true;
+//
+//    }
+//    
+//    
+//    else   //不是cocostudio
+//    {
+//
+//        if (this->getChildByTag(layer->getTag()))
+//        {
+//            layer->setIsCanTouch(true);
+//            layer->setVisible(true);
+//            layer->refreshView();
+//        }
+//        else
+//        {
+//            this->addChild(layer);  //modified by
+//        }
+//        
+//        //删除前层
+//        if (isBeforeDel)
+//        {
+//            //前层是cocostudio
+//            if(this->nowIsCocostudio)
+//            {
+//                m_pUIGroup->removeWidget(mCocosLayers[nowLayerTag - cocostudioLayerStart]);
+//                mCocosLayers[nowLayerTag - cocostudioLayerStart] = NULL;
+//
+//            }
+//            else
+//            {
+//                if (this->getChildByTag(this->nowLayerTag))
+//                {
+//                    this->removeChildByTag(this->nowLayerTag, true);
+//                }
+//            }
+//
+//        }
+//        else //不删除前层
+//        {
+//            //前层是cocostudio
+//            if(this->nowIsCocostudio)
+//            {
+//                mCocosLayers[nowLayerTag - cocostudioLayerStart]->setVisible(false);
+//                mCocosLayers[nowLayerTag - cocostudioLayerStart]->setEnabled(false);
+//            }
+//            else
+//            {
+//                SGBaseLayer *baseLayer = (SGBaseLayer*)this->getChildByTag(this->nowLayerTag);
+//                if (baseLayer)
+//                {
+//                    baseLayer->setIsCanTouch(false);
+//                    baseLayer->setVisible(false);
+//                }
+//            }
+//
+//        }
+//        this->nowIsCocostudio = false;
+//    }
+//    
+//    ResourceManager* rm = ResourceManager::sharedInstance();
+//    CCLOG( "addShowLayer() add=%s, before=%s", rm->getResLayerNameByTag((LayerTag)layer->getTag()), rm->getResLayerNameByTag(nowLayerTag) );
+//    if(
+//       ( this-> nowLayerTag == sg_bossbattledetailLayer
+//        || this->nowLayerTag == sg_bossBattleJoinInLayer
+//        ||this->nowLayerTag == sg_bossBattleLayer
+//        ||this->nowLayerTag==sg_bossRewardLayer
+//        )
+//       &&
+//       (
+//        (LayerTag)layer->getTag() != sg_bossbattledetailLayer
+//        && (LayerTag)layer->getTag() != sg_bossBattleLayer
+//        && (LayerTag)layer->getTag() != sg_bossBattleJoinInLayer
+//        && (LayerTag)layer->getTag() != sg_bossRewardLayer
+//        )
+//       )
+//    {
+//        MUSIC_STOP;
+//        MUSIC_PLAY(MUSIC_SCENE);
+//    }
+//    
+//    this->nowLayerTag = (LayerTag)layer->getTag();
+//
+//}
 
 
 

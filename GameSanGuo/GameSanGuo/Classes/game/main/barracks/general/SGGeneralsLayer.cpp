@@ -390,7 +390,7 @@ void SGGeneralsLayer::initView()
     range->setPosition(ccpAdd(SGLayout::getPoint(kBottomRight),ccp(0, titleBg->getPosition().y)));
 
     CCSprite *bg = CCSprite::createWithSpriteFrameName("barrack_bg.png");
-    CCRect r = CCRectMake(0, 30,bg->getContentSize().width,s.height - h - b - titleBg->getContentSize().height );
+    CCRect r = CCRectMake(0, 30,bg->getContentSize().width, s.height - h - b - titleBg->getContentSize().height );
 
     bg->setTextureRect(r);
     bg->setScaleX(s.width/bg->getContentSize().width * 1.01);
