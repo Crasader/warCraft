@@ -590,7 +590,8 @@ void SGMainManager::startGame()
     
 #else
     mainScene = SGMainScene::create();
-    if (mainScene) {
+    if (mainScene)
+    {
         mainScene->nowBoxTag = box_null;
 
 
