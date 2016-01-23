@@ -53,6 +53,10 @@ USING_NS_CC;
 
 class SGMainManager : public CCObject
 {
+public:  //全局
+    CC_SYNTHESIZE(bool , isAdv,  IsAdv)     //0:streng, 1:adv
+    
+    
 private:
     CCString *serverIp;
     short serverPost;
@@ -79,6 +83,7 @@ public:
     void chargeSuccessForAndroid(const char* bId, int bNum);
 	
     static SGMainManager* shareMain(void);
+    
     void  initNotification();
     
     void setServerInfo(CCString *ip, short post);
