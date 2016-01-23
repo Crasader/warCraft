@@ -3602,27 +3602,6 @@ int SGStaticDataManager::getStrengSoldierType( int soldierId)
     SGSoldierDataModel *soldier = SGStaticDataManager::shareStatic()->getSoliderById(soldierId);
     if (soldier)
     {
-//        if (soldier->getSoldierExpType()->isEqual(CCString::create("A"))) {
-//            type = 0;
-//        }
-//        else if (soldier->getSoldierExpType()->isEqual(CCString::create("B"))) {
-//            type = 1;
-//        }
-//        else if (soldier->getSoldierExpType()->isEqual(CCString::create("C"))) {
-//            type = 2;
-//        }
-//        else if (soldier->getSoldierExpType()->isEqual(CCString::create("D"))) {
-//            type = 3;
-//        }
-//        else if (soldier->getSoldierExpType()->isEqual(CCString::create("E"))) {
-//            type = 4;
-//        }
-//        else if (soldier->getSoldierExpType()->isEqual(CCString::create("F"))) {
-//            type = 5;
-//        }
-//        else if (soldier->getSoldierExpType()->isEqual(CCString::create("Z"))) {
-//            type = 6;
-//        }
         type = 6;
     }
 

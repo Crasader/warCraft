@@ -15956,13 +15956,13 @@
 			<key>expType</key>
 			<string>B</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>68.199</string>
+			<string>201.600</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16037,13 +16037,13 @@
 			<key>expType</key>
 			<string>C</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>136.398</string>
+			<string>211.200</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16118,13 +16118,13 @@
 			<key>expType</key>
 			<string>D</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>204.596</string>
+			<string>220.800</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16199,13 +16199,13 @@
 			<key>expType</key>
 			<string>D</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>279.615</string>
+			<string>232.320</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16280,13 +16280,13 @@
 			<key>expType</key>
 			<string>D</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>361.453</string>
+			<string>243.840</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16361,13 +16361,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>450.112</string>
+			<string>255.360</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16442,13 +16442,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>545.590</string>
+			<string>266.880</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16523,13 +16523,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>647.888</string>
+			<string>282.240</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16604,13 +16604,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>757.006</string>
+			<string>299.520</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16685,13 +16685,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>872.944</string>
+			<string>318.720</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16766,13 +16766,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>995.702</string>
+			<string>318.720</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16847,13 +16847,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>1125.280</string>
+			<string>318.720</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -16928,13 +16928,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>1261.677</string>
+			<string>318.720</string>
 			<key>atkrate</key>
-			<string>0.793</string>
+			<string>2.550</string>
 			<key>morrate</key>
-			<string>0.703</string>
+			<string>4.880</string>
 			<key>speedFactor</key>
 			<string>3.086</string>
 			<key>fateList</key>
@@ -17009,15 +17009,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>907.483</string>
+			<string>291.900</string>
 			<key>atkrate</key>
-			<string>0.608</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.720</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>3.001</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800329,800330,800331,800332</string>
 			<key>generalsSkillMaxlevel</key>
@@ -17090,15 +17090,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>1099.980</string>
+			<string>305.800</string>
 			<key>atkrate</key>
-			<string>0.608</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.720</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>3.001</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800329,800330,800331,800332</string>
 			<key>generalsSkillMaxlevel</key>
@@ -17171,15 +17171,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>1306.226</string>
+			<string>319.700</string>
 			<key>atkrate</key>
-			<string>0.608</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.720</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>3.001</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800329,800330,800331,800332</string>
 			<key>generalsSkillMaxlevel</key>
@@ -17252,15 +17252,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>1526.222</string>
+			<string>336.380</string>
 			<key>atkrate</key>
-			<string>0.608</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.720</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>3.001</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800329,800330,800331,800332</string>
 			<key>generalsSkillMaxlevel</key>
@@ -17333,15 +17333,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>1759.968</string>
+			<string>353.060</string>
 			<key>atkrate</key>
-			<string>0.608</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.720</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>3.001</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800329,800330,800331,800332</string>
 			<key>generalsSkillMaxlevel</key>
@@ -17414,15 +17414,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>2007.464</string>
+			<string>369.740</string>
 			<key>atkrate</key>
-			<string>0.608</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.720</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>3.001</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800329,800330,800331,800332</string>
 			<key>generalsSkillMaxlevel</key>
@@ -17495,15 +17495,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>2268.709</string>
+			<string>386.420</string>
 			<key>atkrate</key>
-			<string>0.608</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.720</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>3.001</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800329,800330,800331,800332</string>
 			<key>generalsSkillMaxlevel</key>
@@ -17576,15 +17576,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>2543.704</string>
+			<string>408.660</string>
 			<key>atkrate</key>
-			<string>0.608</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.720</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>3.001</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800329,800330,800331,800332</string>
 			<key>generalsSkillMaxlevel</key>
@@ -17657,15 +17657,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>861.380</string>
+			<string>433.680</string>
 			<key>atkrate</key>
-			<string>0.646</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.695</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>2.925</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800109,800110,800111,800112</string>
 			<key>generalsSkillMaxlevel</key>
@@ -17738,15 +17738,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>1044.096</string>
+			<string>461.480</string>
 			<key>atkrate</key>
-			<string>0.646</string>
+			<string>5.890</string>
 			<key>morrate</key>
-			<string>0.695</string>
+			<string>3.260</string>
 			<key>speedFactor</key>
-			<string>2.925</string>
+			<string>3.890</string>
 			<key>fateList</key>
 			<string>800109,800110,800111,800112</string>
 			<key>generalsSkillMaxlevel</key>
@@ -19601,15 +19601,15 @@
 			<key>expType</key>
 			<string>C</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>125.148</string>
+			<string>208.950</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -19682,15 +19682,15 @@
 			<key>expType</key>
 			<string>D</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>187.722</string>
+			<string>218.900</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -19763,15 +19763,15 @@
 			<key>expType</key>
 			<string>D</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>256.554</string>
+			<string>228.850</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -19844,15 +19844,15 @@
 			<key>expType</key>
 			<string>D</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>331.643</string>
+			<string>240.790</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -19925,15 +19925,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>412.989</string>
+			<string>252.730</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -20006,15 +20006,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>500.593</string>
+			<string>264.670</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -20087,15 +20087,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>594.454</string>
+			<string>276.610</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -20168,15 +20168,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>694.573</string>
+			<string>292.530</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -20249,15 +20249,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>800.949</string>
+			<string>310.440</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -20330,15 +20330,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>913.582</string>
+			<string>330.340</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.854</string>
+			<string>5.340</string>
 			<key>fateList</key>
 			<string>800037,800039,800040,800041,800042</string>
 			<key>generalsSkillMaxlevel</key>
@@ -20411,13 +20411,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>1032.473</string>
+			<string>330.340</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
 			<string>2.854</string>
 			<key>fateList</key>
@@ -20492,13 +20492,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>1157.621</string>
+			<string>330.340</string>
 			<key>atkrate</key>
-			<string>0.879</string>
+			<string>5.670</string>
 			<key>morrate</key>
-			<string>0.683</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
 			<string>2.854</string>
 			<key>fateList</key>
@@ -25433,15 +25433,15 @@
 			<key>expType</key>
 			<string>C</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>106.664</string>
+			<string>201.600</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -25514,15 +25514,15 @@
 			<key>expType</key>
 			<string>D</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>159.996</string>
+			<string>211.200</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -25595,15 +25595,15 @@
 			<key>expType</key>
 			<string>D</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>218.661</string>
+			<string>220.800</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -25676,15 +25676,15 @@
 			<key>expType</key>
 			<string>D</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>282.660</string>
+			<string>232.320</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -25757,15 +25757,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>351.991</string>
+			<string>243.840</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -25838,15 +25838,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>426.656</string>
+			<string>255.360</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -25919,15 +25919,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>506.654</string>
+			<string>266.880</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -26000,15 +26000,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>591.985</string>
+			<string>282.240</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -26081,15 +26081,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>682.650</string>
+			<string>299.520</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -26162,15 +26162,15 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>778.647</string>
+			<string>318.720</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
-			<string>2.888</string>
+			<string>3.240</string>
 			<key>fateList</key>
 			<string>800205,800206,800207,800208,800209</string>
 			<key>generalsSkillMaxlevel</key>
@@ -26243,13 +26243,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>879.978</string>
+			<string>318.720</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
 			<string>2.888</string>
 			<key>fateList</key>
@@ -26324,13 +26324,13 @@
 			<key>expType</key>
 			<string>E</string>
 			<key>growvalue</key>
-			<string>1</string>
+			<string>0.015</string>
 			<key>baseDef</key>
-			<string>986.642</string>
+			<string>318.720</string>
 			<key>atkrate</key>
-			<string>0.887</string>
+			<string>4.880</string>
 			<key>morrate</key>
-			<string>0.691</string>
+			<string>1.980</string>
 			<key>speedFactor</key>
 			<string>2.888</string>
 			<key>fateList</key>

@@ -8887,7 +8887,7 @@ void SGBattleMap::showFriendlyHelp()
             {
                 if (spTouch != NULL) {
                     spTouch->setVisible(true);
-                    spTouch->setPosition(heroLayer->xdl_btn->getPosition());
+                    spTouch->setPosition(heroLayer->surrender_btn->getPosition());
                 }
                 msgLabel = SGRichLabel::getFomLabel(str_give_up_this_round_tips, dsize, FONT_BOXINFO, 32);
                 msgLabel->setPosition(ccpAdd(bboard->getPosition(),ccp(0,-15)));

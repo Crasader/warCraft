@@ -310,13 +310,13 @@ void SGFightGuideLayer::showTouchTip(int fromId)
         }
         else if (fromId == 2)
         { //1-1 行动力按钮，投降
-            selfLayer->yj_btn->setEnabled(true);
-            position = selfLayer->yj_btn->getPosition();
+            selfLayer->end_btn->setEnabled(true);
+            position = selfLayer->end_btn->getPosition();
         }
         else if(fromId == 3)   //结束回合
         {
-            selfLayer->yj_btn->setEnabled(true);
-            position = selfLayer->yj_btn->getPosition();
+            selfLayer->end_btn->setEnabled(true);
+            position = selfLayer->end_btn->getPosition();
         }
         else if (fromId == 4)
         { //1-1 主将计按钮
@@ -409,8 +409,8 @@ void SGFightGuideLayer::showTouchTip(int fromId)
         }
         else if (fromId == 2)
         { //1-1 行动力按钮，投降
-            selfLayer->xdl_btn->setEnabled(true);
-            position = selfLayer->xdl_btn->getPosition();
+            selfLayer->surrender_btn->setEnabled(true);
+            position = selfLayer->surrender_btn->getPosition();
         }
         else if (fromId == 4)
         { //1-1 主将计按钮
@@ -537,10 +537,10 @@ void SGFightGuideLayer::showDirectTip(int fromId)
        
         if (!SGGuideManager::shareManager()->isWanXDL)
         {
-            position = selfLayer->xdl_btn->getPosition();
+            position = selfLayer->surrender_btn->getPosition();
             position.x -= 60;   //modified by cgp
             
-            disc += selfLayer->xdl_btn->getContentSize().height*.5f;
+            disc += selfLayer->surrender_btn->getContentSize().height*.5f;
             
             guidePopLeft->getChildByTag(POPLDTAG)->setVisible(false);
             CCSprite *popMid = (CCSprite *) guidePopLeft->getChildByTag(POPMDTAG);
@@ -554,12 +554,12 @@ void SGFightGuideLayer::showDirectTip(int fromId)
         }
         else
         {
-            position = selfLayer->yj_btn->getPosition();
+            position = selfLayer->end_btn->getPosition();
             position.x -= 50;
             position.y -=20;
             SGGuideManager::shareManager()->isWanXDL = false;
 
-            disc += selfLayer->xdl_btn->getContentSize().height*.5f;
+            disc += selfLayer->surrender_btn->getContentSize().height*.5f;
             
             guidePopLeft->getChildByTag(POPMDTAG)->setVisible(false);
             CCSprite *popRd = (CCSprite *) guidePopLeft->getChildByTag(POPLDTAG);

@@ -622,10 +622,6 @@ void SGAdvanceLayer::initView()
     
     int officerItemId = _card->getItemId();
     SGOfficerDataModel * model = SGStaticDataManager::shareStatic()->getOfficerById(officerItemId);
-    //转生已到上限 不用判断。
-//    if(0 == model->getOfficerNextId())
-//        m_isMaxAdv = true;
-//    else
     pieceNeedNum = SGStaticDataManager::shareStatic()->getAdvOfficerNeedPieceNum(model->getOfficerCurrStarLevel(), model->getAdvNum());
     if(pieceNeedNum <= pieceHasNum)
         m_canAdcance = true;

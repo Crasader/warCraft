@@ -111,11 +111,11 @@ SGStrengLayer::~SGStrengLayer()
 
 
     SGNotificationCenter *notification = SGNotificationCenter::sharedNotificationCenter();
-    notification->removeObserver(this, MSG_BARRACKS_STRENG);
+    notification->removeObserver(this, MSG_BARRACKS_STRENG);  //武将
     notification->removeObserver(this, MSG_EQUIP_STRENG);
     notification->removeObserver(this, MSG_SOLDIER_STRENG);
-    notification->removeObserver(this, MSG_STRENG_SKILL);
-    notification->removeObserver(this, MSG_STRENG_LORD);
+    notification->removeObserver(this, MSG_STRENG_SKILL);     //被动计
+    notification->removeObserver(this, MSG_STRENG_LORD);      //主动计
  
     ResourceManager::sharedInstance()->unBindLayerTexture(sg_strengLayer);
 
@@ -222,7 +222,7 @@ bool SGStrengLayer::init(SGBaseMilitaryCard *card, int type,bool isOnlyOfficer)
             }
 
     }
-    else if(cardType == 2)
+    else if(cardType == 2)  //equip
     {
         equip = (SGEquipCard *)_card;
         CCArray *equips = SGPlayerInfo::sharePlayerInfo()->getEquipCards();
@@ -246,7 +246,7 @@ bool SGStrengLayer::init(SGBaseMilitaryCard *card, int type,bool isOnlyOfficer)
             }
         }
     }
-    else if(cardType == 3)
+    else if(cardType == 3)   //soldier
     {
         soldier = (SGSoldierCard *)_card;
         CCArray *array_pro = SGPlayerInfo::sharePlayerInfo()->getPropCards();
@@ -260,7 +260,7 @@ bool SGStrengLayer::init(SGBaseMilitaryCard *card, int type,bool isOnlyOfficer)
             }
         }
     }
-    else
+    else    //officer
     {
         officer = (SGOfficerCard *)_card;
         CCArray *array_pro = SGPlayerInfo::sharePlayerInfo()->getPropCards();
@@ -274,8 +274,7 @@ bool SGStrengLayer::init(SGBaseMilitaryCard *card, int type,bool isOnlyOfficer)
             }
         }
     }
-    //if(cardType == 1)
-       // showSort();else{SGSortBox::sortCards(datas, 3,0);}
+
     SGSortBox::sortCards(datas, 3,0);
     if(cardType == 1)
         showSort();
@@ -2535,17 +2534,18 @@ void SGStrengLayer::updateCoind()
             skilluprate->setInsideColor(ccWHITE);
         }
     }
-    else if (cardType != 4)//cardType=4时为被动技能
+    else if (cardType != 4)//正常流程     cardType=4时为被动技能
     {
         CCString *str_ = CCString::create(_card->getClassName());
         int type = SGStaticDataManager::shareStatic()->getStrengCardType(str_, _card->getItemId());
-        
-        
+
         CCLOG("type is %d",type);
         int currLvl = _card->getCurrLevel();
         int nextLvl = currLvl;
         if(currLvl < strengLimitLevel)
-            nextLvl = currLvl+1;
+        {
+            nextLvl = currLvl + 1;
+        }
         SGExpDataModel *num = SGStaticDataManager::shareStatic()->getExpByTypeAndId(type, nextLvl);//比如currLvl为5级 此句话获得5级升6级所需经验值
 
         
@@ -2561,16 +2561,18 @@ void SGStrengLayer::updateCoind()
             SGExpDataModel *num = SGStaticDataManager::shareStatic()->getExpByTypeAndId(type, currLvl);//比如currLvl为5级 此句话获得5级升6级所需经验值
             SGExpDataModel *num2 = SGStaticDataManager::shareStatic()->getExpByTypeAndId(type, maxlvl);//比如currLvl为5级 此句话获得5级升6级所需经验值
             
-            maxneedexp = num2->getexpAll()-num->getexpAll()-_card->getCurrExp();
-            if(maxneedexp<=0)
-                maxneedexp=0;
+            maxneedexp = num2->getexpAll() - num->getexpAll() - _card->getCurrExp();
+            if(maxneedexp <= 0)
+            {
+                maxneedexp = 0;
+            }
             CCString* maxexpstring = CCString::createWithFormat("%d",maxneedexp);
             maxe->setString(maxexpstring->getCString());
 
         }
         int addEXP = 0;
         int proExp = 0;
-        for(int i=0;i<_arraySelectCard->count();i++)
+        for(int i = 0; i <_arraySelectCard->count(); i++)
         {
             SGBaseMilitaryCard *card_ = (SGBaseMilitaryCard*)_arraySelectCard->objectAtIndex(i);
             int cardCurrStar = card_->getCurrStar();
@@ -2726,8 +2728,10 @@ void SGStrengLayer::updateCoind()
             CCDictionary *dicc1 = SGCardAttribute::getValue(_card->getCurrLevel(), _card->getItemId());
             
             
-            lab_addack->setString(CCString::createWithFormat("+%d",((CCString *)dicc->objectForKey("atk"))->intValue()
-															 -((CCString *)dicc1->objectForKey("atk"))->intValue())->getCString());
+            lab_addack->setString(CCString::createWithFormat("+%d",
+                        ((CCString *)dicc->objectForKey("atk"))->intValue()
+                        - ((CCString *)dicc1->objectForKey("atk"))->intValue()   )->getCString()
+                                  );
 			SGCCLabelTTF *lab_atk = ((SGCCLabelTTF *)getChildByTag(LABEL_ATK));
 			lab_addack->setPosition(ccpAdd(lab_atk->getPosition(), ccp(lab_atk->getContentSize().width + 6, 0)));
 			
@@ -2762,7 +2766,7 @@ void SGStrengLayer::updateCoind()
         }
         
     }
-    else
+    else   //被动计
     {    //被动技比率计算
         SGSkillDataModel *skill = SGStaticDataManager::shareStatic()->getGeneralSkillById(officer->getOfficerSkil());
         
@@ -3431,11 +3435,11 @@ void SGStrengLayer::backHandler()
     {
       SGMainManager::shareMain()->showGeneralInfoLayer((SGOfficerCard *)_card,0,NULL,true,NULL,false,NULL,1,0);
     }
-    else if (isfromfirst == HOME_INFO_ENTER)
+    else if (isfromfirst == HOME_INFO_ENTER)   //主页进入
     {
       SGMainManager::shareMain()->showGeneralInfoLayer((SGOfficerCard *)_card, 3,NULL,true,NULL,11);
     }
-    else if (isfromfirst == EMBATTLE_INFO_ENTER)
+    else if (isfromfirst == EMBATTLE_INFO_ENTER)   //布阵进入
     {
       SGMainManager::shareMain()->showGeneralInfoLayer((SGOfficerCard *)_card, 22,NULL,true,NULL,12);
     }

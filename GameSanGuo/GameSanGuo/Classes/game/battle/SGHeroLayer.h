@@ -218,8 +218,8 @@ public:
     
     //四大铭牌按钮
     SGButton *zjj_btn;     //能量槽按钮
-    SGButton *yj_btn;      //友军， 改为完，结束行动力
-    SGButton *xdl_btn;     //我方行动力  改为投降
+    SGButton *end_btn;      //友军， 改为完，结束行动力
+    SGButton *surrender_btn;     //我方行动力  改为投降
     SGButton *yb_btn;     //援兵
     
     CCSkeletonAnimation*   effZjjBright;  //主将计满了的闪烁光芒

@@ -11,27 +11,30 @@
 CCDictionary *SGCardAttribute::getValue(int currlvl, int itemid)
 {
     CCDictionary *dic = CCDictionary::create();
-    if (itemid > 1000 && itemid < 3000)
+    if (itemid > 1000 && itemid < 3000)    //武将
     {
         SGOfficerDataModel *officer = SGStaticDataManager::shareStatic()->getOfficerById(itemid);
-        float oridef = (float)(officer->getOfficerBaseDef()*officer->getOfficerGrowValue() * 0.1 * currlvl + officer->getOfficerBaseDef());
+        float baseDef = officer->getOfficerBaseDef();    //基础防御
+        float oridef = baseDef * (currlvl * 0.05 + 1);
         int def = oridef + 0.5;
 
-        float oriatk = (float)(oridef*officer->getOfficerRound() *officer->getOfficerAtkRate());
+        float oriatk = (float)(baseDef * officer->getOfficerAtkRate() * (0.5 + currlvl * 0.015));
         int atk = oriatk + 0.5;
 
-        float orimor = (float)(oriatk*officer->getOfficerMorRate());
+        float orimor = (float)(baseDef * officer->getOfficerMorRate() * (0.5 + currlvl * 0.015));
         int mor = orimor + 0.5;
+        
+        GPCCLOG("orimor:%f,   baseDef :%f,  morRate: %f,   currlv1 :%d,  mor : %d", orimor, baseDef, officer->getOfficerMorRate(), currlvl, mor);
 
-        //速度新增系数控制，当系数完成乘法后后再进位
-        int speed = (float) ( ( oriatk + oridef + orimor) / 20 * officer->getOfficerSpeedFactor()+.5);
+        float oriSpeed = (float)(baseDef * officer->getOfficerSpeedFactor() * (0.5 + currlvl * 0.015));
+        int speed = oriSpeed + 0.5;
 
         dic->setObject(CCString::createWithFormat("%d",def), "def");
         dic->setObject(CCString::createWithFormat("%d",atk), "atk");
         dic->setObject(CCString::createWithFormat("%d",mor), "mor");
         dic->setObject(CCString::createWithFormat("%d",speed), "speed");
     }
-    else if( itemid > 3999 && itemid <6000)
+    else if( itemid > 3999 && itemid < 6000)   //装备
     {
         SGEquipmentDataModel *equip = SGStaticDataManager::shareStatic()->getEquipById(itemid);
         
@@ -60,7 +63,7 @@ CCDictionary *SGCardAttribute::getValue(int currlvl, int itemid)
         dic->setObject(CCString::createWithFormat("%d",mor), "mor");
         dic->setObject(CCString::createWithFormat("%d",speed), "speed");
     }
-    else if( itemid>2999 &&itemid <4000)
+    else if( itemid>2999 &&itemid <4000)   //士兵
     {
         SGStaticDataManager* sdm = SGStaticDataManager::shareStatic();
         float soldiertype = (float) sdm->getSoldierGrowProperty(itemid, currlvl) / 10000; //10000为百分比基底。

@@ -220,7 +220,7 @@
 				<string>20</string>
 				<key>modelMsg</key>
 				<array>
-					<string>点击/#完/#按钮，/#结束回合/#。</string>
+					<string>点击/#结束/#按钮，/#结束回合/#。</string>
 				</array>
 				<key>modelType</key>
 				<string>1</string>

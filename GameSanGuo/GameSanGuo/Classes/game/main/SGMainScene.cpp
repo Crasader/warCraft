@@ -130,37 +130,39 @@ bool SGMainScene::init()
     nowBoxTag = box_null;
     oldBoxTag = box_null;
     nowLayerTag = sg_LayerNull;
-//    CCMenuItemLabel *bindLabel = CCMenuItemLabel::create(
-//                                                         CCLabelTTF::create("log", "Arial", 34),
-//                                                         this,
-//                                                         menu_selector(SGMainScene::logCache));
-//    
-//    //bindLabel->setVisible(false);
-//    bindLabel->setVisible(true);
-//    bindLabel->setPosition(ccpAdd(SGLayout::getPoint(kUpRight), ccp(-bindLabel->getContentSize().width/2,
-//																	-bindLabel->getContentSize().height/2)));
+    CCMenuItemLabel *bindLabel = CCMenuItemLabel::create(
+                                                         CCLabelTTF::create("log", "Arial", 34),
+                                                         this,
+                                                         menu_selector(SGMainScene::logCache));
+    
+    //bindLabel->setVisible(false);
+    bindLabel->setVisible(true);
+    bindLabel->setPosition(ccpAdd(SGLayout::getPoint(kUpRight), ccp(-bindLabel->getContentSize().width/2,
+																	-bindLabel->getContentSize().height/2)));
     //this->addChild(bindLabel);
-//    this->addChild(SGNotificationCenter::sharedNotificationCenter());
-//     this->initNotifications();
+    this->addChild(SGNotificationCenter::sharedNotificationCenter());
+    
+    this->initNotifications();
 	
    
     //启动好友消息收发器
-    //friendManager = new SGFriendManager();
+    friendManager = new SGFriendManager();
 //    mailManager = new SGMailManager();
-    
-    //跨平台  //消息推送
-//    plat = SGPlatFormIos::create();
-//    addChild(plat);
+    //跨平台
+    plat = SGPlatFormIos::create();
+    addChild(plat);
     
     //对战文字
-//    SGCCLabelTTF * label = SGCCLabelTTF::create(str_MainLayer_str36, FONT_PANGWA, 26 ,CCSizeZero,kCCTextAlignmentCenter , kCCVerticalTextAlignmentCenter );
-//    pvpMatch =  CCSprite::createWithSpriteFrameName("public_blackBoard.png");
-//    CCSize size = pvpMatch->getContentSize();
-//    label->setPosition(ccp(size.width*0.5f , size.height * 0.5f));
-//    pvpMatch->setPosition( ccpAdd(SGLayout::getPoint(kUpCenter) , ccp(0 , -size.height * 0.5) ));
-//    pvpMatch->addChild(label);
-//    this->addChild(pvpMatch, 999);
-//    pvpMatch->setVisible(false);
+    SGCCLabelTTF * label = SGCCLabelTTF::create(str_MainLayer_str36, FONT_PANGWA, 26 ,CCSizeZero,kCCTextAlignmentCenter , kCCVerticalTextAlignmentCenter );
+    pvpMatch =  CCSprite::createWithSpriteFrameName("public_blackBoard.png");
+    CCSize size = pvpMatch->getContentSize();
+    label->setPosition(ccp(size.width*0.5f , size.height * 0.5f));
+    //pvpMatch->setPosition(ccpAdd(SGLayout::getPoint(kUpRight), ccp(- size.width * 0.5f, -size.height*0.6f)));
+    pvpMatch->setPosition( ccpAdd(SGLayout::getPoint(kUpCenter) , ccp(0 , -size.height * 0.5) ));
+
+    pvpMatch->addChild(label);
+    this->addChild(pvpMatch, 999);
+    pvpMatch->setVisible(false);
     
     
     std::string str;
@@ -205,8 +207,9 @@ bool SGMainScene::init()
     
     //初始化心跳检测。
     SGHeartbeatDetection *hd = SGHeartbeatDetection::shareHeartbeatDetection();
+//    hd->setIsHbdWorking(true);
     this->addChild(hd);
-    GPCCLOG("MY HEART WILL GO ON.");
+    CCLOG("MY HEART WILL GO ON.");
     return true;
 }
                                                     

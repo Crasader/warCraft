@@ -27,7 +27,10 @@ SGPlatFormIos::SGPlatFormIos():m_connetCount(0), _isShowCircle(false)
 #if (PLATFORM == IOS)
 	
 	OcCaller::getInstance()->createController(&root);
-
+	/*
+    root = [[SGRootViewController alloc]init];
+    [[EAGLView sharedEGLView]addSubview:[root view]];
+	 */
 #else
 	root = new SGRootViewController;
 #endif

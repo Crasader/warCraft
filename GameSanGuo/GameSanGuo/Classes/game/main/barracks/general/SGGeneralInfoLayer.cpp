@@ -554,7 +554,7 @@ void SGGeneralInfoLayer::initView()
         this->setOfficerFightStrength(combat);
     
     //头像
-    SGMainManager::shareMain()->addOfficerPng(_card->getHeadSuffixNum(),sg_generalInfoLayer);
+    SGMainManager::shareMain()->addOfficerPng(_card->getHeadSuffixNum(), sg_generalInfoLayer);
     CCString *str = CCString::createWithFormat("officer_%d.png",_card->getHeadSuffixNum());
     CCSprite *item = CCSprite::createWithSpriteFrameName(str->getCString());
     item->setAnchorPoint(ccp(0.5,0));
@@ -928,7 +928,7 @@ void SGGeneralInfoLayer::initView()
     strengBtn = SGButton::createFromLocal("generalInfoBtnBg.png", str_qianghua_, this,
                                           menu_selector(SGGeneralInfoLayer::strengHandler),ccp( 0 , 4),FONT_PANGWA,ccWHITE,28,false,true);
     strengBtn->setPosition(ccp( zuoji->getPositionX() + 47  ,bigFrm->getPositionY() +
-                               bigFrm->getContentSize().height*0.5 -(bigFrm->getContentSize().height - frameLev->getPositionY()) + 1 ));
+                               bigFrm->getContentSize().height * 0.5 -(bigFrm->getContentSize().height - frameLev->getPositionY()) + 1 ));
     
     //新手引导第16步，要点击这里的强化按钮 对应的modeltag 513
     int modelTag = SGStaticDataManager::shareStatic()->getGuideTagById(guide_tag_13);
@@ -942,6 +942,8 @@ void SGGeneralInfoLayer::initView()
     //给一个引导用的tag
     int tag = SGStaticDataManager::shareStatic()->getimitTagById(LIT_GUID_ENETR_AREAN, 5);
     developingBtn->setTag(tag);
+    developingBtn->setVisible(false);
+    developingBtn->setEnabled(false);
     
     //碎片icon 、 经验条 、 来源按钮 、 转生按钮
     m_pieceIcon = CCSprite::createWithSpriteFrameName("pieceIcon.png");
@@ -1009,7 +1011,7 @@ void SGGeneralInfoLayer::initView()
     
     
     //转生按钮
-    advanceBtn = SGButton::createFromLocal("generalInfoBtnBg.png", str_zhuansheng_, this,menu_selector(SGGeneralInfoLayer::advanceHandler),ccp(0,4),FONT_PANGWA,ccWHITE,28,false,true);
+    advanceBtn = SGButton::createFromLocal("generalInfoBtnBg.png", "进阶", this,menu_selector(SGGeneralInfoLayer::advanceHandler),ccp(0,4),FONT_PANGWA,ccWHITE,28,false,true);
     advanceBtn->setPosition(ccp(strengBtn->getPositionX() , m_sourceBtn->getPositionY() - 2 ));
     this->addBtn(advanceBtn);
     
@@ -2176,8 +2178,13 @@ void SGGeneralInfoLayer::strengHandler()
     if (_card->getCurrLevel() >= officerCardlevelLimit)
         SG_SHOW_WINDOW(str_GeneralInfoLayer_str4);
     else
-        //SGMainManager::shareMain()->showStrengLayer(_card,1,isfromfirst);
+    {
+        SGMainManager::shareMain()->setIsAdv(false);
+       // SGMainManager::shareMain()->showStrengLayer(_card,1,isfromfirst);
         SGMainManager::shareMain()->showStrengAdvLayer(_card,1,isfromfirst);
+
+        //GPCCLOG("\n isAdv : %d", SGMainManager::shareMain()->getIsAdv());
+    }
 }
 
 void SGGeneralInfoLayer::advanceHandler()
@@ -2190,7 +2197,14 @@ void SGGeneralInfoLayer::advanceHandler()
         SGMainManager::shareMain()->showBox(cantadvanceBox);
     }
     else
-        SGMainManager::shareMain()->showAdvanceLayer(_card,1,isfromfirst);
+    {
+        
+        SGMainManager::shareMain()->setIsAdv(true);
+        //SGMainManager::shareMain()->showAdvanceLayer(_card,1,isfromfirst);
+        SGMainManager::shareMain()->showStrengAdvLayer(_card,1,isfromfirst);
+
+       // GPCCLOG("\n isAdv : %d", SGMainManager::shareMain()->getIsAdv());
+    }
 }
 
 
@@ -4255,6 +4269,8 @@ void SGGeneralInfoLayer::setGovAndType(int _gov, int _emType,int _position,int a
 
 void SGGeneralInfoLayer::onLootSourceBtnClicked()
 {
+    SGMainManager::shareMain()->showMessage("功能未开放!");
+    return;
     int pieceId = -1;
     SGPiecesDataModel * piece = SGStaticDataManager::shareStatic()->getPiecesDictByOfficerProtoId(_card->getProtoId());
     if(piece)

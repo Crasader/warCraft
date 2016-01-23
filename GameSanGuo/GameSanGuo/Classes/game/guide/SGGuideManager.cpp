@@ -876,7 +876,7 @@ void SGGuideManager::startFightGuide(int from)
                         fightGuideLayer->showFreeTip();
                         SGHeroLayer *heroLayer = battleLayer->getOpponent(false);
                         heroLayer->zjj_btn->setEnabled(false);
-                        heroLayer->yj_btn->setEnabled(false);
+                        heroLayer->end_btn->setEnabled(false);
                         
                         SGBattleMap *bm = heroLayer->getBattleMap();
                         bm->showMoveArrow();

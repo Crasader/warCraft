@@ -217,6 +217,7 @@ SGMainManager::SGMainManager()
 ,_shallSjzGoToSoulMall(false)
 ,_spBattleChapId(-1)
 ,_spBattlePlotId(-1)
+,isAdv(false)
 {
     mainScene = NULL;
     
@@ -590,8 +591,7 @@ void SGMainManager::startGame()
     
 #else
     mainScene = SGMainScene::create();
-    if (mainScene)
-    {
+    if (mainScene) {
         mainScene->nowBoxTag = box_null;
 
 

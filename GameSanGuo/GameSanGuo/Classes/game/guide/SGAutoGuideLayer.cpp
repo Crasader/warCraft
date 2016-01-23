@@ -155,8 +155,8 @@ void SGAutoGuideLayer::showTouchTip(int fromId)
         }
         else if (fromId == 2)
         { //1-1 行动力按钮
-            selfLayer->xdl_btn->setEnabled(true);
-            position = selfLayer->xdl_btn->getPosition();
+            selfLayer->surrender_btn->setEnabled(true);
+            position = selfLayer->surrender_btn->getPosition();
         }
         else if (fromId == 4)
         { //1-1 主将计按钮
@@ -212,8 +212,8 @@ void SGAutoGuideLayer::showDirectTip(int fromId)
     {
         spDirect->setRotation(90.0f);
         SGHeroLayer *selfLayer = battleLayer->getOpponent(false);
-        position = selfLayer->xdl_btn->getPosition();
-        disc += selfLayer->xdl_btn->getContentSize().height*.5f;
+        position = selfLayer->surrender_btn->getPosition();
+        disc += selfLayer->surrender_btn->getContentSize().height*.5f;
     }
     else if (fromId == 3)
     {

@@ -2151,10 +2151,11 @@ void SGMainLayer::visitHandler()
         return;
     }
     EFFECT_PLAY(MUSIC_BTN);
-
-    DDLog("##########################======================%d", guideId);
-    main::LotteryEntryRequest *request = new main::LotteryEntryRequest();
-    SGSocketClient::sharedSocketClient()->send(MSG_VISIT_ENTER, request);
+    SGMainManager::shareMain()->showMessage("功能暂未开放！");
+//
+//    DDLog("##########################======================%d", guideId);
+//    main::LotteryEntryRequest *request = new main::LotteryEntryRequest();
+//    SGSocketClient::sharedSocketClient()->send(MSG_VISIT_ENTER, request);
     
 }
 void SGMainLayer::visitListener(cocos2d::CCObject *obj)
