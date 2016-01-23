@@ -257,8 +257,8 @@ preBlood(0)
 ,hpProgress(NULL)
 ,uibg(NULL)
 ,zjj_btn(NULL)
-,yj_btn(NULL)
-,xdl_btn(NULL)
+,end_btn(NULL)
+,surrender_btn(NULL)
 ,yb_btn(NULL)
 ,_skName(NULL)
 ,_skName1(NULL)
@@ -453,26 +453,22 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     
     rm->bindTexture("animationFile/wujiangGj.plist", RES_TYPE_BATTLE_IMAGE, sg_herolayer);  //主
 
-    //城墙背景-主体
-    CCSprite*  batBg = CCSprite::createWithSpriteFrameName("lifebg.png");
-    batBg->setScaleX(SGLayout::getSkewing(320)/batBg->getContentSize().width);
-    batBg->setScaleY(isme ? 1: -1);
-    if (isme)
-    {
-        batBg->setAnchorPoint(ccp(0, 0));
-        batBg->setPosition(ccp(0, 0));
-    }
-    else
-    {
-        batBg->setAnchorPoint(ccp(0, 1));
-        batBg->setPosition(ccp(0, 1136 - 60));
-    }
-    this->addChild(batBg, -2);
-    
-    //设置长城基准位置
-    CCPoint BatPos = isme ? ccpAdd(SGLayout::getPoint(kBottomCenter),ccp(0, batBg->getContentSize().height*.5)) : ccpAdd(SGLayout::getPoint(kUpCenter),ccp(0, -batBg->getContentSize().height*.5));
-    
-    
+//    //城墙背景-主体
+//    CCSprite*  batBg = CCSprite::createWithSpriteFrameName("lifebg.png");
+//    batBg->setScaleX(SGLayout::getSkewing(320)/batBg->getContentSize().width);
+//    batBg->setScaleY(isme ? 1: -1);
+//    if (isme)
+//    {
+//        batBg->setAnchorPoint(ccp(0, 0));
+//        batBg->setPosition(ccp(0, 0));
+//    }
+//    else
+//    {
+//        batBg->setAnchorPoint(ccp(0, 1));
+//        batBg->setPosition(ccp(0, 1136 - 60));
+//    }
+//    this->addChild(batBg, -2);
+
     CCSprite*  headbg = CCSprite::createWithSpriteFrameName("headbg.png");
     if (isme)
     {
@@ -493,7 +489,7 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     //血条背景
     CCSprite* hpBg = CCSprite::createWithSpriteFrameName("lifekuang.png");
     hpBg->setAnchorPoint(ccp(0.5, 0.5));
-    hpBg->setPosition(isme ? ccp(320, 30) : ccp(320, 1136 - 30));
+    hpBg->setPosition(isme ? ccp(360, 30) : ccp(280, 1136 - 30));
     this->addChild(hpBg, -1);
     
     //血条-进度条
@@ -518,9 +514,7 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     motherPos = isme ? ccpAdd(SGLayout::getPoint(kBottomCenter),ccp(0, uibg->getContentSize().height*.5 - 8)) : ccpAdd(SGLayout::getPoint(kUpCenter),ccp(0, -uibg->getContentSize().height*.5));
     
     //关于背景主体的尺寸变量
-    float uibgWidth = uibg->getContentSize().width;
     float uibgHeight = uibg->getContentSize().height;
-    float uibgHalfWidth = uibgWidth * 0.5f;
     float uibgHalfHeight = uibgHeight * 0.5f;
 
     //头像&名字底框
@@ -533,23 +527,9 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     uibg->addChild(portraitFrame, 4);
     
     //角色头像，相对头名边框
-    float headOffsetX = 31;
-    float headOffsetY = 54;
     SGOfficerDataModel *data = SGStaticDataManager::shareStatic()->getOfficerById(itemId);
     SGMainManager::shareMain() -> addHeadIconPlistByNum(data->getIconId(),sg_herolayer);
-    //GPCCLOG("上场主将id:%d\n",itemId);
-    
 
-
-
-    float headSize = 58;
-
-   // head->setScale( headSize / head->getContentSize().height);
-   // headPos = ccp(headOffsetX, headOffsetY);
-   // head->setPosition(headPos);
-   // portraitFrame->addChild(head, 3, HEAD_TAG);
-    //CCSprite *stencilA = CCSprite::createWithSpriteFrameName("mengban.png");
-    
     //切图蒙版用Png
     CCTextureCache::sharedTextureCache()->setLoadingMode((LIM_OPTION)LIM_PNG_AS_PNG);
     CCSprite *stencilA = CCSprite::create("headMask.png");
@@ -560,12 +540,10 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     clipA->setStencil(stencilA);
     if (isme)
     {
-        //clipA->setAnchorPoint(ccp(0, 0));
         clipA->setPosition(ccp(53, 53));
     }
     else
     {
-        //clipA->setAnchorPoint(ccp(1, 1));
         clipA->setScale(-1);
         clipA->setPosition(ccp(640 -53, 1136 -53));
     }
@@ -580,18 +558,10 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     {
         head->setScaleY(-1.15);
     }
-//    else
-//    {
-//        //head->setPosition(ccp(53, 53));
-//    }
+
     clipA->setAlphaThreshold(GLfloat(0.1f));
     this->addChild(clipA, 6);
-    
 
-    
-    
-    
-    
     //头像边框，相对头名边框
     if (country <= 0 || country > 4)
     {
@@ -669,17 +639,17 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     //当前血量数字
     float heroBloodOffsetY = -30;
     CCString* curLabel = CCString::createWithFormat("%d",h_morale);
-    heroBloodLabel = SGCCLabelTTF::create(curLabel->getCString(), FONT_PENGYOU, FONTSIZE(10) , ccBLACK , ccWHITE);
+    heroBloodLabel = SGCCLabelTTF::create(curLabel->getCString(), FONT_PANGWA, FONTSIZE(10) ,ccWHITE,ccBLACK );
 
     heroBloodLabel->setAnchorPoint(ccp(0.5, 0.5));
 
     if (isme)
     {
-        heroBloodLabel->setPosition(ccpAdd(motherPos, ccp( 0, uibgHalfHeight/4 + heroBloodOffsetY )));
+        heroBloodLabel->setPosition(ccpAdd(motherPos, ccp( 40, uibgHalfHeight/4 + heroBloodOffsetY )));
     }
     else
     {
-        heroBloodLabel->setPosition(ccpAdd(motherPos, ccp( 0, uibgHalfHeight/4 + heroBloodOffsetY + 40)));
+        heroBloodLabel->setPosition(ccpAdd(motherPos, ccp( -40, uibgHalfHeight/4 + heroBloodOffsetY + 40)));
     }
     
     addChild(heroBloodLabel, 100);
@@ -712,22 +682,32 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
 //    const float threeFontxFix = 27;
     const float twoFontxFix = 15;
  
-    imgMove = CCSprite::createWithSpriteFrameName("move.png");
+    imgMove = CCSprite::createWithSpriteFrameName("move.png");   //行动力背景框
     
     CCPoint imgMovePos;
     if (isme)
     {
-        imgMovePos = ccp(160, 64);
+        imgMovePos = ccp(160 + 58, 70);
     }
     else
     {
         imgMove->setScaleX(-1);
-        imgMovePos = ccp(640 - 160, 1136 - 60);
+        imgMovePos = ccp(640 - 160 - 50, 1136 - 70);
     }
     CCMenu*  menu = this->getMenu();
     imgMove->setPosition(imgMovePos);
     menu->addChild(imgMove);
     imgMove->setZOrder(2);
+    
+    CCSprite*   fightLine = CCSprite::createWithSpriteFrameName("dixian.png");
+    CCPoint fightPos = ccp(320, isme ? 110 : 1025);
+    menu->addChild(fightLine, 2);
+    fightLine->setPosition(fightPos);
+    
+    CCFiniteTimeAction*  fadeout =  CCFadeTo::create(1.0, 32);
+    CCFiniteTimeAction*  fadein  = CCFadeTo::create(1.0, 255);
+    CCActionInterval*  seq = CCSequence::create(fadeout, fadein, nullptr);
+    fightLine->runAction(CCRepeatForever::create(seq));
 
     //主将计回合数文本
     ccColor3B color = ccc3(0 , 255 , 204);
@@ -735,22 +715,21 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     
     
     //我方行动力  改为投降
-    xdl_btn = SGButton::create("touxiangTouch.png","NULL",this,menu_selector(SGHeroLayer::surrenderRound),ccp(threeOffxFix, 0),false,true);
-    xdl_btn->setImage("touxiang.png");
-    xdl_btn->setScaleX(-1);
+    surrender_btn = SGButton::create("touxiangTouch.png","NULL",this,menu_selector(SGHeroLayer::surrenderRound),ccp(threeOffxFix, 0),false,true);
+    surrender_btn->setImage("touxiang.png");
     if (isme)
     {
         
-        xdl_btn->setPosition(260,  62);
+        surrender_btn->setPosition(260,  surrender_btn->getContentSize().height * 0.5 + 40);
     }
     else
     {
-        xdl_btn->setPosition(1000, 1600);
+        surrender_btn->setPosition(1000, 1600);
     }
     
     
-    this->addBtn(xdl_btn);
-    xdl_btn->setZOrder(1);
+    this->addBtn(surrender_btn);
+    surrender_btn->setZOrder(1);
    
     //行动力-文本
     CCString *roundNums = CCString::createWithFormat("%d",roundNum);
@@ -762,12 +741,12 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     imgMove->addChild(roundNumLabel, 4);
     if (isme)
     {
-        roundNumLabel->setPosition(ccp(105, 20));
+        roundNumLabel->setPosition(ccp(30, 30));
     }
     else
     {
         roundNumLabel->setScaleX(-1);
-        roundNumLabel->setPosition(ccp(-70, 20));
+        roundNumLabel->setPosition(ccp(-8, 30));
     }
     
     
@@ -875,39 +854,39 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     
     
     //我方友军，没有文本  现在改为结束回合
-    yj_btn = SGButton::create("end.png",NULL,this,menu_selector(SGHeroLayer::abandonRound),ccp(twoOffxFix, 0),false,true);
+    end_btn = SGButton::create("end.png",NULL,this,menu_selector(SGHeroLayer::abandonRound),ccp(twoOffxFix, 0),false,true);
 
     if (isme)
     {
         
-        yj_btn->setPosition(640 - yb_btn->getContentSize().width - yj_btn->getContentSize().width * 0.5 - 30,  yj_btn->getContentSize().height * 0.5);
+        end_btn->setPosition(640 - yb_btn->getContentSize().width - end_btn->getContentSize().width * 0.5 - 15,  end_btn->getContentSize().height * 0.5 + 40);
     }
     else
     {
-        yj_btn->setPosition(1000, 2000);
+        end_btn->setPosition(1000, 2000);
     }
     
     
     
-    this->addBtn(yj_btn);
+    this->addBtn(end_btn);
     //友军进度
 
     //友军回合数文字特殊处理
     if (isInitPve)
     {
         friendNumLabel = SGCCLabelTTF::create(CCString::createWithFormat("%d",friendNum)->getCString(), FONT_PANGWA, FONTSIZE(10), color);
-        friendNumLabel->setPosition(ccp(yj_btn->getContentSize().width * 0.5f + twoFontxFix+5, yj_btn->getContentSize().height * 0.5f));
+        friendNumLabel->setPosition(ccp(end_btn->getContentSize().width * 0.5f + twoFontxFix+5, end_btn->getContentSize().height * 0.5f));
 
         friendNumLabel->setAnchorPoint(ccp(0, 0.5));
         friendNumLabel->setVisible(false);
-        yj_btn->addChild(friendNumLabel, 8);
+        end_btn->addChild(friendNumLabel, 8);
     }
     else
     {
         CCLabelTTF *label = CCLabelTTF::create("N", FONT_PANGWA, FONTSIZE(12));
-        label->setPosition(ccp(yj_btn->getContentSize().width * 0.5f + twoFontxFix, yj_btn->getContentSize().height * 0.5f));
+        label->setPosition(ccp(end_btn->getContentSize().width * 0.5f + twoFontxFix, end_btn->getContentSize().height * 0.5f));
         label->setAnchorPoint(ccp(0, 0.5));
-        yj_btn->addChild(label, 8);
+        end_btn->addChild(label, 8);
     }
     
 
@@ -986,8 +965,8 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
     {
         //把敌方的四个按钮设为不可用
         zjj_btn->setEnabled(false);
-        yj_btn->setEnabled(false);
-        xdl_btn->setEnabled(false);
+        end_btn->setEnabled(false);
+        surrender_btn->setEnabled(false);
         yb_btn->setEnabled(false);
     }
     uibgY = uibg->getContentSize().height * 0.8;
@@ -1062,10 +1041,9 @@ bool SGHeroLayer::init(HeroObj *heroObj, cocos2d::CCArray *_sbs, bool me_)
         autoBattleBtn = SGButton::create("autoTouch.png",
                                          NULL, this,menu_selector(SGHeroLayer::pressBtnDelay),CCPointZero,false,true);
         //基础按钮位置，之后根据此进行偏移适配处理
-        baseAutoBtnPos = ccpAdd(ccp(CCDirector::sharedDirector()->getWinSize().width - 142, 0 - 55),
-                                ccp(-autoBattleBtn->getContentSize().width / 2 + 10, autoBattleBtn->getContentSize().height / 2 + 100));
+        baseAutoBtnPos = ccp(CCDirector::sharedDirector()->getWinSize().width * 0.5 + 40, autoBattleBtn->getContentSize().height * 0.5 + 40);
         
-        autoBattleBtn->setAnchorPoint(ccp(0, 0.5));
+        //autoBattleBtn->setAnchorPoint(ccp(0, 0.5));
         autoMenu->addChild(autoBattleBtn);
         autoBattleBtn->setPosition(baseAutoBtnPos);
         
@@ -1140,8 +1118,8 @@ void SGHeroLayer::setBtnEnable(bool canTouch)
 {
     //我方下方的四个按钮都是否触摸
     zjj_btn->setEnabled(canTouch);
-    yj_btn->setEnabled(canTouch);
-    xdl_btn->setEnabled(canTouch);   //modified by cgp
+    end_btn->setEnabled(canTouch);
+    surrender_btn->setEnabled(canTouch);   //modified by cgp
     yb_btn->setEnabled(canTouch);
     
 }
@@ -5494,8 +5472,8 @@ void SGHeroLayer::changeButtonState(bool onoff, int which)
         }
         else //关闭
         {
-            yj_btn->stopAllActions();
-            yj_btn->setPosition(yjBtnPos);
+            end_btn->stopAllActions();
+            end_btn->setPosition(yjBtnPos);
         }
         //无论如何设置进度
         CCLOG("isMe=%d, friendNum=%d, initFriendNum=%d", isme, friendNum, initFriendNum);
