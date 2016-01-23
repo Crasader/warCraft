@@ -556,4 +556,11 @@
 /Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/res/layout/splashscreen.xml \
 /Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/res/values/strings.xml \
 /Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/res/values/version.xml \
+/Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/bin/res/drawable/icon.png \
+/Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/bin/res/drawable/splash.png \
+/Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/bin/res/drawable-hdpi/icon.png \
+/Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/bin/res/drawable-ldpi/icon.png \
+/Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/bin/res/drawable-mdpi/icon.png \
+/Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/bin/res/drawable-xhdpi/icon.png \
+/Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/bin/res/drawable-xxhdpi/icon.png \
 /Users/cgp/Documents/sanguo/client/GameSanGuoAndroid/proj.android/bin/AndroidManifest.xml \

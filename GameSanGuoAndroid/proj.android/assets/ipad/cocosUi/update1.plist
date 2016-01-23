@@ -4,6 +4,44 @@
 	<dict>
 		<key>frames</key>
 		<dict>
+			<key>update/sheeton.png</key>
+			<dict>
+				<key>width</key>
+				<integer>196</integer>
+				<key>height</key>
+				<integer>64</integer>
+				<key>originalWidth</key>
+				<integer>196</integer>
+				<key>originalHeight</key>
+				<integer>64</integer>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>update/sheetoff.png</key>
+			<dict>
+				<key>width</key>
+				<integer>196</integer>
+				<key>height</key>
+				<integer>64</integer>
+				<key>originalWidth</key>
+				<integer>196</integer>
+				<key>originalHeight</key>
+				<integer>64</integer>
+				<key>x</key>
+				<integer>198</integer>
+				<key>y</key>
+				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
 			<key>update/updatebluebg.png</key>
 			<dict>
 				<key>width</key>
@@ -15,7 +53,7 @@
 				<key>originalHeight</key>
 				<integer>299</integer>
 				<key>x</key>
-				<integer>0</integer>
+				<integer>396</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -34,7 +72,7 @@
 				<key>originalHeight</key>
 				<integer>202</integer>
 				<key>x</key>
-				<integer>299</integer>
+				<integer>695</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -53,7 +91,7 @@
 				<key>originalHeight</key>
 				<integer>586</integer>
 				<key>x</key>
-				<integer>597</integer>
+				<integer>993</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -72,9 +110,9 @@
 				<key>originalHeight</key>
 				<integer>77</integer>
 				<key>x</key>
-				<integer>610</integer>
-				<key>y</key>
 				<integer>0</integer>
+				<key>y</key>
+				<integer>588</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
