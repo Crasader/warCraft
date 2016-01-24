@@ -159,22 +159,23 @@ void SGBattleManager::initNotification()
     SGSkillManager::shareSkill()->initNotification();
 }
 
-void SGBattleManager::logSbData(SGSBObj *obj)
+void SGBattleManager::logSbData(SGSBObj *obj, int i)
 {
-    if (obj->getSkillsId() > 0) {
-        CCLOG("sbid===%d",obj->getSid());
-        CCLOG("sbName===%s",obj->getName().c_str());
-        CCLOG("AfftributeNum===%f",obj->getAfftributeNum());
-        CCLOG("AfftributeNum1===%f",obj->getAfftributeNum1());
-        CCLOG("AfftributeNum2===%d",obj->getAfftributeNum2());
-        CCLOG("data->getSkillHead()==%d",obj->getSkill_Head());
+    if (obj->getSkillsId() > 0)
+    {
+        GPCCLOG("sbid===%d",obj->getSid());
+        GPCCLOG("sbName===%s",obj->getName().c_str());
+        GPCCLOG("AfftributeNum===%f",obj->getAfftributeNum());
+        GPCCLOG("AfftributeNum1===%f",obj->getAfftributeNum1());
+        GPCCLOG("AfftributeNum2===%d",obj->getAfftributeNum2());
+        GPCCLOG("data->getSkillHead()==%d",obj->getSkill_Head());
         if (obj->getBuffId() > 0) {
-            CCLOG("buffid===%d",obj->getBuffId());
-            CCLOG("BuffRound===%d",obj->getBuffRound());
-            CCLOG("BuffAfftribute===%f",obj->getBuffAfftribute());
-            CCLOG("setBuffType===%d",obj->getBuffType());
+            GPCCLOG("buffid===%d",obj->getBuffId());
+            GPCCLOG("BuffRound===%d",obj->getBuffRound());
+            GPCCLOG("BuffAfftribute===%f",obj->getBuffAfftribute());
+            GPCCLOG("setBuffType===%d",obj->getBuffType());
         }
-        CCLOG("\n");
+        GPCCLOG("\n%d", i);
     }
 }
 
@@ -223,12 +224,12 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
             mainBattleLayer->setBattleCardNum(sr->dropitemcount());
             SGPlayerInfo::sharePlayerInfo()->setPlotId(sr->plotid());
             
-            CCLOG("BattleCardNum==%d", mainBattleLayer->getBattleCardNum());
+            GPCCLOG("BattleCardNum==%d", mainBattleLayer->getBattleCardNum());
             
             himBackupHeros->removeAllObjects();
             myBackupHeros->removeAllObjects();
             
-            CCLOG("自己方英雄数据");
+            GPCCLOG("自己方英雄数据");
             int mysblength = sr->spiritsyou_size();
             mysbs = CCArray::create();
             mysbs->retain();
@@ -298,12 +299,12 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
                     obj->setName(data->getOfficerName()->getCString());
                     obj->setSkill_Head(data->getSkillHead());
                 }
-                logSbData(obj);
+                logSbData(obj, i);
                 mysbs->addObject(obj);
                 obj->autorelease();
                 
             }
-            CCLOG("敌人方英雄数据");
+            GPCCLOG("敌人方英雄数据");
             
             int himsblength = sr->spiritshim_size();
             himsbs = CCArray::create();
@@ -373,7 +374,7 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
                     obj->setSkill_Head(data->getSkillHead());
                     
                 }
-                logSbData(obj);
+                logSbData(obj, i);
                 himsbs->addObject(obj);
                 obj->autorelease();
                 
@@ -3300,6 +3301,8 @@ void SGBattleManager::pveLoadingListener(CCObject *obj)
             int value = itemData.itemid();
             int level = itemData.itemlevel();
             sarr->addObject(CCString::createWithFormat("%d:%d", value, level));
+            GPCCLOG("\n^^^^^^^^^^^^^^ mySolder");
+            GPCCLOG("%d:%d", value, level);
         }
         selfInfo->setSoldiers(sarr);
         
@@ -3314,6 +3317,9 @@ void SGBattleManager::pveLoadingListener(CCObject *obj)
             int value = itemData.itemid();
             int level = itemData.itemlevel();
             aarr->addObject(CCString::createWithFormat("%d:%d", value, level));
+            GPCCLOG("\n^^^^^^^^^^^^^^ enemySolder");
+            GPCCLOG("%d:%d", value, level);
+            
         }
         armyInfo->setSoldiers(aarr);
         
