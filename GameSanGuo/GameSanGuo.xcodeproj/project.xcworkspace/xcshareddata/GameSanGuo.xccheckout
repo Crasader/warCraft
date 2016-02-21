@@ -7,32 +7,32 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>E63FF71A-CC13-4BFD-BDB5-1A8CE00AED3A</string>
 	<key>IDESourceControlProjectName</key>
-	<string>GameSanGuo</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>18E4F3E77A25E1D981EAE981D1F95048B0BED125</key>
-		<string>ssh://git.sharelittle.com:2222/sanguo/client.git</string>
+		<key>B86A2A24975A22FAE02EAE25179A230C2AA52EE6</key>
+		<string>https://github.com/caoguoping/warCraft.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>GameSanGuo/GameSanGuo.xcodeproj</string>
+	<string>GameSanGuo/GameSanGuo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>18E4F3E77A25E1D981EAE981D1F95048B0BED125</key>
+		<key>B86A2A24975A22FAE02EAE25179A230C2AA52EE6</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://git.sharelittle.com:2222/sanguo/client.git</string>
+	<string>https://github.com/caoguoping/warCraft.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>18E4F3E77A25E1D981EAE981D1F95048B0BED125</string>
+	<string>B86A2A24975A22FAE02EAE25179A230C2AA52EE6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>18E4F3E77A25E1D981EAE981D1F95048B0BED125</string>
+			<string>B86A2A24975A22FAE02EAE25179A230C2AA52EE6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>client</string>
 		</dict>
