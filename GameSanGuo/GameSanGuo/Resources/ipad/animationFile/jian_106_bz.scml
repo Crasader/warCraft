@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="a4.1">
+    <folder id="0" name="eff_Rrfireatt">
+        <file id="0" name="eff_Rrfireatt/eff_Rrfireatt1.png" width="400" height="400"/>
+        <file id="1" name="eff_Rrfireatt/eff_Rrfireatt2.png" width="400" height="400"/>
+        <file id="2" name="eff_Rrfireatt/eff_Rrfireatt3.png" width="400" height="400"/>
+        <file id="3" name="eff_Rrfireatt/eff_Rrfireatt4.png" width="400" height="400"/>
+        <file id="4" name="eff_Rrfireatt/eff_Rrfireatt5.png" width="400" height="400"/>
+        <file id="5" name="eff_Rrfireatt/eff_Rrfireatt6.png" width="400" height="400"/>
+        <file id="6" name="eff_Rrfireatt/eff_Rrfireatt7.png" width="400" height="400"/>
+        <file id="7" name="eff_Rrfireatt/eff_Rrfireatt8.png" width="400" height="400"/>
+    </folder>
+    <entity id="0" name="攻击">
+        <animation id="0" name="向上打中a" length="640">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="80">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                </key>
+                <key id="2" time="160">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                </key>
+                <key id="3" time="239">
+                    <object_ref id="0" timeline="3" key="0" z_index="0"/>
+                </key>
+                <key id="4" time="320">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                </key>
+                <key id="5" time="400">
+                    <object_ref id="0" timeline="5" key="0" z_index="0"/>
+                </key>
+                <key id="6" time="480">
+                    <object_ref id="0" timeline="6" key="0" z_index="0"/>
+                </key>
+                <key id="7" time="560">
+                    <object_ref id="0" timeline="7" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="fire aroud[0000-0007]">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-215.54386" y="345.614035"/>
+                </key>
+                <key id="1" time="640">
+                    <object folder="0" file="0" x="-215.54386" y="345.614035"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="fire aroud[0000-0007]_000">
+                <key id="0" time="80" spin="0">
+                    <object folder="0" file="1" x="-214.280702" y="347.368421"/>
+                </key>
+                <key id="1" time="640">
+                    <object folder="0" file="1" x="-214.280702" y="347.368421"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="fire aroud[0000-0007]_001">
+                <key id="0" time="160" spin="0">
+                    <object folder="0" file="2" x="-214.541667" y="347.541667"/>
+                </key>
+                <key id="1" time="640">
+                    <object folder="0" file="2" x="-214.541667" y="347.541667"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="fire aroud[0000-0007]_002">
+                <key id="0" time="239" spin="0">
+                    <object folder="0" file="3" x="-212.772727" y="348.136364"/>
+                </key>
+                <key id="1" time="640">
+                    <object folder="0" file="3" x="-212.772727" y="348.136364"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="fire aroud[0000-0007]_004">
+                <key id="0" time="320" spin="0">
+                    <object folder="0" file="4" x="-212.459459" y="348.648649"/>
+                </key>
+                <key id="1" time="640">
+                    <object folder="0" file="4" x="-212.459459" y="348.648649"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="fire aroud[0000-0007]_003">
+                <key id="0" time="400" spin="0">
+                    <object folder="0" file="5" x="-212.459459" y="349"/>
+                </key>
+                <key id="1" time="640">
+                    <object folder="0" file="5" x="-212.459459" y="349"/>
+                </key>
+            </timeline>
+            <timeline id="6" name="fire aroud[0000-0007]_005">
+                <key id="0" time="480" spin="0">
+                    <object folder="0" file="6" x="-212.547945" y="348.575342"/>
+                </key>
+                <key id="1" time="640">
+                    <object folder="0" file="6" x="-212.547945" y="348.575342"/>
+                </key>
+            </timeline>
+            <timeline id="7" name="fire aroud[0000-0007]_006">
+                <key id="0" time="560" spin="0">
+                    <object folder="0" file="7" x="-213" y="349"/>
+                </key>
+                <key id="1" time="640">
+                    <object folder="0" file="7" x="-213" y="349"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

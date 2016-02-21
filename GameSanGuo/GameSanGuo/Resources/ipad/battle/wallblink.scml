@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="a4.1">
+    <folder id="0">
+        <file id="0" name="wallblink_1.png" width="640" height="100"/>
+        <file id="1" name="wallblink_2.png" width="640" height="100"/>
+    </folder>
+    <entity id="0" name="">
+        <animation id="0" name="城墙闪白" length="150" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="75">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-320" y="50"/>
+                </key>
+                <key id="1" time="150">
+                    <object folder="0" file="0" x="-320" y="50"/>
+                </key>
+            </timeline>
+            <timeline id="1">
+                <key id="0" time="75" spin="0">
+                    <object folder="0" file="1" x="-320" y="50"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

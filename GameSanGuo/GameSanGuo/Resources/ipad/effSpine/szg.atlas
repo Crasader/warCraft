@@ -1,0 +1,75 @@
+
+szg.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+szg_01
+  rotate: false
+  xy: 215, 35
+  size: 85, 88
+  orig: 200, 200
+  offset: 57, 56
+  index: -1
+szg_02
+  rotate: false
+  xy: 107, 9
+  size: 106, 91
+  orig: 200, 200
+  offset: 47, 55
+  index: -1
+szg_03
+  rotate: false
+  xy: 872, 159
+  size: 106, 96
+  orig: 200, 200
+  offset: 47, 52
+  index: -1
+szg_04
+  rotate: false
+  xy: 1, 1
+  size: 104, 99
+  orig: 200, 200
+  offset: 48, 51
+  index: -1
+szg_05
+  rotate: false
+  xy: 342, 139
+  size: 154, 116
+  orig: 200, 200
+  offset: 23, 42
+  index: -1
+szg_06
+  rotate: false
+  xy: 1, 102
+  size: 193, 153
+  orig: 200, 200
+  offset: 0, 24
+  index: -1
+szg_07
+  rotate: false
+  xy: 626, 149
+  size: 126, 106
+  orig: 200, 200
+  offset: 37, 47
+  index: -1
+szg_08
+  rotate: false
+  xy: 754, 141
+  size: 116, 114
+  orig: 200, 200
+  offset: 45, 39
+  index: -1
+szg_09
+  rotate: false
+  xy: 498, 138
+  size: 126, 117
+  orig: 200, 200
+  offset: 37, 42
+  index: -1
+szg_10
+  rotate: false
+  xy: 196, 125
+  size: 144, 130
+  orig: 200, 200
+  offset: 28, 35
+  index: -1

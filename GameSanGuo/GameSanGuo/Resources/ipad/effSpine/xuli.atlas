@@ -1,0 +1,117 @@
+
+xuli.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xulidown_1
+  rotate: false
+  xy: 1, 69
+  size: 142, 91
+  orig: 145, 99
+  offset: 2, 8
+  index: -1
+xulidown_2
+  rotate: false
+  xy: 571, 165
+  size: 129, 89
+  orig: 145, 99
+  offset: 8, 9
+  index: -1
+xulidown_3
+  rotate: false
+  xy: 538, 78
+  size: 119, 85
+  orig: 145, 99
+  offset: 12, 8
+  index: -1
+xulidown_4
+  rotate: false
+  xy: 702, 174
+  size: 130, 80
+  orig: 145, 99
+  offset: 14, 9
+  index: -1
+xulidown_5
+  rotate: false
+  xy: 834, 180
+  size: 129, 74
+  orig: 145, 99
+  offset: 12, 10
+  index: -1
+xulidown_6
+  rotate: false
+  xy: 147, 99
+  size: 131, 70
+  orig: 145, 99
+  offset: 6, 8
+  index: -1
+xulidown_7
+  rotate: false
+  xy: 1, 1
+  size: 134, 66
+  orig: 145, 99
+  offset: 2, 6
+  index: -1
+xulidown_8
+  rotate: false
+  xy: 1, 162
+  size: 144, 92
+  orig: 145, 99
+  offset: 1, 7
+  index: -1
+xuliup_1
+  rotate: false
+  xy: 147, 171
+  size: 145, 83
+  orig: 145, 99
+  offset: 0, 0
+  index: -1
+xuliup_2
+  rotate: false
+  xy: 294, 170
+  size: 142, 84
+  orig: 145, 99
+  offset: 2, 2
+  index: -1
+xuliup_3
+  rotate: false
+  xy: 438, 170
+  size: 131, 84
+  orig: 145, 99
+  offset: 5, 5
+  index: -1
+xuliup_4
+  rotate: false
+  xy: 145, 10
+  size: 118, 87
+  orig: 145, 99
+  offset: 7, 6
+  index: -1
+xuliup_5
+  rotate: false
+  xy: 265, 18
+  size: 113, 77
+  orig: 145, 99
+  offset: 8, 7
+  index: -1
+xuliup_6
+  rotate: false
+  xy: 380, 18
+  size: 101, 75
+  orig: 145, 99
+  offset: 10, 9
+  index: -1
+xuliup_7
+  rotate: false
+  xy: 410, 95
+  size: 126, 73
+  orig: 145, 99
+  offset: 13, 9
+  index: -1
+xuliup_8
+  rotate: false
+  xy: 280, 97
+  size: 128, 71
+  orig: 145, 99
+  offset: 16, 8
+  index: -1
