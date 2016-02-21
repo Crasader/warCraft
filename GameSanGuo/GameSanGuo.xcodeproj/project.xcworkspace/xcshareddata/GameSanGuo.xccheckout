@@ -11,7 +11,7 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>B86A2A24975A22FAE02EAE25179A230C2AA52EE6</key>
-		<string>https://github.com/caoguoping/warCraft.git</string>
+		<string>ssh://git.sharelittle.com:2222/sanguo/client.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>GameSanGuo/GameSanGuo.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/caoguoping/warCraft.git</string>
+	<string>ssh://git.sharelittle.com:2222/sanguo/client.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
