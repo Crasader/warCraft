@@ -43,6 +43,8 @@
 #include "SGPvpFightRewardLayer.h"
 #include "ArenaModule.pb.h"
 #include "SGArenaFightRewardLayer.h"
+#include "CGPTools.h"
+#include "GlobalConfig.h"
 
 
 #define TOTALDROPCOUNT      "TotalDropCount"
@@ -60,8 +62,12 @@
 #define CLIENTSAVEBATTLE  "_battleSbs.plist"
 
 
+
+
 using namespace main;
 static SGBattleManager *s_ShareBattle = NULL;
+
+
 
 //战斗延时展示锁屏时间。
 const static float BATTLE_DELAY_SHOW_TIME = 0.4f;  //before is 1.0f
@@ -159,23 +165,22 @@ void SGBattleManager::initNotification()
     SGSkillManager::shareSkill()->initNotification();
 }
 
-void SGBattleManager::logSbData(SGSBObj *obj, int i)
+void SGBattleManager::logSbData(SGSBObj *obj)
 {
-    if (obj->getSkillsId() > 0)
-    {
-        GPCCLOG("sbid===%d",obj->getSid());
-        GPCCLOG("sbName===%s",obj->getName().c_str());
-        GPCCLOG("AfftributeNum===%f",obj->getAfftributeNum());
-        GPCCLOG("AfftributeNum1===%f",obj->getAfftributeNum1());
-        GPCCLOG("AfftributeNum2===%d",obj->getAfftributeNum2());
-        GPCCLOG("data->getSkillHead()==%d",obj->getSkill_Head());
+    if (obj->getSkillsId() > 0) {
+        CCLOG("sbid===%d",obj->getSid());
+        CCLOG("sbName===%s",obj->getName().c_str());
+        CCLOG("AfftributeNum===%f",obj->getAfftributeNum());
+        CCLOG("AfftributeNum1===%f",obj->getAfftributeNum1());
+        CCLOG("AfftributeNum2===%d",obj->getAfftributeNum2());
+        CCLOG("data->getSkillHead()==%d",obj->getSkill_Head());
         if (obj->getBuffId() > 0) {
-            GPCCLOG("buffid===%d",obj->getBuffId());
-            GPCCLOG("BuffRound===%d",obj->getBuffRound());
-            GPCCLOG("BuffAfftribute===%f",obj->getBuffAfftribute());
-            GPCCLOG("setBuffType===%d",obj->getBuffType());
+            CCLOG("buffid===%d",obj->getBuffId());
+            CCLOG("BuffRound===%d",obj->getBuffRound());
+            CCLOG("BuffAfftribute===%f",obj->getBuffAfftribute());
+            CCLOG("setBuffType===%d",obj->getBuffType());
         }
-        GPCCLOG("\n%d", i);
+        CCLOG("\n");
     }
 }
 
@@ -199,6 +204,7 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
     
     SGPlayerInfo::sharePlayerInfo()->setBattleType(0);
     SGSocketRequest *socketRequest = (SGSocketRequest *)obj;
+
     
     if (socketRequest)
     {
@@ -209,31 +215,43 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
             SGAIManager::shareManager()->isBattleOver = true;
             SGAIManager::shareManager()->isInitPve = true;
             //获取随即地图
-            cc_timeval psv;
-            CCTime::gettimeofdayCocos2d(&psv, NULL);
-            unsigned long int rand_seed = psv.tv_sec * 1000 + psv.tv_usec/1000;
-            srand((unsigned int)rand_seed);
+//            cc_timeval psv;
+//            CCTime::gettimeofdayCocos2d(&psv, NULL);
+//            unsigned long int rand_seed = psv.tv_sec * 1000 + psv.tv_usec/1000;
+//            srand((unsigned int)rand_seed);
+//            
+//            int maxRandomMap = 5;
+//            
+//            setRandomMapId((int)(CCRANDOM_0_1() * maxRandomMap + 1)) ;//产生一个随机数
+//            
+//            CCString *randmapIdStr = CCString::createWithFormat("background_%d.png", getRandomMapId());
             
-            int maxRandomMap = 5;
+            int plotid = SGPlayerInfo::sharePlayerInfo()->getPlotId();
+            int mapId = SGStaticDataManager::shareStatic()->getSpotById(plotid)->getMapId();
+
             
-            setRandomMapId((int)(CCRANDOM_0_1() * maxRandomMap + 1)) ;//产生一个随机数
-            
-            CCString *randmapIdStr = CCString::createWithFormat("background_%d.png", getRandomMapId());
+            CCString *randmapIdStr = CCString::createWithFormat("background_%d.png", mapId);
             mainBattleLayer = SGBattleLayer::create(randmapIdStr->getCString());
 
             mainBattleLayer->setBattleCardNum(sr->dropitemcount());
             SGPlayerInfo::sharePlayerInfo()->setPlotId(sr->plotid());
             
-            GPCCLOG("BattleCardNum==%d", mainBattleLayer->getBattleCardNum());
+            CCLOG("BattleCardNum==%d", mainBattleLayer->getBattleCardNum());
             
             himBackupHeros->removeAllObjects();
             myBackupHeros->removeAllObjects();
             
-            GPCCLOG("自己方英雄数据");
+            GPCCLOG("#################################################################");
+            
             int mysblength = sr->spiritsyou_size();
+            GPCCLOG("自己方英雄数据 %d", mysblength);
             mysbs = CCArray::create();
             mysbs->retain();
             myBackupsbs->removeAllObjects();
+            
+            
+            int s_SbId = 0;  //累加器
+            Tools::saveFile(CCString::createWithFormat("id\tsid\tcolor\ttype\tx\ty\tdefeatplus\tbaseattack\tbasedef\tattack\tdef\tbasedef\twalltype\tround\tskillid\tvalue1\tvalue2\trandnum\tbuffid\teffectround\tbvalue1\tbufftype\twallceiling\tperroundaddatk\tchainandmergeattackplus\twallgrow\tatkmodeskill\n")->getCString(), CCString::createWithFormat("sbData_%03d.txt", plotid)->getCString());
             
             for (int i = 0; i< mysblength; i++)
             {
@@ -271,6 +289,41 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
                 obj->setAtkModeSkill(fs.atkmodeskill());
                 obj->setsbSkLevel(1);
                 
+#if LogSbData
+                s_SbId++;
+                Tools::saveFile(CCString::createWithFormat("%d\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%f\t%f\t%d\t%d\t%d\t%f\t%d\t%f\t%d\t%f\t%f\t%d\n",
+                        s_SbId,
+                        fs.sid(),
+                        fs.color(),
+                        fs.type(),
+                        fs.x(),
+                        fs.y(),
+                        fs.defeatplus(),
+                        fs.baseattack(),
+                        fs.basedef(),
+                        fs.attack(),
+                        fs.def(),
+                        fs.basedef(),
+                        fs.walltype(),
+                        fs.round(),
+                        fs.skillid(),
+                        fs.value1(),
+                        fs.value2(),
+                        fs.randnum(),
+                        fs.buffid(),
+                        fs.effectround(),
+                        fs.bvalue1(),
+                        fs.bufftype(),
+                        fs.wallceiling(),
+                        fs.perroundaddatk(),
+                        fs.chainandmergeattackplus(),
+                        fs.wallgrow(),
+                        fs.atkmodeskill()
+                        )->getCString(),
+                        CCString::createWithFormat("sbData_%03d.txt", plotid)->getCString()
+                                );
+#endif
+                
                 if (fs.type() == ksbone)
                 {
                     SGSoldierDataModel *data = SGStaticDataManager::shareStatic()->getSoliderById(fs.sid());
@@ -299,18 +352,23 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
                     obj->setName(data->getOfficerName()->getCString());
                     obj->setSkill_Head(data->getSkillHead());
                 }
-                logSbData(obj, i);
+                logSbData(obj);
                 mysbs->addObject(obj);
                 obj->autorelease();
                 
             }
-            GPCCLOG("敌人方英雄数据");
+            
+            
+           
             
             int himsblength = sr->spiritshim_size();
+            GPCCLOG("GloadBal SBid %d敌人方英雄数据", s_SbId);
             himsbs = CCArray::create();
             himsbs->retain();
             himBackupSbs->removeAllObjects();
-            for (int i = 0; i< himsblength; i++)
+            
+            
+            for (int i = 0; i < himsblength; i++)
             {
                 main::FightSpirit fs = sr->spiritshim(i);
                 SGSBObj *obj = new SGSBObj();
@@ -345,6 +403,43 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
                 obj->setRoundVAddDef(fs.wallgrow());
                 obj->setAtkModeSkill(fs.atkmodeskill());
                 obj->setsbSkLevel(1);
+                
+#if LogSbData
+                s_SbId++;
+                Tools::saveFile(CCString::createWithFormat("%d\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%f\t%f\t%d\t%d\t%d\t%f\t%d\t%f\t%d\t%f\t%f\t%d\n",
+                                                           s_SbId,
+                                                           fs.sid(),
+                                                           fs.color(),
+                                                           fs.type(),
+                                                           fs.x(),
+                                                           fs.y(),
+                                                           fs.defeatplus(),
+                                                           fs.baseattack(),
+                                                           fs.basedef(),
+                                                           fs.attack(),
+                                                           fs.def(),
+                                                           fs.basedef(),
+                                                           fs.walltype(),
+                                                           fs.round(),
+                                                           fs.skillid(),
+                                                           fs.value1(),
+                                                           fs.value2(),
+                                                           fs.randnum(),
+                                                           fs.buffid(),
+                                                           fs.effectround(),
+                                                           fs.bvalue1(),
+                                                           fs.bufftype(),
+                                                           fs.wallceiling(),
+                                                           fs.perroundaddatk(),
+                                                           fs.chainandmergeattackplus(),
+                                                           fs.wallgrow(),
+                                                           fs.atkmodeskill()
+                                                           )->getCString(),
+                                CCString::createWithFormat("sbData_%03d.txt", plotid)->getCString()
+                                );
+#endif
+
+
                 if (fs.type() == ksbone)
                 {
                     SGSoldierDataModel *data = SGStaticDataManager::shareStatic()->getSoliderById(fs.sid());
@@ -374,13 +469,309 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
                     obj->setSkill_Head(data->getSkillHead());
                     
                 }
-                logSbData(obj, i);
+                logSbData(obj);
                 himsbs->addObject(obj);
                 obj->autorelease();
                 
             }
             
             
+            //被收回备用的英雄，敌我双方,不包括士兵
+            //addPveBackHero(sr, true);
+
+            
+            
+            SGStaticDataManager *officerDataManager = SGStaticDataManager::shareStatic();
+            SGOfficerDataModel *data = NULL;
+            myBackupHeros->removeAllObjects();
+            
+            //my
+            int myHerolength = sr->selftempofficer_size();
+            for (int i = 0; i< myHerolength; i++)
+            {
+                main::FightSpirit fs = sr->selftempofficer(i);
+                SGSBObj *obj = new SGSBObj();
+                obj->setSid(fs.sid());
+                
+                obj->setColorId(fs.color());
+                obj->setType(fs.type());
+                obj->setIndex(gameIndex(fs.y(),fs.x()));
+                
+                obj->setsbBaseDefendPlus(fs.defeatplus());
+                
+                obj->setsbBaseAttack(fs.baseattack());
+                obj->setsbBaseDefend(fs.basedef());
+                
+                obj->setAp(fs.attack());
+                obj->setDef(fs.def());
+                
+                obj->setResetInitDef(fs.basedef());
+                obj->setDefRend(fs.walltype());
+                obj->setRound(fs.round());
+                obj->setSkillsId(fs.skillid());//服务器给到的技能id
+                obj->setAfftributeNum(fs.value1());
+                obj->setAfftributeNum1(fs.value2());
+                obj->setAfftributeNum2(fs.randnum());//杀死武将队列的随机位置,(对于破袭技能)
+                obj->setBuffId(fs.buffid());
+                obj->setBuffRound(fs.effectround());
+                obj->setBuffAfftribute(fs.bvalue1());
+                obj->setBuffType(fs.bufftype());
+                obj->setAddDef(fs.wallceiling());
+                obj->setAddAp(fs.perroundaddatk());
+                obj->setChainNUm(fs.chainandmergeattackplus());
+                obj->setRoundVAddDef(fs.wallgrow());
+                obj->setAtkModeSkill(fs.atkmodeskill());
+                obj->setsbSkLevel(1);
+                
+                data = officerDataManager->getOfficerById(fs.sid());
+                obj->setAtkmode(data->getOfficerAtkMode());
+                obj->setAtkMode2(data->getOfficerAtkMode2());
+                obj->setHeadId(data->getOfficerHead());
+                obj->setFileId(data->getOfficerFileId());
+                obj->setPair(data->getOfficerPair());
+                obj->setHitEff(data->getOfficerLastHit());
+                obj->setAttackEffect(data->getAttackEffect());
+                obj->setDeathEffect(data->getDeathEffect());
+                obj->setName(data->getOfficerName()->getCString());
+                obj->setSkill_Head(data->getSkillHead());
+                obj->setSkillsId(data->getSkill());
+                myBackupHeros->addObject(obj);
+                obj->autorelease();
+                
+                
+#if LogSbData
+                s_SbId++;
+                Tools::saveFile(CCString::createWithFormat("%d\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%f\t%f\t%d\t%d\t%d\t%f\t%d\t%f\t%d\t%f\t%f\t%d\n",
+                                                           s_SbId,
+                                                           fs.sid(),
+                                                           fs.color(),
+                                                           fs.type(),
+                                                           fs.x(),
+                                                           fs.y(),
+                                                           fs.defeatplus(),
+                                                           fs.baseattack(),
+                                                           fs.basedef(),
+                                                           fs.attack(),
+                                                           fs.def(),
+                                                           fs.basedef(),
+                                                           fs.walltype(),
+                                                           fs.round(),
+                                                           fs.skillid(),
+                                                           fs.value1(),
+                                                           fs.value2(),
+                                                           fs.randnum(),
+                                                           fs.buffid(),
+                                                           fs.effectround(),
+                                                           fs.bvalue1(),
+                                                           fs.bufftype(),
+                                                           fs.wallceiling(),
+                                                           fs.perroundaddatk(),
+                                                           fs.chainandmergeattackplus(),
+                                                           fs.wallgrow(),
+                                                           fs.atkmodeskill()
+                                                           )->getCString(),
+                                CCString::createWithFormat("sbData_%03d.txt", plotid)->getCString()
+                                );
+#endif
+
+                
+                
+            }
+
+            int himHerolength = sr->aitempofficer_size();
+            himBackupHeros->removeAllObjects();
+            for (int i = 0; i< himHerolength; i++)
+            {
+                main::FightSpirit fs = sr->aitempofficer(i);
+                SGSBObj *obj = new SGSBObj();
+                obj->setSid(fs.sid());
+                
+                obj->setColorId(fs.color());
+                obj->setType(fs.type());
+                obj->setIndex(gameIndex(fs.y(),fs.x()));
+                
+                obj->setsbBaseDefendPlus(fs.defeatplus());
+                
+                obj->setsbBaseAttack(fs.baseattack());
+                obj->setsbBaseDefend(fs.basedef());
+                
+                obj->setAp(fs.attack());
+                obj->setDef(fs.def());
+                
+                obj->setResetInitDef(fs.basedef());
+                obj->setDefRend(fs.walltype());
+                obj->setRound(fs.round());
+                obj->setSkillsId(fs.skillid());//服务器给到的技能id
+                obj->setAfftributeNum(fs.value1());
+                obj->setAfftributeNum1(fs.value2());
+                obj->setAfftributeNum2(fs.randnum());//杀死武将队列的随机位置,(对于破袭技能)
+                obj->setBuffId(fs.buffid());
+                obj->setBuffRound(fs.effectround());
+                obj->setBuffAfftribute(fs.bvalue1());
+                obj->setBuffType(fs.bufftype());
+                obj->setAddDef(fs.wallceiling());
+                obj->setAddAp(fs.perroundaddatk());
+                obj->setChainNUm(fs.chainandmergeattackplus());
+                obj->setRoundVAddDef(fs.wallgrow());
+                obj->setAtkModeSkill(fs.atkmodeskill());
+                obj->setsbSkLevel(1);
+                
+                data = officerDataManager->getOfficerById(fs.sid());
+                obj->setAtkmode(data->getOfficerAtkMode());
+                obj->setAtkMode2(data->getOfficerAtkMode2());
+                obj->setHeadId(data->getOfficerHead());
+                obj->setFileId(data->getOfficerFileId());
+                obj->setPair(data->getOfficerPair());
+                obj->setHitEff(data->getOfficerLastHit());
+                obj->setAttackEffect(data->getAttackEffect());
+                obj->setDeathEffect(data->getDeathEffect());
+                obj->setName(data->getOfficerName()->getCString());
+                obj->setSkill_Head(data->getSkillHead());
+                obj->setSkillsId(data->getSkill());
+                
+                himBackupHeros->addObject(obj);
+                obj->autorelease();
+                
+#if LogSbData
+                s_SbId++;
+                Tools::saveFile(CCString::createWithFormat("%d\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%f\t%f\t%d\t%d\t%d\t%f\t%d\t%f\t%d\t%f\t%f\t%d\n",
+                                                           s_SbId,
+                                                           fs.sid(),
+                                                           fs.color(),
+                                                           fs.type(),
+                                                           fs.x(),
+                                                           fs.y(),
+                                                           fs.defeatplus(),
+                                                           fs.baseattack(),
+                                                           fs.basedef(),
+                                                           fs.attack(),
+                                                           fs.def(),
+                                                           fs.basedef(),
+                                                           fs.walltype(),
+                                                           fs.round(),
+                                                           fs.skillid(),
+                                                           fs.value1(),
+                                                           fs.value2(),
+                                                           fs.randnum(),
+                                                           fs.buffid(),
+                                                           fs.effectround(),
+                                                           fs.bvalue1(),
+                                                           fs.bufftype(),
+                                                           fs.wallceiling(),
+                                                           fs.perroundaddatk(),
+                                                           fs.chainandmergeattackplus(),
+                                                           fs.wallgrow(),
+                                                           fs.atkmodeskill()
+                                                           )->getCString(),
+                                CCString::createWithFormat("sbData_%03d.txt", plotid)->getCString()
+                                );
+#endif
+
+                
+            }
+            
+            //////友军
+            if (cooTempOfficer)
+            {
+                cooTempOfficer->autorelease();
+                cooTempOfficer = NULL;
+            }
+            
+            //友军
+            if(_battleType != BT_ARENA)
+            {
+                main::FightSpirit fs = sr->cootempofficer();
+                SGSBObj *obj = new SGSBObj();
+                obj->setSid(fs.sid());
+                
+                obj->setColorId(fs.color());
+                obj->setType(fs.type());
+                obj->setIndex(gameIndex(fs.y(),fs.x()));
+                
+                obj->setsbBaseDefendPlus(fs.defeatplus());
+                
+                obj->setsbBaseAttack(fs.baseattack());
+                obj->setsbBaseDefend(fs.basedef());
+                
+                obj->setAp(fs.attack());
+                obj->setDef(fs.def());
+                
+                obj->setResetInitDef(fs.basedef());
+                obj->setDefRend(fs.walltype());
+                obj->setRound(fs.round());
+                obj->setSkillsId(fs.skillid());//服务器给到的技能id
+                obj->setAfftributeNum(fs.value1());
+                obj->setAfftributeNum1(fs.value2());
+                obj->setAfftributeNum2(fs.randnum());//杀死武将队列的随机位置,(对于破袭技能)
+                obj->setBuffId(fs.buffid());
+                obj->setBuffRound(fs.effectround());
+                obj->setBuffAfftribute(fs.bvalue1());
+                obj->setBuffType(fs.bufftype());
+                obj->setAddDef(fs.wallceiling());
+                obj->setAddAp(fs.perroundaddatk());
+                obj->setChainNUm(fs.chainandmergeattackplus());
+                obj->setRoundVAddDef(fs.wallgrow());
+                obj->setAtkModeSkill(fs.atkmodeskill());
+                obj->setsbSkLevel(1);
+                
+                data = officerDataManager->getOfficerById(fs.sid());
+                obj->setAtkmode(data->getOfficerAtkMode());
+                obj->setAtkMode2(data->getOfficerAtkMode2());
+                obj->setHeadId(data->getOfficerHead());
+                obj->setFileId(data->getOfficerFileId());
+                obj->setPair(data->getOfficerPair());
+                obj->setHitEff(data->getOfficerLastHit());
+                obj->setAttackEffect(data->getAttackEffect());
+                obj->setDeathEffect(data->getDeathEffect());
+                obj->setName(data->getOfficerName()->getCString());
+                obj->setSkill_Head(data->getSkillHead());
+                
+                cooTempOfficer = obj;
+                cooTempOfficer->retain();
+                
+                obj->autorelease();
+                
+#if LogSbData
+                s_SbId++;
+                Tools::saveFile(CCString::createWithFormat("%d\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%d\t%d\t%d\t%f\t%d\t%d\t%f\t%f\t%d\t%d\t%d\t%f\t%d\t%f\t%d\t%f\t%f\t%d\n",
+                                                           s_SbId,
+                                                           fs.sid(),
+                                                           fs.color(),
+                                                           fs.type(),
+                                                           fs.x(),
+                                                           fs.y(),
+                                                           fs.defeatplus(),
+                                                           fs.baseattack(),
+                                                           fs.basedef(),
+                                                           fs.attack(),
+                                                           fs.def(),
+                                                           fs.basedef(),
+                                                           fs.walltype(),
+                                                           fs.round(),
+                                                           fs.skillid(),
+                                                           fs.value1(),
+                                                           fs.value2(),
+                                                           fs.randnum(),
+                                                           fs.buffid(),
+                                                           fs.effectround(),
+                                                           fs.bvalue1(),
+                                                           fs.bufftype(),
+                                                           fs.wallceiling(),
+                                                           fs.perroundaddatk(),
+                                                           fs.chainandmergeattackplus(),
+                                                           fs.wallgrow(),
+                                                           fs.atkmodeskill()
+                                                           )->getCString(),
+                                CCString::createWithFormat("sbData_%03d.txt", plotid)->getCString()
+                                );
+#endif
+
+                
+            }
+            startFiveRound = -1;
+
+
+
             myHeroObj = new HeroObj();
             myHeroObj->setRoleId(sr->roleid());
             myHeroObj->setHp(sr->youhp());
@@ -402,6 +793,72 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
             myHeroObj->setLordSkillID(sr->lordskillid());//展示id
             myHeroObj->setAtkmode(sr->lordatkmode());
             
+#if LogSbData
+            //分敌我，我为1，3，5。。。。
+            std::string path = CCFileUtils::sharedFileUtils()->getWritablePath();
+            GPCCLOG("wanna save file path = %s",path.c_str());
+
+            Tools::saveFile(CCString::createWithFormat("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%s\n",
+                plotid * 2 - 1,
+                sr->spiritsyou_size(),
+                sr->selftempofficer_size(),
+                sr->roleid(),
+                sr->youhp(),
+                sr->youbasehp(),
+                sr->youactioncount(),
+                sr->youactioncountbyadd(),
+                sr->lordid(),
+                sr->friendofficerlevel(),
+                sr->friendofficerid(),
+               // CCString::create(sr->lordname())->getCString() ,
+                sr->lordskillbelongid(),
+                sr->lordcdround(),
+                sr->lordcdroundbase(),
+                sr->maxfillunit(),
+                sr->clienttype(),
+                sr->nation(),
+                sr->friendofficercdround(),
+                sr->friendofficercdroundcurrent(),
+                sr->lordskillid(),
+                sr->lordatkmode(),
+                sr->isfirstattack(),
+                CCString::create(sr->fid())->getCString()
+
+                )->getCString(),
+
+                "PlotData.txt");
+            
+            Tools::saveFile(CCString::createWithFormat("%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%s\n",
+               plotid * 2,
+               sr->spiritshim_size(),
+               sr->aitempofficer_size(),
+               sr->troleid(),
+               sr->himhp(),
+               sr->himbasehp(),
+               sr->himactioncount(),
+               sr->himactioncountbyadd(),
+               sr->tlordid(),
+               123,          //ememy no
+               234,             //ememy no
+              // CCString::create(sr->tlordname())->getCString() ,
+               sr->tlordskillbelongid(),
+               sr->tlordcdroundbase(),
+               sr->tlordcdroundbase(),
+               sr->tmaxfillunit(),
+               sr->tclienttype(),
+               sr->tnation(),
+               345,          //ememy no
+               456,   //ememy no
+               sr->tlordskillid(),
+               sr->tlordatkmode(),
+               sr->isfirstattack(),
+               CCString::create(sr->fid())->getCString()
+
+               )->getCString(),
+                            
+                            "PlotData.txt");
+            
+#endif
             
             
             
@@ -424,6 +881,7 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
             enemyHeroObj->setLordSkillID(sr->tlordskillid());
             enemyHeroObj->setAtkmode(sr->tlordatkmode());
             
+            
             if (sr->isfirstattack())
             {
                 enemyHeroObj->setActionCount1(0);
@@ -432,9 +890,9 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
             {
                 myHeroObj->setActionCount1(0);
             }
+
             
-            //被收回备用的英雄，敌我双方,不包括士兵
-            addPveBackHero(sr);
+            
             
             bool isPveContinue = (himsblength == 0 && mysblength == 0);
             SGMainManager::shareMain()->showBattleLayer(mainBattleLayer,isPveContinue);
@@ -449,7 +907,6 @@ void SGBattleManager::pveListener(cocos2d::CCObject *obj)
             mainBattleLayer->m_battleId =  sr->fid();
             
             mainBattleLayer->textNewEff();
-
         }
         
     }
@@ -3301,8 +3758,6 @@ void SGBattleManager::pveLoadingListener(CCObject *obj)
             int value = itemData.itemid();
             int level = itemData.itemlevel();
             sarr->addObject(CCString::createWithFormat("%d:%d", value, level));
-            GPCCLOG("\n^^^^^^^^^^^^^^ mySolder");
-            GPCCLOG("%d:%d", value, level);
         }
         selfInfo->setSoldiers(sarr);
         
@@ -3317,9 +3772,6 @@ void SGBattleManager::pveLoadingListener(CCObject *obj)
             int value = itemData.itemid();
             int level = itemData.itemlevel();
             aarr->addObject(CCString::createWithFormat("%d:%d", value, level));
-            GPCCLOG("\n^^^^^^^^^^^^^^ enemySolder");
-            GPCCLOG("%d:%d", value, level);
-            
         }
         armyInfo->setSoldiers(aarr);
         

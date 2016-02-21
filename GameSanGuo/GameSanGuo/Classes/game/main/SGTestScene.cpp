@@ -11,6 +11,7 @@
 #include "GlobalConfig.h"
 #include "CCSpriterX.h"
 #include "ShiBing.h"
+#include "CGPTools.h"
 
 
 
@@ -271,7 +272,16 @@ void SGTestScene::onEnter()
     this->addChild(m_pUIGroup);
     //spineTest();
     //effectTest();
-    cocostudioTest();
+    //cocostudioTest();
+    
+    for (int i = 0 ; i < 100; i ++)
+    {
+        Tools::saveFile(CCString::createWithFormat("%d\t%d\t%d\t%d\t%f\t12345566777\n", i, i + 5, 12, 34, 123.34)->getCString(),"1.txt"); ;
+    }
+    
+    
+
+    
 }
 
 void  SGTestScene::changeAction(CCObject*  obj, Action_Sequnce actSeq)

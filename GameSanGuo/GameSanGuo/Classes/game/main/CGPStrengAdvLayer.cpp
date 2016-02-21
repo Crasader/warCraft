@@ -145,18 +145,6 @@ void CGPStrengAdvLayer::initView()
     mLevelName->setPosition(ccp( -imgLevel->getContentSize().width * 0.5 + 30 , 0));
     imgLevel->addNode(mLevelName);
     
-    if (SGMainManager::shareMain()->getIsAdv())
-    {
-        mStar->setVisible(true);
-        mLevelName->setVisible(false);
-    }
-    else
-    {
-        mStar->setVisible(false);
-        mLevelName->setVisible(true);
-    }
-    
-    
     
     //名字
     mLabelName = SGCCLabelTTF::create(_card->getOfficerName()->getCString(), FONT_PANGWA, 26, ccWHITE);
@@ -187,14 +175,15 @@ void CGPStrengAdvLayer::initView()
     mLabelAtt[E_speed]->setPosition(ccp(-40, -2));
     imgAtt[E_speed]->addNode(mLabelAtt[E_speed]);
     
+    
     //升级后
     mLabelLevelNew = SGCCLabelTTF::create(CCString::createWithFormat("%d", currLvl + 1)->getCString(), FONT_PANGWA, 20, ccShitYellow);
     mLabelLevelNew->setPosition(ccp(70, -2));
     imgLevel->addNode(mLabelLevelNew);
-
+    
     int addAtk, addDef, addMor, addSpeed;
     getAttrAdd(&addAtk, &addDef, &addMor, &addSpeed, currLvl, currLvl + 1);
-
+    
     mLabelAttNew[E_attack] = SGCCLabelTTF::create(CCString::createWithFormat("%d",  _card->getAtk() + addAtk)->getCString() , FONT_PANGWA, 20, ccWHITE);
     mLabelAttNew[E_attack]->setPosition(ccp(70, -2));
     imgAtt[E_attack]->addNode(mLabelAttNew[E_attack]);
@@ -210,6 +199,25 @@ void CGPStrengAdvLayer::initView()
     mLabelAttNew[E_speed] = SGCCLabelTTF::create(CCString::createWithFormat("%d", (int)(_card->getSpeed() + addSpeed))->getCString(), FONT_PANGWA, 20, ccWHITE);
     mLabelAttNew[E_speed]->setPosition(ccp(70, -2));
     imgAtt[E_speed]->addNode(mLabelAttNew[E_speed]);
+    
+    
+    if (SGMainManager::shareMain()->getIsAdv())
+    {
+        mStar->setVisible(true);
+        mLevelName->setVisible(false);
+        updateAttrOne(false);
+        
+        
+        
+    }
+    else
+    {
+        mStar->setVisible(false);
+        mLevelName->setVisible(true);
+        
+
+        
+    }
 
     //头像
     SGMainManager::shareMain()->addOfficerPng(_card->getHeadSuffixNum(), sg_generalInfoLayer);
@@ -377,18 +385,31 @@ void CGPStrengAdvLayer::showOfficerBg(int quality)
     m_officerBg[quality - 3]->setVisible(true);
 }
 
-void CGPStrengAdvLayer::updateAttrOne(bool isLeft)
+void CGPStrengAdvLayer::updateAttrOne(bool isLevelUp)
 {
     int addAtk, addDef, addMor, addSpeed;
 
+    if (isLevelUp)
+    {
+        getAttrAdd(&addAtk, &addDef, &addMor, &addSpeed, originLvl, currLvl + 1);
+        mLabelLevelNew->setString(CCString::createWithFormat("%d", currLvl + 1)->getCString());
+        mLabelAttNew[E_attack]->setString(CCString::createWithFormat("%d", _card->getAtk() + addAtk)->getCString());
+        mLabelAttNew[E_defense]->setString(CCString::createWithFormat("%d", _card->getDef() +addDef )->getCString());
+        mLabelAttNew[E_health]->setString(CCString::createWithFormat("%d", _card->getMorale() + addMor)->getCString());
+        mLabelAttNew[E_speed]->setString(CCString::createWithFormat("%d", (int)_card->getSpeed() + addSpeed)->getCString());
+    }
+    else
+    {
+        mLabelLevelNew->setString(CCString::createWithFormat("%d",  _card->getCurrStar() + 1)->getCString());
+        mLabelAttNew[E_attack]->setString(CCString::createWithFormat("%d", int(_card->getAtk() * 1.12))->getCString());
+        mLabelAttNew[E_defense]->setString(CCString::createWithFormat("%d", int(_card->getDef() * 1.13) )->getCString());
+        mLabelAttNew[E_health]->setString(CCString::createWithFormat("%d", int(_card->getMorale()* 1.14))->getCString());
+        mLabelAttNew[E_speed]->setString(CCString::createWithFormat("%d", (int)(_card->getSpeed() * 1.13))->getCString());
+    }
+   
     
-    getAttrAdd(&addAtk, &addDef, &addMor, &addSpeed, originLvl, currLvl + 1);
-    
-    mLabelLevelNew->setString(CCString::createWithFormat("%d", currLvl + 1)->getCString());
-    mLabelAttNew[E_attack]->setString(CCString::createWithFormat("%d", _card->getAtk() + addAtk)->getCString());
-    mLabelAttNew[E_defense]->setString(CCString::createWithFormat("%d", _card->getDef() +addDef )->getCString());
-    mLabelAttNew[E_health]->setString(CCString::createWithFormat("%d", _card->getMorale() + addMor)->getCString());
-    mLabelAttNew[E_speed]->setString(CCString::createWithFormat("%d", (int)_card->getSpeed() + addSpeed)->getCString());
+
+
 
 }
 
@@ -642,6 +663,7 @@ void CGPStrengAdvLayer::btnCallUpdate(cocos2d::CCObject *pSender, TouchEventType
             mLabelLevelNew->setString(CCString::createWithFormat("%d",  _card->getCurrStar() + 1)->getCString());
             mStar->setVisible(true);
             mLevelName->setVisible(false);
+            updateAttrOne(false);
         }
         else
         {
@@ -649,6 +671,7 @@ void CGPStrengAdvLayer::btnCallUpdate(cocos2d::CCObject *pSender, TouchEventType
             mLabelLevelNew->setString(CCString::createWithFormat("%d",  _card->getCurrLevel()  + 1)->getCString());
             mStar->setVisible(false);
             mLevelName->setVisible(true);
+            updateAttrOne(true);
         }
         
 

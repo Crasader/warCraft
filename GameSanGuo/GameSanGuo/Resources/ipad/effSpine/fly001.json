@@ -1,1 +1,0 @@
-{"bones":[{"name":"root"}],"slots":[{"name":"fly001_1","bone":"root","attachment":"fly001_1"}],"skins":{"default":{"fly001_1":{"fly001_1":{"width":27,"height":75}}}},"animations":{"animation":{"slots":{"fly001_1":{"attachment":[{"time":0,"name":"fly001_1"}]}}}}}

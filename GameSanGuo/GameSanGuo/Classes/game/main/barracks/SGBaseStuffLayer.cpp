@@ -477,7 +477,6 @@ void SGBaseStuffLayer::setstar(int star,int max)
         {
             currstar = CCSprite::createWithSpriteFrameName("star.png");
             currstar->setAnchorPoint(ccp(0.5, 0));
-//            currstar->setPosition(ccp(currstar->getContentSize().width/2 + 5 + currstar->getContentSize().width * i, +5));
             currstar->setPosition(ccpAdd(starList2[i]->getPosition(), ccp(-1,-5)));
             starFrame->addChild(currstar,1000);
    
@@ -519,10 +518,11 @@ void SGBaseStuffLayer::setstar(int star,int max)
   
     
     //获得最后星星位置
-//    int index = star - 1;
+
     int index = star;
-    if (starList[index]) {
-//        pos = ccpAdd(starList[index]->getPosition(), ccp(starList[index]->getContentSize().width, 0));
+    if (starList[index])
+    {
+
         pos = starList[index]->getPosition();
     }
 }

@@ -59,6 +59,7 @@ enum layoutZorder
 
 
 #define UIGet_Layout(itemName, father, me)      me = static_cast<Layout*>(father->getChildByName(itemName));
+#define UIGet_Label(itemName, father, me)       me = static_cast<Label*>(father->getChildByName(itemName));
 #define UIGet_Button(itemName, father, me)      me = static_cast<Button*>(father->getChildByName(itemName));
 #define UIGet_ImageView(itemName, father, me)   me = static_cast<ImageView*>(father->getChildByName(itemName));
 #define UIGet_LoadingBar(itemName, father, me)  me = static_cast<LoadingBar*>(father->getChildByName(itemName));
@@ -79,6 +80,14 @@ enum layoutZorder
                         btnName->getChildByName("Image_off")->setVisible(true);
 #define UIbtnImgOn(btnName)   btnName->getChildByName("Image_on")->setVisible(true);\
                     btnName->getChildByName("Image_off")->setVisible(false);
+
+
+#define RT_Label(content, fontsize, color, label, father) label = SGCCLabelTTF::create(content, FONT_PANGWA, fontsize, color);\
+father->addNode(label);
+
+#define RT_SPRITE(name, sprite)  sprite = CCSprite::createWithSpriteFrameName(name);
+
+#define RT_spine(jsonName, altasName, spine) spine = CCSkeletonAnimation::createWithFile(jsonName, altasName);
 
 
 #endif

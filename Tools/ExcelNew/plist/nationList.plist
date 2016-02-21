@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>1</key>
+		<dict>
+			<key>ID</key>
+			<string>1</string>
+			<key>country</key>
+			<string>（蜀國）</string>
+			<key>tip_text</key>
+			<string>君臣一心：戰鬥中連鎖和融合，獲得額外10%攻擊提升。</string>
+			<key>tip_text1</key>
+			<string>城堅糧足：戰鬥中，防禦陣列每回合增加25%防禦值。</string>
+			<key>tip_text2</key>
+			<string>奇門八卦：戰鬥中，防禦陣列最高防禦值提升50%。</string>
+		</dict>
+		<key>2</key>
+		<dict>
+			<key>ID</key>
+			<string>2</string>
+			<key>country</key>
+			<string>（魏國）</string>
+			<key>tip_text</key>
+			<string>先發制人：速度高於對方時，首回合獲得額外1點行動力。</string>
+			<key>tip_text1</key>
+			<string>披堅執銳：武將和士兵獲得額外25%防禦力。</string>
+			<key>tip_text2</key>
+			<string>割須棄袍：血量低於20%時，每放棄1行動力增加攻擊陣列5%攻擊力。</string>
+		</dict>
+		<key>3</key>
+		<dict>
+			<key>ID</key>
+			<string>3</string>
+			<key>country</key>
+			<string>（吳國）</string>
+			<key>tip_text</key>
+			<string>兵強馬壯：武將獲得額外5%攻擊力。</string>
+			<key>tip_text1</key>
+			<string>長江天險：戰鬥中，防禦陣列初始防禦值提升25%。</string>
+			<key>tip_text2</key>
+			<string>國富民豐：武將獲得額外10%血量。</string>
+		</dict>
+	</dict>
+</plist>

@@ -208,9 +208,6 @@ bool SGAttackList::initWithSoldier(ShiBing *sb, bool isMy, sgAttackSoldierType t
     int iFileId = getFileId();
     m_attackTime =  SGStaticDataManager::shareStatic()->getSbLocalByFileId(iFileId)->getAllTime()/SpineSpeed * ANIMA_TIME_NUM;
     m_effTime = SGStaticDataManager::shareStatic()->getSbLocalByFileId(iFileId)->getEffTime()/SpineSpeed * ANIMA_TIME_NUM;
-    //GPCCLOG("attackTime = %f",m_attackTime);
-   // GPCCLOG("effTime == %f", m_effTime);
-   // CCLOG("afftribute2==%d",this->getAfftributeNum2());
     
     
     if (this->isMy)
@@ -764,21 +761,8 @@ void SGAttackList::attackEff(CCNode*  psender, GameSbIndex *sbindex)    //打墙
     }
     
     CCPoint  effPos = GameConfig::getGridPoint(gridRow , gridList ,!isme);  //there isme 分上下，ture 为下
-//    if (!isme)
-//    {
-//        effPos.y += gridHeight;
-//    }
-    
-//    if(getAttackType() == kattackfour)
-//    {
-//        effWallHit->setPosition(ccp(isme ? effPos.x + 0.5 * gridWidth : effPos.x - 0.5 * gridWidth  , effPos.y));
-//    }
-//    else
-    {
-        effWallHit->setPosition(ccp(effPos.x , effPos.y));
-    }
-    
-    
+    effWallHit->setPosition(ccp(effPos.x , effPos.y));
+
     if(isme)
     {
         myHero->addChild(effWallHit, 10000);
@@ -791,6 +775,10 @@ void SGAttackList::attackEff(CCNode*  psender, GameSbIndex *sbindex)    //打墙
     CCDelayTime*  delay = CCDelayTime::create(0.5f);
     CCCallFunc*   call = CCCallFunc::create(this, callfunc_selector(SGAttackList::callRemoveHitWall));
     this->runAction(CCSequence::create(delay, call, NULL));
+
+    SGBattleManager::sharedBattle()->getBattleLayer()->fuckLayer(4);
+    
+    
 }
 
 //攻击阵列, 开始攻击
@@ -1135,7 +1123,8 @@ void SGAttackList::attackSbVibration()
 {
     //GPCCLOG("attackSbVibration");
     if (this->getAp()>0)
-        SGBattleManager::sharedBattle()->getBattleLayer()->fuckLayer(0,true );
+//        SGBattleManager::sharedBattle()->getBattleLayer()->fuckLayer(0,true );
+        SGBattleManager::sharedBattle()->getBattleLayer()->fuckLayer(2);
 }
 //技能buff触发
 void SGAttackList::addSkillsBuff(CCObject *obj, int* rand)
@@ -1632,8 +1621,8 @@ void SGAttackList::removesb(cocos2d::CCObject *obj, GameSbIndex *sbindex)
                         GameIndex effectIndex = gameIndex(grid->getIndex().i, grid->getIndex().j);
                         attackHero->showEffectLayer(2, false, effectIndex);
                         attackHero->battleMap->removeAttackedSB(sb, 0, myHero);
-                       // attackHero->showEffectLayer(22, false, effectIndex);  //散兵消失
                         attackHero->showEffectLayerCgp(Eff_sanbing, true, effectIndex);  //散兵消失
+                        SGBattleManager::sharedBattle()->getBattleLayer()->fuckLayer(4);
 
                     }
                     else  //城墙
@@ -1667,6 +1656,7 @@ void SGAttackList::removesb(cocos2d::CCObject *obj, GameSbIndex *sbindex)
                         sb->runAction(CCSequence::create(rmSbDelay, callRmSb, nullptr));
                         //attackHero->showEffectLayer(22, false, effectIndex);  //散兵消失
                         attackHero->showEffectLayerCgp(Eff_sanbing, true, effectIndex);  //散兵消失
+                         SGBattleManager::sharedBattle()->getBattleLayer()->fuckLayer(4);
                     }
                     else  //城墙
                     {

@@ -61,7 +61,7 @@ public:
     
     void updateStrengthExp(float dt);
     void getAttrAdd(int* atk, int* def, int* mor, int* speed, int curLvl, int nextLvl);
-    void updateAttrOne(bool isleft);   //1:左边,  0:右边
+    void updateAttrOne(bool isLevelUp = 1);   //1:升级,  0:进阶
     void showOfficerBg(int quality);
     
 public:

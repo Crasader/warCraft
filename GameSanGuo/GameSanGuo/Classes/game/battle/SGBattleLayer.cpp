@@ -663,52 +663,16 @@ void SGBattleLayer::fuckLayer(int act, bool isY)
     this->setPosition(ccp(0, 0));
     this->stopActionByTag(FUCK_TAG);
     
-    CCMoveTo *move1=NULL;
-    CCMoveTo *move2=NULL;
-    CCMoveTo *move3=NULL;
+    CCMoveTo *move0 = NULL;
+    CCMoveTo *move1 = NULL;
+    CCMoveTo *move2 = NULL;
+    CCMoveTo *move3 = NULL;
+    CCMoveTo *move4 = NULL;
+
     if (!isY)
     {
-        
-//        switch (act)
-//        {
-//            case 1:
-//            {
-//                move1=CCMoveTo::create(0.0232, ccp(0, 3));
-//                move2=CCMoveTo::create(0.0232, ccp(0, -3));
-//                move3=CCMoveTo::create(0.0242, ccp(0, 0));
-//                CCSequence *action = CCSequence::create(move1, move3,move2,move3 ,NULL);
-//                
-//                CCRepeat *repeat=CCRepeat::create(action, 7);
-//                action->setTag(FUCK_TAG);
-//                this->runAction(repeat);
-//            }
-//                break;
-//            case 2:
-//            {
-//                move1=CCMoveTo::create(0.022, ccp(0, 5));
-//                move2=CCMoveTo::create(0.022, ccp(0, -5));
-//                move3=CCMoveTo::create(0.022, ccp(0, 0));
-//                CCSequence *action = CCSequence::create( move1,move3, move2,move3 ,NULL);
-//                
-//                CCRepeat *repeat=CCRepeat::create(action, 10);
-//                action->setTag(FUCK_TAG);
-//                this->runAction(repeat);
-//            }
-//                break;
-//            case 3:
-//            {
-//                move1=CCMoveTo::create(0.022, ccp(0, 7));
-//                move2=CCMoveTo::create(0.022, ccp(0, -7));
-//                move3=CCMoveTo::create(0.022, ccp(0, 0));
-//                CCSequence *action = CCSequence::create( move1, move3,move2,move3 ,NULL);
-//                
-//                CCRepeat *repeat=CCRepeat::create(action, 13);
-//
-//                action->setTag(FUCK_TAG);
-//                this->runAction(repeat);
-//            }
-        
-        
+        int a, b, c , d;
+        int ay, by ,cy,dy;
         switch (act)
         {
             case 1:
@@ -748,6 +712,27 @@ void SGBattleLayer::fuckLayer(int act, bool isY)
                 this->runAction(repeat);
             }
                 break;
+                
+            case 4:
+            {
+                a = (int)(CCRANDOM_0_1() * 7);
+                b = (int)(CCRANDOM_0_1() * 7);
+                c = (int)(CCRANDOM_0_1() * 7);
+                d = (int)(CCRANDOM_0_1() * 7);
+                ay = (int)(CCRANDOM_0_1() * 7);
+                by = (int)(CCRANDOM_0_1() * 7);
+                cy = (int)(CCRANDOM_0_1() * 7);
+                dy = (int)(CCRANDOM_0_1() * 7);
+                move0 = CCMoveTo::create(0.05, ccp(0, 0));
+                move1 = CCMoveTo::create(0.035, ccp(a, ay));
+                move2 = CCMoveTo::create(0.035, ccp(-b, by));
+                move3 = CCMoveTo::create(0.025, ccp(-c, -cy));
+                move4 = CCMoveTo::create(0.025, ccp(d, -dy));
+
+                this->runAction(CCSequence::create(move1,  move2,move3, move4, move0, nullptr ));
+            }
+                break;
+                
             default:
             {
                 
@@ -760,14 +745,25 @@ void SGBattleLayer::fuckLayer(int act, bool isY)
     else
     {
 
-        CCMoveTo *move7 = CCMoveTo::create(0.035, ccp( -4, 0));
-        CCMoveTo *move8 = CCMoveTo::create(0.035, ccp( 4, 0) );
-        CCMoveTo *move2 = CCMoveTo::create(0.025, ccp( -2, 0));
-        CCMoveTo *move3 = CCMoveTo::create(0.025, ccp( 2,0 ));
-        CCMoveTo *move6 = CCMoveTo::create(0.005, ccp( 0, 0));
+//        CCMoveTo *move7 = CCMoveTo::create(0.035, ccp( -4, 0));
+//        CCMoveTo *move8 = CCMoveTo::create(0.035, ccp( 4, 0) );
+//        CCMoveTo *move2 = CCMoveTo::create(0.025, ccp( -2, 0));
+//        CCMoveTo *move3 = CCMoveTo::create(0.025, ccp( 2,0 ));
+//        CCMoveTo *move6 = CCMoveTo::create(0.005, ccp( 0, 0));
+//        CCAction *act = (CCAction*)CCSequence::create( move7, move8, move7, move8, move2, move3, move6, NULL);
+//        act->setTag(FUCK_TAG);
+//        this->runAction(act);
+        
+        CCMoveTo *move7 = CCMoveTo::create(0.06, ccp( 0, -10));
+        CCMoveTo *move8 = CCMoveTo::create(0.06, ccp(0,  10) );
+        CCMoveTo *move2 = CCMoveTo::create(0.08, ccp(0, -6));
+        CCMoveTo *move3 = CCMoveTo::create(0.08, ccp(0, 6 ));
+        CCMoveTo *move6 = CCMoveTo::create(0.04, ccp(0, 0));
         CCAction *act = (CCAction*)CCSequence::create( move7, move8, move7, move8, move2, move3, move6, NULL);
         act->setTag(FUCK_TAG);
         this->runAction(act);
+        
+        
     }
 }
 //设置操作的名称

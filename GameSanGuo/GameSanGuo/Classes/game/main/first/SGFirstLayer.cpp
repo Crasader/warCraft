@@ -45,6 +45,8 @@
 #include "SGSpecialBattleLayer.h"
 #include "SpecialBattleModule.pb.h"
 
+#include "GlobalConfig.h"
+
 
 #define SHOWMENUTIME 0.3f
 #define DEFAULTSCALE 0.8
@@ -855,9 +857,14 @@ void SGFirstLayer::updateNoticeBuZhen()
 void SGFirstLayer::taskHandlerSend()
 {
     EFFECT_PLAY(MUSIC_BTN);
+#if( AllTaskOpen == 1)
+    main::DayTaskListRequest *request = new main::DayTaskListRequest();
+    SGSocketClient::sharedSocketClient()->send(MSG_DAYTASK_LIST, request);
+#else
     SGMainManager::shareMain()->showMessage("功能暂未开启!");
-//    main::DayTaskListRequest *request = new main::DayTaskListRequest();
-//    SGSocketClient::sharedSocketClient()->send(MSG_DAYTASK_LIST, request);
+#endif
+
+
 }
 void SGFirstLayer::buttonClickChatAndMakeFriend()
 {
@@ -870,16 +877,22 @@ void SGFirstLayer::buttonClickChatAndMakeFriend()
 void SGFirstLayer::buttonClickStrengthenShow()
 {
    EFFECT_PLAY(MUSIC_BTN);
-    SGMainManager::shareMain()->showMessage("功能暂未开启!");
-//    CCLOG("强化");
-//    SGFirstStrengBox *strengBox = SGFirstStrengBox::create(this);
-//    SGMainManager::shareMain()->showBox(strengBox);
-//
-//    int guideId = CCUserDefault::sharedUserDefault()->getIntegerForKey("guideId");
-//    if (guideId >= guide_tag_10)
-//    {
-//        SGGuideManager::shareManager()->checkIsDone(guide_tag_13);
-//    }
+#if(AllTaskOpen == 1)
+        CCLOG("强化");
+        SGFirstStrengBox *strengBox = SGFirstStrengBox::create(this);
+        SGMainManager::shareMain()->showBox(strengBox);
+    
+        int guideId = CCUserDefault::sharedUserDefault()->getIntegerForKey("guideId");
+        if (guideId >= guide_tag_10)
+        {
+            SGGuideManager::shareManager()->checkIsDone(guide_tag_13);
+        }
+#else
+     SGMainManager::shareMain()->showMessage("功能暂未开启!");
+#endif
+    
+   
+
 }
 
 void SGFirstLayer::buttonClickOfficer()
@@ -912,10 +925,14 @@ void SGFirstLayer::buttonClickGeneralsShow()
 
 void SGFirstLayer::showRewardsLayer()
 {
-//    EFFECT_PLAY(MUSIC_ITEM);
     EFFECT_PLAY(MUSIC_BTN);
-    //removed by cgp
-    //SGMainManager::shareMain()->showRewardsLayer();
+#if( AllTaskOpen == 1)
+    SGMainManager::shareMain()->showRewardsLayer();
+#else
+    
+#endif
+
+
 }
 
 
@@ -994,43 +1011,53 @@ void SGFirstLayer::setFriendCount(int count)
 }
 void SGFirstLayer::fubenHandler()
 {
-    CCLOG("参加活动");
     EFFECT_PLAY(MUSIC_BTN);
-    SGMainManager::shareMain()->showMessage("功能暂未开启!");
-    //SGMainManager::shareMain()->requestFirstActivityLayer();
+#if(AllTaskOpen == 1)
+    {
+        SGMainManager::shareMain()->requestFirstActivityLayer();
+    }
+#else
+        SGMainManager::shareMain()->showMessage("功能暂未开启!");
+#endif
+
 }
 
 //试图获取守荆州主界面信息
 void SGFirstLayer::sjzInfoRequest()
 {
-//    if (SGPlayerInfo::sharePlayerInfo()->getIspvp()) {
-//        SG_SHOW_WINDOW(str_FirstLayer_str10);
-//        return;
-//    }
-//    EFFECT_PLAY(MUSIC_ITEM);
-//    SGPlayerInfo *player = SGPlayerInfo::sharePlayerInfo();
-//    //守荆州20级限制修改 在守荆州页面加
-//    if (!player->canBreakLimitById(limitShouJinZhou))
-//    {
-//            SGMainManager::shareMain()->showMessage(CCString::createWithFormat(str_FirstLayer_str11,player->getLimitLevelById(limitShouJinZhou))->getCString() );
-//    }
-//    else
-//    {
-////        int count = player->getOfficerCards()->count() + player->getEquipCards()->count() + player->getPropCards()->count() + player->getSoldierCards()->count();
-//        int count = player->getGoodsNumInBag();
-//        //在引导中不会出现背包满提示
-//        if (count >= player->getPlayerBagSize() && !SGGuideManager::shareManager()->isGuide) {
-//            SGCantAdvanceBox *cantadvanceBox = SGCantAdvanceBox::create(SGMainManager::shareMain()->getNowShowLayer(), NULL, 12, count);
-//            SGMainManager::shareMain()->showBox(cantadvanceBox);
-//        }
-//        else
-//        {
-//            //发送获取详情
-//            SGMainManager::shareMain()->sendGetSjzInfoRequest();
-//        }
-//   }
+#if(AllTaskOpen == 1)
+        if (SGPlayerInfo::sharePlayerInfo()->getIspvp()) {
+            SG_SHOW_WINDOW(str_FirstLayer_str10);
+            return;
+        }
+        EFFECT_PLAY(MUSIC_ITEM);
+        SGPlayerInfo *player = SGPlayerInfo::sharePlayerInfo();
+        //守荆州20级限制修改 在守荆州页面加
+        if (!player->canBreakLimitById(limitShouJinZhou))
+        {
+                SGMainManager::shareMain()->showMessage(CCString::createWithFormat(str_FirstLayer_str11,player->getLimitLevelById(limitShouJinZhou))->getCString() );
+        }
+        else
+        {
+    //        int count = player->getOfficerCards()->count() + player->getEquipCards()->count() + player->getPropCards()->count() + player->getSoldierCards()->count();
+            int count = player->getGoodsNumInBag();
+            //在引导中不会出现背包满提示
+            if (count >= player->getPlayerBagSize() && !SGGuideManager::shareManager()->isGuide) {
+                SGCantAdvanceBox *cantadvanceBox = SGCantAdvanceBox::create(SGMainManager::shareMain()->getNowShowLayer(), NULL, 12, count);
+                SGMainManager::shareMain()->showBox(cantadvanceBox);
+            }
+            else
+            {
+                //发送获取详情
+                SGMainManager::shareMain()->sendGetSjzInfoRequest();
+            }
+       }
+#else
+    SGMainManager::shareMain()->showMessage("功能暂未开启!");
+#endif
+
     
-     SGMainManager::shareMain()->showMessage("功能暂未开启!");
+
 }
 
 void SGFirstLayer::bossHandler()
@@ -1045,23 +1072,27 @@ void SGFirstLayer::bossHandler()
     }
      */
     
-   
+#if(AllTaskOpen == 1)
+        SGPlayerInfo *player=SGPlayerInfo::sharePlayerInfo();
+        if (!player->canBreakLimitById(limitBossBattle)) {
+            SGMainManager::shareMain()->showMessage(CCString::createWithFormat(str_FirstLayer_str12,player->getLimitLevelById(limitBossBattle))->getCString() );
+            return;
+        }
+        if (SGPlayerInfo::sharePlayerInfo()->getIspvp()==true) {
+            SG_SHOW_WINDOW(str_FirstLayer_str13);
+            return;
+        }
     
-//    SGPlayerInfo *player=SGPlayerInfo::sharePlayerInfo();
-//    if (!player->canBreakLimitById(limitBossBattle)) {
-//        SGMainManager::shareMain()->showMessage(CCString::createWithFormat(str_FirstLayer_str12,player->getLimitLevelById(limitBossBattle))->getCString() );
-//        return;
-//    }
-//    if (SGPlayerInfo::sharePlayerInfo()->getIspvp()==true) {
-//        SG_SHOW_WINDOW(str_FirstLayer_str13);
-//        return;
-//    }
-//    
-//    main::MainBossRequest *request=new main::MainBossRequest();
-//    SGSocketClient::sharedSocketClient()->send(MSG_BOSSBATTLE_JOIN, request);
-//
+        main::MainBossRequest *request=new main::MainBossRequest();
+        SGSocketClient::sharedSocketClient()->send(MSG_BOSSBATTLE_JOIN, request);
     
-     SGMainManager::shareMain()->showMessage("功能暂未开启!");
+#else
+        SGMainManager::shareMain()->showMessage("功能暂未开启!");
+#endif
+    
+
+    
+
 }
 
 void SGFirstLayer::setMoveBtAbles(bool enable)
@@ -1864,8 +1895,11 @@ void SGFirstLayer::removeEffectLabel()
 void SGFirstLayer::onShopBtnClicked()
 {
     EFFECT_PLAY(MUSIC_BTN);
+#if(AllTaskOpen == 1)
+    SGMainManager::shareMain()->showShopLayer();
+#else
     SGMainManager::shareMain()->showMessage("功能暂未开启!");
-    //SGMainManager::shareMain()->showShopLayer();
+#endif
 }
 
 void SGFirstLayer::animateOverCallback()

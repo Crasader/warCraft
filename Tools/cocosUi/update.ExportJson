@@ -12,12 +12,14 @@
   "textures": [
     "update0.plist",
     "update1.plist",
-    "update2.plist"
+    "update2.plist",
+    "update3.plist"
   ],
   "texturesPng": [
     "update0.png",
     "update1.png",
-    "update2.png"
+    "update2.png",
+    "update3.png"
   ],
   "version": "1.6.0.0",
   "widgetTree": {
@@ -380,13 +382,13 @@
                   "layoutParameter": null,
                   "opacity": 255,
                   "positionPercentX": -0.390557945,
-                  "positionPercentY": 0.0101964613,
+                  "positionPercentY": 0,
                   "positionType": 0,
                   "rotation": 0,
                   "scaleX": 0.5,
                   "scaleY": 0.5,
-                  "sizePercentX": 0.343347639,
-                  "sizePercentY": 2.35294127,
+                  "sizePercentX": 0.446351945,
+                  "sizePercentY": 3.05882359,
                   "sizeType": 0,
                   "tag": 173,
                   "touchAble": false,
@@ -3366,7 +3368,7 @@
                   "ignoreSize": true,
                   "layoutParameter": null,
                   "opacity": 255,
-                  "positionPercentX": 0,
+                  "positionPercentX": 0.0102040814,
                   "positionPercentY": 0,
                   "positionType": 0,
                   "rotation": 0,
@@ -3380,7 +3382,7 @@
                   "useMergedTexture": true,
                   "visible": true,
                   "width": 75,
-                  "x": 0,
+                  "x": 2,
                   "y": 0,
                   "capInsetsHeight": 1,
                   "capInsetsWidth": 1,

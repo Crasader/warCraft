@@ -33,12 +33,27 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCEGLView *view = CCEGLView::sharedOpenGLView();
     //通过CCEGLView的静态函数sharedOpenGLView来获取单件管理实例对象并将其地址通过CCDirector的成员函数setOpenGLView传递给显示设备管理器
     pDirector->setOpenGLView(view);
+//    CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
     CCSize frameSize = view->getFrameSize();
     
     //设置图形加载模式。
 
     //设置图形加载模式。
     CCTexture2D::PVRImagesHavePremultipliedAlpha(true);
+//#if (CGP_PLATFORM == CGP_IOS)
+//    //IOS
+//    CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGBA8888);
+//    CCTextureCache::sharedTextureCache()->setLoadingMode(LIM_PNG_AS_PVR);
+//    GPCCLOG("setLoadingMode(LIM_PNG_AS_PVR);");
+//#elif (CGP_PLATFORM == CGP_ADR)
+//    //ANDROID
+//    CCTextureCache::sharedTextureCache()->setLoadingMode(LIM_PNG_AS_ETC);
+//    GPCCLOG("setLoadingMode(LIM_PNG_AS_ETC);");
+//#else
+//    //NORMAL
+//    CCTextureCache::sharedTextureCache()->setLoadingMode(LIM_PNG_AS_PNG);
+//    GPCCLOG("setLoadingMode(LIM_PNG_AS_PNG);");
+//#endif
     CCTextureCache::sharedTextureCache()->setLoadingMode((LIM_OPTION)CGP_PLATFORM);
 
     //HACK BEGIN
@@ -59,10 +74,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
-
+    // create a scene. it's an autorelease object
 	// 绑定publicUI资源
 //	ResourceManager::sharedInstance()->bindCommonImageTexture();//加入public.plist
-    SGMainManager::shareMain()->startGame();
+     SGMainManager::shareMain()->startGame();
     UDID;
     CCLOG("UDID:%s",GameConfig::getUdit().c_str());
     

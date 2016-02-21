@@ -51,7 +51,7 @@ public:
     CCLabelTTF *usedMemory;
     CCLabelTTF *availableMemory;
     CCSprite *pvpMatch; //pvp匹配
-    Layout*   mCocosLayers[SG_LAYER_TAG_TOTAL_NUM - cgp_strengAdvLayer];
+    Layout*   mCocosLayers[SG_LAYER_TAG_TOTAL_NUM - cocostudioLayerStart];
   
     TouchGroup* m_pUIGroup;     //cgp cocos
     virtual void onEnter();

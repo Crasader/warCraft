@@ -57,9 +57,9 @@ bool SGVisitItem1::initWithSize(int num,int a,int b,bool huoVisitOpen)
     
     zik->setAnchorPoint(ccp(0.5, 1));
     zik->ignoreAnchorPointForPosition(false);
-    zik->setPosition(ccp(0, zik->getContentSize().height/2));
+    zik->setPosition(ccp(0, zik->getContentSize().height/2 + 190));
     addChild(zik,-10);
-    zik->setScaleX(s.width/zik->getContentSize().width);
+//    zik->setScaleX(s.width/zik->getContentSize().width);
     
     float posyRate = 1.1;
     if (s.height > 1024) {
@@ -96,7 +96,7 @@ bool SGVisitItem1::initWithSize(int num,int a,int b,bool huoVisitOpen)
         shift = -35;
     }
 
-    zik->setScaleY(posyRate);
+    //zik->setScaleY(posyRate);
     
 
     CCSprite *font1 = NULL;
@@ -124,12 +124,14 @@ bool SGVisitItem1::initWithSize(int num,int a,int b,bool huoVisitOpen)
         font1->ignoreAnchorPointForPosition(false);
         addChild(font1,20);
         font1->setPosition(ccp(-zik->getContentSize().width/2, zik->getContentSize().height/2 -5 ));
+        font1->setVisible(false);
     }
     if (font2) {
         addChild(font2,20);
         font2->setAnchorPoint(ccp(0, 0.5));
         font2->cocos2d::CCNode::ignoreAnchorPointForPosition(false);
         font2->setPosition(ccpAdd(ccp(-zik->getContentSize().width/2, 0), ccp(font2->getContentSize().width / 2.5, -font2->getContentSize().height * 2 + fontShift)));
+        font2->setVisible(false);
     }
 
     if (num == 0) {
@@ -150,8 +152,10 @@ bool SGVisitItem1::initWithSize(int num,int a,int b,bool huoVisitOpen)
     visit10->ignoreAnchorPointForPosition(false);
     visit1->setAnchorPoint(ccp(1, 1));
     visit1->ignoreAnchorPointForPosition(false);
-    visit1->setPosition(ccpAdd(font2->getPosition(), ccp(visit10->getContentSize().width / 1.8, -font2->getContentSize().height / 1.9 + shift)));
+    visit1->setPosition(ccp(120, 50));
     visit10->setPosition(ccpAdd(visit1->getPosition(), ccp(visit10->getContentSize().width * 1.2, 0)));
+    visit10->setVisible(false);
+    visit10->setEnabled(false);
     
     CCMenu *menu1 = CCMenu::create();
 	menu1->setTouchPriority(128);
@@ -163,10 +167,10 @@ bool SGVisitItem1::initWithSize(int num,int a,int b,bool huoVisitOpen)
     
     
     //买物品送武将
-    SGCCLabelTTF *infoTips = SGCCLabelTTF::create("赠送奖励：武将或者物品", FONT_PANGWA, 30);
-    this->addChild(infoTips, 8);
-    infoTips->setPosition(ccpAdd(ccp(CCDirector::sharedDirector()->getWinSize().width / 2, CCDirector::sharedDirector()->getWinSize().height / 2),
-                                 ccp(0, visit10->getPositionY())));
+//    SGCCLabelTTF *infoTips = SGCCLabelTTF::create("赠送奖励：武将或者物品", FONT_PANGWA, 30);
+//    this->addChild(infoTips, 8);
+//    infoTips->setPosition(ccpAdd(ccp(CCDirector::sharedDirector()->getWinSize().width / 2, CCDirector::sharedDirector()->getWinSize().height / 2),
+//                                 ccp(0, visit10->getPositionY())));
     
     //有免费元宝探访机会
     m_noticeGoldFree = CCSprite::createWithSpriteFrameName("publc_notice.png");
@@ -228,6 +232,7 @@ bool SGVisitItem1::initWithSize(int num,int a,int b,bool huoVisitOpen)
         sp->setScaleY(posyRate);
         sp->setPosition(ccpAdd(zik->getPosition(), ccp(size.width * i - sp->getContentSize().width/2,
                                                        -zik->getContentSize().height*.8 * posyRate)));
+        sp->setVisible(false);
     }        
         this->startMove();
     }

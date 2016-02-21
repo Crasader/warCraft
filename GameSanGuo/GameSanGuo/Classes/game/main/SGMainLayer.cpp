@@ -92,7 +92,7 @@
 #include <algorithm>
 
 #include "CGPTools.h"
-
+#include "GlobalConfig.h"
 
 //是不是在二方的好友列表里
 int isInMyFriendList = 0;
@@ -1199,7 +1199,11 @@ void SGMainLayer::initMsg()
     
     
     //added by cgp for test particle
+    
+     CCTextureCache::sharedTextureCache()->setLoadingMode((LIM_OPTION)CGP_OTH);
     CCParticleSystemQuad*   particle = CCParticleSystemQuad::create("particle/yinghua.plist");
+     CCTextureCache::sharedTextureCache()->setLoadingMode((LIM_OPTION)CGP_PLATFORM);
+    
     
     particle->setPosition(ccp(320, 1100));
     this->addChild(particle);
@@ -1559,16 +1563,22 @@ void SGMainLayer::updateUserMsg()
 void SGMainLayer::battleHandler()
 {
     EFFECT_PLAY(MUSIC_BTN);
-     SGMainManager::shareMain()->showMessage("功能暂未开启!");
-//    int lavel = SGPlayerInfo::sharePlayerInfo()->getPlayerLevel();
-//    //用最小的那个竞技场的来控制外层
-//    if (lavel < SGPlayerInfo::sharePlayerInfo()->getLimitLevelById(limitArena)) {
-//        SGMainManager::shareMain()->showMessage(CCString::createWithFormat(str_MainLayer_str6403,SGPlayerInfo::sharePlayerInfo()->getLimitLevelById(limitArena))->getCString());
-//        return;
-//    }
-//    
-//    
-//    SGMainManager::shareMain()->showVsLayer();
+    
+#if(AllTaskOpen == 1)
+        int lavel = SGPlayerInfo::sharePlayerInfo()->getPlayerLevel();
+        //用最小的那个竞技场的来控制外层
+        if (lavel < SGPlayerInfo::sharePlayerInfo()->getLimitLevelById(limitArena)) {
+            SGMainManager::shareMain()->showMessage(CCString::createWithFormat(str_MainLayer_str6403,SGPlayerInfo::sharePlayerInfo()->getLimitLevelById(limitArena))->getCString());
+            return;
+        }
+    
+    
+        SGMainManager::shareMain()->showVsLayer();
+#else
+    SGMainManager::shareMain()->showMessage("功能暂未开启!");
+#endif
+    
+
     
    
 }
@@ -1795,30 +1805,35 @@ void SGMainLayer::sendActivityHandler()
 }
 void SGMainLayer::activityHandler()
 {
-//    if (SGPlayerInfo::sharePlayerInfo()->getIspvp()) {
-//        SG_SHOW_WINDOW(str_MainLayer_str16);
-//        return;
-//    }
-//    EFFECT_PLAY(MUSIC_BTN);
-//    
-//    SGPlayerInfo *player = SGPlayerInfo::sharePlayerInfo();
-//    if (!player->canBreakLimitById(limitXianshiFuben)) {
-//       SGMainManager::shareMain()->showMessage(CCString::createWithFormat(str_MainLayer_str17,player->getLimitLevelById(limitXianshiFuben))->getCString() );
-//    }
-//    else
-//    {
-//        int count = player->getGoodsNumInBag();
-//        //在引导中不会出现这个背包满提示
-//        if (count >= player->getPlayerBagSize() && !SGGuideManager::shareManager()->isGuide) {
-//            SGCantAdvanceBox *cantadvanceBox = SGCantAdvanceBox::create(SGMainManager::shareMain()->getNowShowLayer(), NULL, 12, count);
-//            SGMainManager::shareMain()->showBox(cantadvanceBox);
-//        }
-//        else
-//        {
-//            sendActivityHandler();
-//        }
-//    }
-     SGMainManager::shareMain()->showMessage("功能暂未开启!");
+#if(AllTaskOpen == 1)
+        if (SGPlayerInfo::sharePlayerInfo()->getIspvp()) {
+            SG_SHOW_WINDOW(str_MainLayer_str16);
+            return;
+        }
+        EFFECT_PLAY(MUSIC_BTN);
+    
+        SGPlayerInfo *player = SGPlayerInfo::sharePlayerInfo();
+        if (!player->canBreakLimitById(limitXianshiFuben)) {
+           SGMainManager::shareMain()->showMessage(CCString::createWithFormat(str_MainLayer_str17,player->getLimitLevelById(limitXianshiFuben))->getCString() );
+        }
+        else
+        {
+            int count = player->getGoodsNumInBag();
+            //在引导中不会出现这个背包满提示
+            if (count >= player->getPlayerBagSize() && !SGGuideManager::shareManager()->isGuide) {
+                SGCantAdvanceBox *cantadvanceBox = SGCantAdvanceBox::create(SGMainManager::shareMain()->getNowShowLayer(), NULL, 12, count);
+                SGMainManager::shareMain()->showBox(cantadvanceBox);
+            }
+            else
+            {
+                sendActivityHandler();
+            }
+        }
+#else
+    SGMainManager::shareMain()->showMessage("功能暂未开启!");
+#endif
+
+    
 }
 
 
@@ -2104,8 +2119,14 @@ void SGMainLayer::barracksHandler()
         return;
     }
     EFFECT_PLAY(MUSIC_BTN);
+    
+//#if(AllTaskOpen == 1)
+//    SGMainManager::shareMain()->showBarrackslayer();
+//#else
+    SGMainManager::shareMain()->showBarrackslayer();
+    // SGMainManager::shareMain()->showMessage("功能暂未开放！");
+//#endif
 
-    //SGMainManager::shareMain()->showBarrackslayer();
 }
 
 void SGMainLayer::showblack()
@@ -2151,11 +2172,11 @@ void SGMainLayer::visitHandler()
         return;
     }
     EFFECT_PLAY(MUSIC_BTN);
-    SGMainManager::shareMain()->showMessage("功能暂未开放！");
-//
-//    DDLog("##########################======================%d", guideId);
-//    main::LotteryEntryRequest *request = new main::LotteryEntryRequest();
-//    SGSocketClient::sharedSocketClient()->send(MSG_VISIT_ENTER, request);
+  //  SGMainManager::shareMain()->showMessage("功能暂未开放！");
+
+    DDLog("##########################======================%d", guideId);
+    main::LotteryEntryRequest *request = new main::LotteryEntryRequest();
+    SGSocketClient::sharedSocketClient()->send(MSG_VISIT_ENTER, request);
     
 }
 void SGMainLayer::visitListener(cocos2d::CCObject *obj)
@@ -2186,6 +2207,7 @@ void SGMainLayer::visitListener(cocos2d::CCObject *obj)
             visitActivityList.push_back(visitActivity);
         }
         SGMainManager::shareMain()->showVisitLayer(visitHuo,a,b,c,d,j,visitActivityList,response->lotteryname().c_str(),response->activitylotteryname().c_str());
+        
     }
     
 }

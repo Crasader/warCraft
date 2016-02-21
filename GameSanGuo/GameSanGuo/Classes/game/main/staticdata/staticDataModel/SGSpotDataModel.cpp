@@ -19,6 +19,7 @@ SGSpotDataModel::SGSpotDataModel()
     spotDropExp = 0;
     spotDropCoins = 0;
     minLevel = 0 ;
+    mapId = 1;
 }
 
 SGSpotDataModel::~SGSpotDataModel()

@@ -151,8 +151,11 @@
 
 #include "SGUpdateManager.h"
 #include "CGPStrengAdvLayer.h"
+#include "CGPVisitResultLayer.h"
+#include "CGPBagLayer.h"
 
 
+#include "CGPTools.h"
 
 
 #if (PLATFORM == IOS)
@@ -161,6 +164,8 @@
 #include "SdkManager.h"
 #include "SdkHandler.h"
 #include "AndroidSDKAdp.h"
+
+
 
 
 
@@ -578,6 +583,15 @@ void SGMainManager::startGameCGPCallfunc()
 
 void SGMainManager::startGame()
 {
+    
+#if LogSbData
+    //分敌我，我为1，3，5。。。。
+    std::string path = CCFileUtils::sharedFileUtils()->getWritablePath();
+    GPCCLOG("wanna save file path = %s",path.c_str());
+    
+    Tools::saveFile(CCString::createWithFormat("Id\tSbLength\tHeroLength\troleid\thp\tbasehp\tactioncount\tactioncountbyadd\tlordid\tfriendofficerlevel\tfriendofficerid\tskillid\tskillRoundCur\tskillRoundMax\tmaxfillunit\tclientType\tcountry\tfriendRound\tfriendRoundCur\tloadSkillId\tlordatkmode\tisFirstAtk\tfid\n")->getCString(), "PlotData.txt");
+#endif
+    
 #if CGPTest
     SGTestScene*  ptest = new SGTestScene() ;
     ptest->autorelease();
@@ -943,11 +957,11 @@ void SGMainManager::showBattleLayer(SGBaseLayer *battleLayer,bool isPveContinue)
 
 void SGMainManager::showBarrackslayer(bool isBeforeDel)
 {
-    SGBarracksLayer *barrackslayer = (SGBarracksLayer *)mainScene->getChildByTag(sg_barrackslayer);
+    CGPBagLayer *barrackslayer = (CGPBagLayer *)mainScene->getChildByTag(cgp_bagLayer);
     if (!barrackslayer)
     {
         
-        barrackslayer = SGBarracksLayer::create();
+        barrackslayer = CGPBagLayer::create();
     }
     else
     {
@@ -1462,6 +1476,9 @@ void SGMainManager::showStrengAdvLayer(SGBaseMilitaryCard *card, int type,int en
         //SGGuideManager::shareManager()->checkIsDone(guide_tag_15);
     }
 }
+
+
+
 
 
 
@@ -2385,6 +2402,29 @@ void SGMainManager::showVisitCards(CCArray *array,CCArray *huoArray,SGBaseMilita
     mainScene->addShowLayer(Layer,true);
     
 }
+
+void SGMainManager::showVisitResultLayer(CCArray *array, int type,int enter, bool isOfficerOnly,int currentPage,ERI *info)
+{
+
+    CGPVisitResultLayer * visitResultLayer = (CGPVisitResultLayer *)mainScene->getChildByTag(cgp_visitResult);
+    if (visitResultLayer == NULL)
+    {
+        visitResultLayer = CGPVisitResultLayer::create(array, type,enter,isOfficerOnly,info,currentPage);
+    }
+    this->showLayer(visitResultLayer);
+    
+    SGMainLayer *mainLayer = (SGMainLayer *)mainScene->getChildByTag(sg_mainLayer);
+    if (mainLayer)
+    {
+        mainLayer->hideblack();
+    }
+    mainLayer->setIsCanTouch(false, false);
+    mainLayer->setPortraitMenuCanTouch(false);
+    
+    
+}
+
+
 void SGMainManager::showRewardLayer(SGBoxDelegate *dg)
 {
     SGFirstLayer *baseLayer = (SGFirstLayer*)mainScene->getChildByTag(sg_firstLayer);

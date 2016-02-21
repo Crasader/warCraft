@@ -8,10 +8,18 @@
 
 #include "SGCardAttribute.h"
 #include "SGStaticDataManager.h"
+#include "GlobalConfig.h"
+
 CCDictionary *SGCardAttribute::getValue(int currlvl, int itemid)
 {
     CCDictionary *dic = CCDictionary::create();
-    if (itemid > 1000 && itemid < 3000)    //武将
+    
+#if newServerData
+    if (itemid > 10000000 && itemid < 19999999)    //武将
+#else
+   if (itemid > 1000 && itemid < 3000)    //武将
+#endif
+        
     {
         SGOfficerDataModel *officer = SGStaticDataManager::shareStatic()->getOfficerById(itemid);
         float baseDef = officer->getOfficerBaseDef();    //基础防御
@@ -24,7 +32,7 @@ CCDictionary *SGCardAttribute::getValue(int currlvl, int itemid)
         float orimor = (float)(baseDef * officer->getOfficerMorRate() * (0.5 + currlvl * 0.015));
         int mor = orimor + 0.5;
         
-        //GPCCLOG("orimor:%f,   baseDef :%f,  morRate: %f,   currlv1 :%d,  mor : %d", orimor, baseDef, officer->getOfficerMorRate(), currlvl, mor);
+       // GPCCLOG("orimor:%f,   baseDef :%f,  morRate: %f,   currlv1 :%d,  mor : %d", orimor, baseDef, officer->getOfficerMorRate(), currlvl, mor);
 
         float oriSpeed = (float)(baseDef * officer->getOfficerSpeedFactor() * (0.5 + currlvl * 0.015));
         int speed = oriSpeed + 0.5;

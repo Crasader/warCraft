@@ -117,14 +117,20 @@ void SGEquipsLayer::initDatas(int type)
 //        }
     }
 
-    if (entertype == 1 ) {
+    if (entertype == 1 )
+    {
         equipCards = CCArray::create();
-        for (int i = 0; i <equips->count(); i++) {
+        for (int i = 0; i <equips->count(); i++)
+        {
             _allData->addObject(equips->objectAtIndex(i));
         }
-    } else if (entertype ==0) {
-        if(equipType==0){
-            for (int i = 0; i <equips->count(); i++) {
+    }
+    else if (entertype ==0)
+    {
+        if(equipType==0)
+        {
+            for (int i = 0; i <equips->count(); i++)
+            {
                 _allData->addObject(equips->objectAtIndex(i));
             }
             CCArray *cards = SGPlayerInfo::sharePlayerInfo()->getPropCards();
@@ -138,7 +144,8 @@ void SGEquipsLayer::initDatas(int type)
                     _allData->addObject(card);
                 }
             }
-        }else
+        }
+        else
         {
             CCARRAY_FOREACH(equips, obj)
             {

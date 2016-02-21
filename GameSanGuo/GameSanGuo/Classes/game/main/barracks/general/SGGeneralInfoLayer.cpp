@@ -456,6 +456,21 @@ void SGGeneralInfoLayer::initData()
 }
 
 
+void SGGeneralInfoLayer::updateAnimation(float dt)
+{
+    currentAction = (Action_Sequnce)(currentAction + 1);
+    if (currentAction > ACT_atkDown)
+    {
+        currentAction = ACT_wait;
+    }
+    
+    mSpine->stopAllActions();
+    mSpine->setAnimation(acActionNames[currentAction], true);
+    
+}
+
+
+
 void SGGeneralInfoLayer::initView()
 {
     ResourceManager::sharedInstance()->bindTexture("sgrewardlayer/sgrewardlayer2.plist", RES_TYPE_LAYER_UI, sg_generalInfoLayer);
@@ -561,7 +576,28 @@ void SGGeneralInfoLayer::initView()
     //在 是否开启武将滑动处addChild
     //this->addChild(item);
 
+    //spine
+    heroBorn = CCSprite::createWithSpriteFrameName("heroBorn.png");
+    heroBorn->setPosition(ccp(560, 700));
+    this->addChild(heroBorn, 1000);
     
+    int officerId =  _card->getItemId();
+    SGOfficerDataModel*  officerModel = SGStaticDataManager::shareStatic()->getOfficerById(officerId);
+    RT_spine(CCString::createWithFormat("spine/wujiang_%d_r.json", officerModel->getOfficerFileId())->getCString(),
+             CCString::createWithFormat("spine/wujiang_%d.atlas", officerModel->getOfficerFileId())->getCString(),
+             mSpine)
+    mSpine->setAnimation(acActionNames[ACT_moveDown], true);
+    mSpine->setScale(0.15);
+    heroBorn->addChild(mSpine);
+    heroBorn->setScale(1.0f);
+    mSpine->setPosition(ccp(heroBorn->getContentSize().width * 0.5 , heroBorn->getContentSize().height * 0.5 - 60));
+    currentAction = ACT_moveDown;
+    schedule(schedule_selector(SGGeneralInfoLayer::updateAnimation), 3.5f);
+
+    
+    
+    
+
     CCPoint fermPos1 =  ccpAdd(SGLayout::getPoint(kUpCenter), ccp(-264, -368 + 26));
     CCPoint fermPos2 =  ccpAdd(SGLayout::getPoint(kUpCenter), ccp(264, -368 + 26));
     
@@ -3317,7 +3353,7 @@ void SGGeneralInfoLayer::tuneArrows()
     m_arrowRight->setVisible( !(m_rightObj == NULL) );
 }
 
-//刷新武将信息！
+//刷新武将信息！hero
 void SGGeneralInfoLayer::refreshOfficerInfo()
 {
     if ( m_myOfficerList && m_index >= 0 && m_index < m_myOfficerList->count() )
@@ -3499,7 +3535,24 @@ void SGGeneralInfoLayer::refreshOfficerInfo()
             renewEquipment();
         }
         else
+        {
             CCLOG("<><><><>切换武将信息错误");
+        }
+        
+        //spine
+        unschedule(schedule_selector(SGGeneralInfoLayer::updateAnimation));
+        heroBorn->removeAllChildrenWithCleanup(true);
+        int officerId =  _card->getItemId();
+        SGOfficerDataModel*  officerModel = SGStaticDataManager::shareStatic()->getOfficerById(officerId);
+        RT_spine(CCString::createWithFormat("spine/wujiang_%d_r.json", officerModel->getOfficerFileId())->getCString(),
+                 CCString::createWithFormat("spine/wujiang_%d.atlas", officerModel->getOfficerFileId())->getCString(),
+                 mSpine)
+        mSpine->setAnimation(acActionNames[ACT_moveDown], true);
+        mSpine->setScale(0.15);
+        heroBorn->addChild(mSpine);
+        mSpine->setPosition(ccp(heroBorn->getContentSize().width * 0.5 , heroBorn->getContentSize().height * 0.5 -60));
+        currentAction = ACT_moveDown;
+        schedule(schedule_selector(SGGeneralInfoLayer::updateAnimation), 3.5f);
     }
 }
 

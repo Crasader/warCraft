@@ -17,6 +17,7 @@
 #include "SGChangeEquipEffectLayer.h"
 #include "CCScale9Sprite.h"
 #include "SGEmbattleBox.h"
+#include "Shibing.h"
 
 //class cocos2d::extension::CCScale9Sprite;
 class SGTouchLayer;
@@ -31,6 +32,13 @@ public:
     CC_SYNTHESIZE(int , plotID, PlotID);
     CC_SYNTHESIZE(int , storyID, StoryID);
     CC_SYNTHESIZE(int , roldID, RoldID);
+    
+    CCSkeletonAnimation   *mSpine;
+    Action_Sequnce  currentAction;
+    void updateAnimation(float dt);
+    CCSprite *heroBorn;
+    
+    
  
 public:
 	ERI *info;//进入更换装备后，再次返回布阵界面所需要的信息

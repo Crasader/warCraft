@@ -4,20 +4,58 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>visit/generalcardbg_ip5.png</key>
+			<key>visit/cj_jnk.png</key>
 			<dict>
 				<key>width</key>
-				<integer>640</integer>
+				<integer>609</integer>
 				<key>height</key>
-				<integer>507</integer>
+				<integer>349</integer>
 				<key>originalWidth</key>
-				<integer>640</integer>
+				<integer>609</integer>
 				<key>originalHeight</key>
-				<integer>507</integer>
+				<integer>349</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
 				<integer>0</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>visit/cj_jnt.png</key>
+			<dict>
+				<key>width</key>
+				<integer>573</integer>
+				<key>height</key>
+				<integer>121</integer>
+				<key>originalWidth</key>
+				<integer>573</integer>
+				<key>originalHeight</key>
+				<integer>121</integer>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>351</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>visit/cj_sxd.png</key>
+			<dict>
+				<key>width</key>
+				<integer>640</integer>
+				<key>height</key>
+				<integer>228</integer>
+				<key>originalWidth</key>
+				<integer>640</integer>
+				<key>originalHeight</key>
+				<integer>228</integer>
+				<key>x</key>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>474</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>

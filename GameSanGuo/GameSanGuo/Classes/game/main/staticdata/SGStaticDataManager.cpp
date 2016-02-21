@@ -1922,6 +1922,9 @@ SGSpotDataModel* SGStaticDataManager::dictToSpot(cocos2d::CCDictionary *dict)
     spot->setSpotDropExp(((CCString*)dict->objectForKey("exp"))->intValue());
     spot->setSpotDropCoins(((CCString*)dict->objectForKey("coins"))->intValue());
     
+    int temp = ((CCString*)dict->objectForKey("mapnum"))->intValue();
+    spot->setMapId(((CCString*)dict->objectForKey("mapnum"))->intValue());
+    
     if (dict->objectForKey("minLevel"))
     {
          spot->setMinLevel(((CCString*)dict->objectForKey("minLevel"))->intValue());

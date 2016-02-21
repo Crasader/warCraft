@@ -40,6 +40,9 @@ class SGSpotDataModel : public CCObject
     
     //精英闯关每日次数
     CC_SYNTHESIZE(int , _creamDayTimes, CreamDayTimes);
+    
+    //关卡地图
+    CC_SYNTHESIZE(int, mapId, MapId);
 public:
     
     SGSpotDataModel();

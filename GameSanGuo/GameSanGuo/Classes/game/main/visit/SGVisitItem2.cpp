@@ -54,9 +54,8 @@ bool SGVisitItem2::initWithSize(int num,int a,int b ,int c,int d)
     equipTime = b;
     CCSize s = CCDirector::sharedDirector()->getWinSize();
     
-    zik = CCSprite::createWithSpriteFrameName("visit_kuang.png");
-    zik->setPosition(ccp(0, 319/2 - zik->getContentSize().height/2 + 0));
-    //zik->setPosition(ccp(0, 319/2 - zik->getContentSize().height/2 + 20));
+    zik = CCSprite::createWithSpriteFrameName("visit_kuang.png");  //银最大
+    zik->setPosition(ccp(0, 900));
     this->addChild(zik,-1);
     
     zik->setScaleX(s.width/zik->getContentSize().width);
@@ -88,7 +87,7 @@ bool SGVisitItem2::initWithSize(int num,int a,int b ,int c,int d)
     }
 
     
-    zik->setScaleY(posyRate);
+    //zik->setScaleY(posyRate);
     
     
     CCSprite *jindu = CCSprite::createWithSpriteFrameName("visit_jdcao.png");
@@ -111,6 +110,7 @@ bool SGVisitItem2::initWithSize(int num,int a,int b ,int c,int d)
         font1->setAnchorPoint(ccp(0, 1));
         font1->ignoreAnchorPointForPosition(false);
         font1->setPosition(ccp(-zik->getContentSize().width/2, zik->getContentSize().height/2 - font1->getContentSize().height/2 + fontShift+5));
+        font1->setVisible(false);
     }
     
 
@@ -140,9 +140,10 @@ bool SGVisitItem2::initWithSize(int num,int a,int b ,int c,int d)
     visit10->ignoreAnchorPointForPosition(false);
     visit1->setAnchorPoint(ccp(1, 1));
     visit1->ignoreAnchorPointForPosition(false);
-    visit1->setPosition(ccpAdd(zik->getPosition(), ccp(-zik->getContentSize().height / 10, -visit10->getContentSize().height * 2.3 + shift + 30)));  //+30by cgp
+    visit1->setPosition(ccpAdd(zik->getPosition(), ccp(120, -140)));
     visit10->setPosition(ccpAdd(visit1->getPosition(), ccp(visit10->getContentSize().width * 1.2, 0)));
-    
+    visit10->setVisible(false);
+    visit10->setEnabled(false);
     
     CCSprite *font2 = CCSprite::createWithSpriteFrameName("font_3xzb.png");
     
@@ -152,6 +153,7 @@ bool SGVisitItem2::initWithSize(int num,int a,int b ,int c,int d)
         font2->setAnchorPoint(ccp(0, 0.5));
         font2->cocos2d::CCNode::ignoreAnchorPointForPosition(false);
         font2->setPosition(ccpAdd(visit1->getPosition(), ccp(-visit1->getContentSize().width / 2, visit1->getContentSize().height)));
+        font2->setVisible(false);
     }
 
     
@@ -200,6 +202,7 @@ bool SGVisitItem2::initWithSize(int num,int a,int b ,int c,int d)
             sprintf(wj,"wj_3.%d.png",i+1);
             CCSprite *sp = CCSprite::createWithSpriteFrameName(wj);
             wjlayer->addChild(sp);
+            sp->setVisible(false);
             sp->setTag(i+20);
             sp->setScaleY(posyRate);
             sp->setPosition(ccpAdd(zik->getPosition(), ccp(size.width*i,0)));

@@ -41,7 +41,7 @@ public:
     CC_SYNTHESIZE(int, randomMapId, RandomMapId)
     
 private:
-    void logSbData(SGSBObj *obj, int i = 0);
+    void logSbData(SGSBObj *obj);
     void connSuccess(CCObject *obj);
     void loginSuccess(CCObject *obj);
     

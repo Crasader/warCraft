@@ -4,16 +4,16 @@
 	<dict>
 		<key>frames</key>
 		<dict>
-			<key>update/sheeton.png</key>
+			<key>visit/generalcardbg_ip5.png</key>
 			<dict>
 				<key>width</key>
-				<integer>196</integer>
+				<integer>640</integer>
 				<key>height</key>
-				<integer>64</integer>
+				<integer>507</integer>
 				<key>originalWidth</key>
-				<integer>196</integer>
+				<integer>640</integer>
 				<key>originalHeight</key>
-				<integer>64</integer>
+				<integer>507</integer>
 				<key>x</key>
 				<integer>0</integer>
 				<key>y</key>
@@ -23,18 +23,37 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>update/sheetoff.png</key>
+			<key>visit/cj_downground.png</key>
 			<dict>
 				<key>width</key>
-				<integer>196</integer>
+				<integer>640</integer>
 				<key>height</key>
-				<integer>64</integer>
+				<integer>475</integer>
 				<key>originalWidth</key>
-				<integer>196</integer>
+				<integer>640</integer>
 				<key>originalHeight</key>
-				<integer>64</integer>
+				<integer>475</integer>
 				<key>x</key>
-				<integer>198</integer>
+				<integer>0</integer>
+				<key>y</key>
+				<integer>509</integer>
+				<key>offsetX</key>
+				<real>0</real>
+				<key>offsetY</key>
+				<real>0</real>
+			</dict>
+			<key>visit/cj_zsk.png</key>
+			<dict>
+				<key>width</key>
+				<integer>256</integer>
+				<key>height</key>
+				<integer>236</integer>
+				<key>originalWidth</key>
+				<integer>256</integer>
+				<key>originalHeight</key>
+				<integer>236</integer>
+				<key>x</key>
+				<integer>642</integer>
 				<key>y</key>
 				<integer>0</integer>
 				<key>offsetX</key>
@@ -42,77 +61,20 @@
 				<key>offsetY</key>
 				<real>0</real>
 			</dict>
-			<key>update/updatebluebg.png</key>
+			<key>visit/cj_taizi.png</key>
 			<dict>
 				<key>width</key>
-				<integer>297</integer>
+				<integer>172</integer>
 				<key>height</key>
-				<integer>299</integer>
+				<integer>189</integer>
 				<key>originalWidth</key>
-				<integer>297</integer>
+				<integer>172</integer>
 				<key>originalHeight</key>
-				<integer>299</integer>
+				<integer>189</integer>
 				<key>x</key>
-				<integer>396</integer>
+				<integer>642</integer>
 				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>update/updateyellowbg.png</key>
-			<dict>
-				<key>width</key>
-				<integer>296</integer>
-				<key>height</key>
-				<integer>202</integer>
-				<key>originalWidth</key>
-				<integer>296</integer>
-				<key>originalHeight</key>
-				<integer>202</integer>
-				<key>x</key>
-				<integer>695</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>update/biankuang.png</key>
-			<dict>
-				<key>width</key>
-				<integer>11</integer>
-				<key>height</key>
-				<integer>586</integer>
-				<key>originalWidth</key>
-				<integer>11</integer>
-				<key>originalHeight</key>
-				<integer>586</integer>
-				<key>x</key>
-				<integer>993</integer>
-				<key>y</key>
-				<integer>0</integer>
-				<key>offsetX</key>
-				<real>0</real>
-				<key>offsetY</key>
-				<real>0</real>
-			</dict>
-			<key>update/jiao_a.png</key>
-			<dict>
-				<key>width</key>
-				<integer>76</integer>
-				<key>height</key>
-				<integer>77</integer>
-				<key>originalWidth</key>
-				<integer>76</integer>
-				<key>originalHeight</key>
-				<integer>77</integer>
-				<key>x</key>
-				<integer>0</integer>
-				<key>y</key>
-				<integer>588</integer>
+				<integer>238</integer>
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>

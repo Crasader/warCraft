@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>1592</key>
+		<dict>
+			<key>id</key>
+			<string>1592</string>
+			<key>areaId</key>
+			<string>1</string>
+		</dict>
+		<key>1600</key>
+		<dict>
+			<key>id</key>
+			<string>1600</string>
+			<key>areaId</key>
+			<string>2</string>
+		</dict>
+		<key>1612</key>
+		<dict>
+			<key>id</key>
+			<string>1612</string>
+			<key>areaId</key>
+			<string>3</string>
+		</dict>
+	</dict>
+</plist>

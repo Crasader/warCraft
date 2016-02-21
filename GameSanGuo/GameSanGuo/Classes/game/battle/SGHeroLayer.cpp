@@ -40,6 +40,7 @@
 #include "SGStringConfig.h"
 #include <algorithm>
 #include "SGLogicManager.h"
+#include "CGPTools.h"
 
 
 //PLIST-各种文件
@@ -2223,7 +2224,7 @@ void SGHeroLayer::changBloodNum(int num, bool isBuff, bool skill)
         //闪屏与晃动
         shakeAndWobble();
         //震屏
-        int actnum = 1;
+        int actnum = 3;
         if (abs(num) < this->heroBloodMax * 0.5 &&
             abs(num) >= this->heroBloodMax * 0.1)
         {
@@ -2234,7 +2235,8 @@ void SGHeroLayer::changBloodNum(int num, bool isBuff, bool skill)
             actnum = 3;
         }
         
-        SGBattleManager::sharedBattle()->getBattleLayer()->fuckLayer(actnum);
+        SGBattleManager::sharedBattle()->getBattleLayer()->fuckLayer(actnum, true);
+        //Tools::shakeWnd(SGBattleManager::sharedBattle()->getBattleLayer());
         int a = heroBloodMax * 0.5;
         if (abs(num) >= a)
         {
@@ -3728,6 +3730,14 @@ void SGHeroLayer::showEffectLayerCgp(int type, bool isRelease, GameIndex index, 
             effPos.x = 320;
             effPos.y = isme ? 350 : 850;
         }
+        if(type == Eff_sanbing)
+        {
+            if (isme)
+            {
+                effPos.y += gridHeight;
+            }
+        }
+        
         effect->setPosition(ccpAdd(effPos, difPos));
         this->addChild(effect, CGP_EFFECT_ZORDER);
         if (isRelease)

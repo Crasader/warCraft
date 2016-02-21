@@ -135,34 +135,36 @@ void SGVisitLayer::initView()
     CCSprite *gonggao_3_2 = CCSprite::createWithSpriteFrameName("gonggao_3_2.png");
     gonggao_3_2->setAnchorPoint(ccp(0.5, 1));
     gonggao_3_2->setScaleX(6);
-    gonggao_3_2->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter),ccp(0,-47)));
+    gonggao_3_2->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter),ccp(0,0)));
     this->addChild(gonggao_3_2,2);
     CCSprite *gonggao_bg_3_l = CCSprite::createWithSpriteFrameName("gonggao_3_rl.png");
     gonggao_bg_3_l->setAnchorPoint(ccp(0, 1));
-    gonggao_bg_3_l->setPosition(ccpAdd(SGLayout::getPoint(kUpLeft),ccp(0,-47)));
+    gonggao_bg_3_l->setPosition(ccpAdd(SGLayout::getPoint(kUpLeft),ccp(0,0)));
     this->addChild(gonggao_bg_3_l,3);
     
     CCSprite *gonggao_bg_3_r = CCSprite::createWithSpriteFrameName("gonggao_3_rl.png");
     gonggao_bg_3_r->setFlipX(true);
     gonggao_bg_3_r->setAnchorPoint(ccp(1, 1));
-    gonggao_bg_3_r->setPosition(ccpAdd(SGLayout::getPoint(kUpRight),ccp(0,-47)));
+    gonggao_bg_3_r->setPosition(ccpAdd(SGLayout::getPoint(kUpRight),ccp(0,0)));
     this->addChild(gonggao_bg_3_r,3);
     
     ResourceManager::sharedInstance()->bindTexture("sanguobigpic/barrack_bg.plist", RES_TYPE_LAYER_UI, sg_visitLayer);
 
-    CCSprite *bg = CCSprite::createWithSpriteFrameName("barrack_bg.png");
-    CCRect r = CCRectMake(0, btmhgt,bg->getContentSize().width, s.height - gonggao_3_2->getContentSize().height - btmhgt);
-    bg->setTextureRect(r);
+    CCSprite *bg = CCSprite::createWithSpriteFrameName("barrack_bg.png");  //大背景
+    
+    //removed by cgp
+//    CCRect r = CCRectMake(0, btmhgt,bg->getContentSize().width, s.height - gonggao_3_2->getContentSize().height - btmhgt);
+//    bg->setTextureRect(r);
     //bg->setScaleY(r.size.height / bg->getContentSize().height);
     bg->setScaleX(s.width/bg->getContentSize().width * 1.01);
     this->addChild(bg,-1);
     bg->setAnchorPoint(ccp(0.5, 0));
-    bg->setPosition(ccpAdd(SGLayout::getPoint(kBottomCenter), ccp(0,btmhgt-45)));
+    bg->setPosition(ccpAdd(SGLayout::getPoint(kBottomCenter), ccp(0,btmhgt)));
 
     
     CCSprite *title_bg = CCSprite::createWithSpriteFrameName("title_bg.png");
     title_bg->setAnchorPoint(ccp(0.5, 1));
-    title_bg->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter), ccp(0, -45 - gonggao_3_2->getContentSize().height)));
+    title_bg->setPosition(ccpAdd(SGLayout::getPoint(kUpCenter), ccp(0,  - gonggao_3_2->getContentSize().height)));
     this->addChild(title_bg);
     
     if (activityLotteryName) {
@@ -202,11 +204,13 @@ void SGVisitLayer::initView()
     heitiao->setPosition(ccpAdd(title_bg->getPosition(), ccp(s.width*.5f - heitiao->getContentSize().width/2,
                                                              -title_bg->getContentSize().height -heitiao->getContentSize().height*.5f)));
     
-    tableViewHeight = (s.height - 900)/2 + 310;
-    tableView->setDown((tableViewHeight - 310)/2 - 30);
+    tableViewHeight = s.height;
+    tableView->setDown(0);
 
-    tableView->setFrame(CCRectMake(0, 0, s.width, s.height - btmhgt*.68 -heitiao->getContentSize().height- headhgt +2));
-    tableView->setPosition(ccpAdd(SGLayout::getPoint(kBottomCenter), ccp( - s.width/2,btmhgt*.68)));
+    //tableView->setFrame(CCRectMake(0, 0, s.width, s.height - btmhgt*.68 -heitiao->getContentSize().height- headhgt +2));
+    tableView->setFrame(CCRectMake(0, 0, s.width, s.height));
+    
+    tableView->setPosition(ccpAdd(SGLayout::getPoint(kBottomCenter), ccp( - s.width/2, 0)));
  
     SGCCLabelTTF *font1 = SGCCLabelTTF::create(str_TongQueLayer_str30, FONT_BOXINFO, 28);
     addChild(font1,11);
@@ -595,13 +599,13 @@ void SGVisitLayer::buyLegHandler(SGVisitItem1 *visitItem)
         }
         else
         {
-        request->set_type(0);
-        request->set_iscombo(0);
-       
-        if ( time1 == 0)
-        {
-            request->set_iscombo(2);
-        }
+            request->set_type(0);
+            request->set_iscombo(0);
+           
+            if ( time1 == 0)
+            {
+                request->set_iscombo(2);
+            }
             SGMainManager::shareMain()->trackPurchase(CCString::create(str_TongQueLayer_str34), 1, 300);
             SGSocketClient::sharedSocketClient()->send(MSG_VISIT_PURCH, request);
         }
@@ -1240,7 +1244,18 @@ void SGVisitLayer::buyLegListener(CCObject *obj)
         _array->removeObject(obj);
     }
     //这里得到服务器发过来的所有的东西，都在_array里，之后的动画显示
-    SGMainManager::shareMain()->showVisitCards(arrayrand,NULL,comboCard,progressCard, useGoldDoor,false, propBuyCard);
+    
+    //visitCgp
+    //SGMainManager::shareMain()->showVisitCards(arrayrand,NULL,comboCard,progressCard, useGoldDoor,false, propBuyCard);
+    
+    SGMainManager::shareMain()->showVisitResultLayer(arrayrand);
+
+    
+    
+    
+    
+    
+    
     
     SGMainManager::shareMain()->updataUserMsg();
     comboCard = NULL;
@@ -1249,6 +1264,7 @@ void SGVisitLayer::buyLegListener(CCObject *obj)
     
     
 }
+
 
 void SGVisitLayer::buyLegHuoDongListener(CCObject *obj)
 {

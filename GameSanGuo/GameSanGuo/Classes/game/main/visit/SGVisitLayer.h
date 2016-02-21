@@ -14,6 +14,7 @@
 #include "SGVisitItem2.h"
 #include "SGBaseMilitaryCard.h"
 #include "CCScrollView.h"
+#include "SGUIHelper.h"
 
 typedef struct
 {
@@ -25,6 +26,11 @@ typedef struct
 
 class SGVisitLayer : public SGBaseTableLayer,public SGVisitDelegate,public SGVisitDelegate2
 {
+public:
+//    CCSkeletonAnimation*  mOpenDoor;
+//    void callVisitResult();
+    
+    
 private:
     bool _touch;
     SGBaseMilitaryCard *comboCard;

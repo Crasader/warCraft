@@ -50,6 +50,29 @@ static char acActionNames[11][30] =
 };
 
 
+//typedef enum
+//{
+//    ACT_wait = 0,      //待机
+//    ACT_xuli ,          //准备 1
+//    ACT_moveDown,          //向下移动2
+//    ACT_atkDown,          //向下攻击3
+//    ACT_moveUp,          //向上移动
+//    ACT_atkUp,          //向上攻击
+//    ACT_null,         //空
+//    
+//}Action_Sequnce;
+//
+//static char acActionNames[11][30] =
+//{
+//    "idle",
+//    "chuli",
+//    "run_down",
+//    "atk_down",
+//    "run_up",
+//    "atk_up",
+//};
+
+
 class ShiBing :public SGSoldier
 {
 public:

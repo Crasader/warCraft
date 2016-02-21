@@ -13,7 +13,9 @@
 
 
 #define CGPTest 0  //是否使用测试程序。 1：直接进入TestScene场景。0：正常场景
-#define IS_Server_ALI     1   //是否是我们自己在阿里云上的服务器
+#define AllTaskOpen 0
+#define LogSbData 0
+#define newServerData 0
 
 //cgpADR	
 #define CGP_OTH  0
@@ -25,7 +27,6 @@
 #define CGP_PLATFORM   CGP_IOS
 
 
-
 /*
  * 脸书开关。
  * 是否开启facebook
@@ -34,6 +35,8 @@
 #define FACEBOOK_ON     1
 //不使用facebook
 #define FACEBOOK_OFF    0
+
+
 
 /*
  * 各类广告开关，历史遗留问题。

@@ -1,1 +1,0 @@
-{"bones":[{"name":"root"}],"slots":[{"name":"nengliang","bone":"root","attachment":"beiguang"}],"skins":{"default":{"nengliang":{"beiguang":{"width":242,"height":171}}}},"animations":{"animation":{"slots":{"nengliang":{"color":[{"time":0,"color":"ffffff81"},{"time":0.6666,"color":"ffffffff"},{"time":1.3333,"color":"ffffff81"}]}}}}}

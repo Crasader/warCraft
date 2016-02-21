@@ -193,6 +193,9 @@ public:
     //显示强化进阶界面, added by cgp
     void showStrengAdvLayer(SGBaseMilitaryCard *card, int type, int enter = 0,bool isOfficerOnly = false, int currentPage=1000, ERI *info = NULL);
     
+    //探访结果界面
+    void showVisitResultLayer(CCArray *array = NULL, int type = 0, int enter = 0,bool isOfficerOnly = false, int currentPage=1000, ERI *info = NULL);
+    
     
     //显示进阶界面
     void showAdvanceLayer(SGBaseMilitaryCard *card, int type,int isfirst = 0,CCArray *array = NULL, ERI *info = NULL);

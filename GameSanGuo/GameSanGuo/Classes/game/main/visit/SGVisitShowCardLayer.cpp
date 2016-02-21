@@ -664,48 +664,47 @@ void SGVisitShowCardLayer::showVisitCardStart()
     
     
     
-//    char *spritData = new char[(int)winSize.width * (int)winSize.height *4];
-//    memset(spritData,0,(int)winSize.width * (int)winSize.height *4);
-//    int spriteDataSize = (int)winSize.width * (int)winSize.height*4;
-//    for (int j=0; j<spriteDataSize; j+=4) {
-//        spritData[j] = 255;
-//        spritData[j+1] = 255;
-//        spritData[j+2] = 255;
-//        spritData[j+3] = 255;
-//    }
-//    
-//    CCTexture2D *pTexture = new CCTexture2D();
-//    pTexture->initWithData(spritData, kCCTexture2DPixelFormat_Default, (int)winSize.width, (int)winSize.height, winSize);
-//    
-//    CCSprite *whiteSprite = CCSprite::createWithTexture(pTexture);
-//    CCFadeIn::create(3);
-//    whiteSprite->runAction(CCFadeOut::create(SHOWCARDGAPTIME*12));
-//    whiteSprite->setPosition(CCPointZero);
-//    whiteSprite->setAnchorPoint(CCPointZero);
-//    this->addChild(whiteSprite);
-//    
-//    delete [] spritData;
-//    pTexture->autorelease();
+    char *spritData = new char[(int)winSize.width * (int)winSize.height *4];
+    memset(spritData,0,(int)winSize.width * (int)winSize.height *4);
+    int spriteDataSize = (int)winSize.width * (int)winSize.height*4;
+    for (int j=0; j<spriteDataSize; j+=4) {
+        spritData[j] = 255;
+        spritData[j+1] = 255;
+        spritData[j+2] = 255;
+        spritData[j+3] = 255;
+    }
+    
+    CCTexture2D *pTexture = new CCTexture2D();
+    pTexture->initWithData(spritData, kCCTexture2DPixelFormat_Default, (int)winSize.width, (int)winSize.height, winSize);
+    
+    CCSprite *whiteSprite = CCSprite::createWithTexture(pTexture);
+    CCFadeIn::create(3);
+    whiteSprite->runAction(CCFadeOut::create(SHOWCARDGAPTIME*12));
+    whiteSprite->setPosition(CCPointZero);
+    whiteSprite->setAnchorPoint(CCPointZero);
+    this->addChild(whiteSprite);
+    
+    delete [] spritData;
+    pTexture->autorelease();
     
     ////////////////////////////////////////////
     unschedule(schedule_selector(SGVisitShowCardLayer::dealShowVisitCard));
     schedule(schedule_selector(SGVisitShowCardLayer::dealShowVisitCard), SHOWCARDGAPTIME*4);
     showCardTag = 0;
-    return;
-//    //添加动画 法阵旋转
-//    CCSpriterX *visitArray = CCSpriterX::create("animationFile/Array.scml",true,true);
-//    visitArray->setisloop(true);
-//    visitArray->play();
-//    visitArray->setanimaID(0);
-//    addChild(visitArray,-10);
-//    visitArray->setPosition(ccp(winSize.width/2, winSize.height*(_moveUp-0.28)));
-//    //法阵上升粒子
-//    CCSpriterX *lightSpot = CCSpriterX::create("animationFile/Lightspot.scml",true,true);
-//    lightSpot->setisloop(true);
-//    lightSpot->play();
-//    lightSpot->setanimaID(0);
-//    addChild(lightSpot,50);
-//    lightSpot->setPosition(ccp(winSize.width/2, winSize.height*(_moveUp-0.2)));
+    //添加动画 法阵旋转
+    CCSpriterX *visitArray = CCSpriterX::create("animationFile/Array.scml",true,true);
+    visitArray->setisloop(true);
+    visitArray->play();
+    visitArray->setanimaID(0);
+    addChild(visitArray,-10);
+    visitArray->setPosition(ccp(winSize.width/2, winSize.height*(_moveUp-0.28)));
+    //法阵上升粒子
+    CCSpriterX *lightSpot = CCSpriterX::create("animationFile/Lightspot.scml",true,true);
+    lightSpot->setisloop(true);
+    lightSpot->play();
+    lightSpot->setanimaID(0);
+    addChild(lightSpot,50);
+    lightSpot->setPosition(ccp(winSize.width/2, winSize.height*(_moveUp-0.2)));
     
 }
 

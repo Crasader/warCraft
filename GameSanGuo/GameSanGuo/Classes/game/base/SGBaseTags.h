@@ -356,6 +356,11 @@ enum LayerTag
     
     //cocostudio layerTag startHero
     cgp_strengAdvLayer,    //强化进阶界面，added by cgp， 从这个界面开始是cocostudio界面
+    cgp_visitResult,       //探访结果界面
+    cgp_bagLayer,
+    
+    
+    
     SG_LAYER_TAG_TOTAL_NUM, //@NOTICE! 所有格新增LayerTag请在这个枚举值之前填写！
 };
 
